@@ -185,11 +185,19 @@ fbshow /path/to/image.png /dev/fb0
    # 无线 SSH 部署
    ./scripts/deploy.sh build/examples/01_hello_hardware/hello_hardware /userdisk/bin/ --ip 192.168.2.2 --run
    ```
-4. **统一 Docker 构建环境（可选）**：
+4. **编译并部署 Go 原生运行时 (`s7pro_runner`)**：
    ```bash
-   docker build -f docker/Dockerfile.sdk -t s7pro-sdk .
-   docker run --rm -v $(pwd):/workspace s7pro-sdk bash -c "cmake -B build -DCMAKE_TOOLCHAIN_FILE=cmake/arm-cv1813.cmake && cmake --build build"
+   cd host_tools/runner && ./build.sh
+   ./scripts/deploy.sh s7pro_runner /userdata/bin/
    ```
+
+### 5. 官方桌面卡片进入与无感返回机制 (App Card Lifecycle)
+
+通过应用商店安装的“极客工具箱”卡片，原生打通了**双系统无缝共存与切换**：
+1. **点击卡片启动**：桌面点击图标，Falcon 容器以 root 权限加载 Native SO 并触发 `/userdata/app/default/init.sh`；
+2. **硬件独占接管**：后台运行 `s7pro_runner`，向官方前台发送 `SIGSTOP` 优雅挂起，秒级接管 Framebuffer（`/dev/fb0`）；
+3. **触控与按键退出监听**：`s7pro_runner` 内置防抖监听 `/dev/input/by-path/gpio-keys`（物理 Home 键）与 `/dev/input/by-path/axs_ts`（屏幕触控）；
+4. **秒级恢复官方桌面**：用户只要**按一下侧边按键**或**点击屏幕**（或 15 秒无操作超时保底），程序向官方进程发送 `SIGCONT`，0.05 秒内无缝返回官方有道查词桌面。
 
 ---
 
@@ -206,15 +214,21 @@ fbshow /path/to/image.png /dev/fb0
 │   └── Dockerfile.sdk            # 统一交叉编译 SDK 容器镜像配置
 ├── scripts/
 │   ├── extract_sysroot.sh        # 设备端 sysroot 自动化提取与软链接修复工具
-│   └── deploy.sh                 # 有线 ADB / 无线 SSH 一键极速部署与执行脚本
+│   ├── deploy.sh                 # 有线 ADB / 无线 SSH 一键极速部署与执行脚本
+│   ├── display_image.sh          # 屏幕图像快速刷新工具
+│   └── restore_official_ui.sh    # 官方词典界面一键恢复工具
 ├── examples/
 │   └── 01_hello_hardware/        # 硬件信息与 Framebuffer 探测示例源码
 ├── docs/
-│   └── s7pro_developer_guide.md  # 详细硬件接口、驱动拓扑与外设开发指南
+│   ├── s7pro_developer_guide.md  # 详细硬件接口、驱动拓扑与外设开发指南
+│   └── fb_verify.png             # 物理屏幕 240x1020 真实回读截图
 ├── host_tools/
 │   ├── appstore_server.py        # macOS 端透明代理与应用商店拦截下发服务器
 │   ├── patch_so.py               # ELF 动态库 Native Hook 自动修补工具
-│   └── quickjs_atom_tool.py      # QuickJS 字节码 (.js.bin) 原子表解析器
+│   ├── quickjs_atom_tool.py      # QuickJS 字节码 (.js.bin) 原子表解析器
+│   └── runner/                   # 原生 App 进退与输入监听守护程序 (Go)
+│       ├── main.go
+│       └── build.sh
 ├── device_payload/
 │   ├── skip_login.sh             # 设备端永久开机固化执行脚本
 │   ├── adb_auth.sh               # 永久放行的 mock adb_auth 脚本
