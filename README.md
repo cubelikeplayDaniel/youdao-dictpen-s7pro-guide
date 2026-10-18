@@ -20,7 +20,8 @@
   - [3.5 ELF 符号劫持与 Root Shell 初始化](#35-elf-符号劫持与-root-shell-初始化)
 - [四、 永久固化机制 (开机免密 ADB + 无线 SSH)](#四-永久固化机制-开机免密-adb--无线-ssh)
 - [五、 原生应用极速开发工作流](#五-原生应用极速开发工作流)
-- [六、 仓库目录与配套工具集](#六-仓库目录与配套工具集)
+- [六、 官方系统服务与 API 子系统全景](#六-官方系统服务与-api-子系统全景)
+- [七、 仓库目录与配套工具集](#七-仓库目录与配套工具集)
 
 ---
 
@@ -201,7 +202,27 @@ fbshow /path/to/image.png /dev/fb0
 
 ---
 
-## 六、 仓库目录与配套工具集
+## 六、 官方系统服务与 API 子系统全景
+
+为了避免在应用层重复造轮子或手写简陋的 UI/多媒体框架，我们对词典笔出厂固件（`/oem/secondary/etc/miniapp/`、`/usr/lib/libfalcon.so`、`/oem/YoudaoDictPen/output/libs/`）进行了深度解构，梳理出设备自带的官方服务与硬件加速 API：
+
+1. **输入法服务 (`8001666679481944` / `greenui::InputMethodImpl`)**：
+   - 内置 QWERTY 全键盘、九宫格 T9、符号面板、水平拼音候选词推荐与语音转文字；
+   - 官方标准调用接口：`$falcon.showSoftInput({ type, placeholder, onConfirm })`。
+2. **视频播放服务 (`8001661999525016` / `CVPlayer` & `softvplayer`)**：
+   - 包含硬解层 `libyddal_business_cvplayer.so`，直接对接 CV1813 VPSS/VDEC 硬件单元；
+   - 支持图层视口硬件裁剪（`videoCrop`）、倍速播放（`setRate`）与硬件图层定位（`setVideoSurface`）。
+3. **音频播放服务 (`8001650599023931` / `media_player` & `SoundPlayer`)**：
+   - 守护进程 `/oem/YoudaoDictPen/output/SoundPlayer` 直接管控 AW883XX SmartPA 智能功放（`hw:1,0`）；
+   - 自带 LRC 歌词解析与双语字幕同步引擎（`playNextLrc`、`getSubtitleStatus`）。
+4. **网络与系统设置 (`8080272425914438` / `libjsapi_settings.so`)**：
+   - 后台常驻 `wifi-manager` 与 `bt-manager`，提供 Wi-Fi/蓝牙自动化接入与背光 PWM 平滑调光。
+
+> 📖 **完整官方 API 规范与杀手级应用构建指南**：详见 [docs/s7pro_official_api_guide.md](docs/s7pro_official_api_guide.md)。
+
+---
+
+## 七、 仓库目录与配套工具集
 
 ```
 .
@@ -220,6 +241,7 @@ fbshow /path/to/image.png /dev/fb0
 ├── examples/
 │   └── 01_hello_hardware/        # 硬件信息与 Framebuffer 探测示例源码
 ├── docs/
+│   ├── s7pro_official_api_guide.md # 官方系统 API、服务子系统与组件架构开发指南
 │   ├── s7pro_developer_guide.md  # 详细硬件接口、驱动拓扑与外设开发指南
 │   └── fb_verify.png             # 物理屏幕 240x1020 真实回读截图
 ├── host_tools/
