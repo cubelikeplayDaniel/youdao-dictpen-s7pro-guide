@@ -1,6 +1,10 @@
 # 网易有道词典笔 S7 Pro (Y08 / CV1813) 深度逆向与全栈开发指南
 ## NetEase Youdao Dictionary Pen S7 Pro Breakthrough & Developer Manual
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-Cvitek%20CV1813-blue.svg)](https://github.com/cubelikeplayDaniel/youdao-dictpen-s7pro-guide)
+[![OS](https://img.shields.io/badge/OS-Buildroot%20Linux%205.10-green.svg)](https://github.com/cubelikeplayDaniel/youdao-dictpen-s7pro-guide)
+
 本项目记录了对**网易有道词典笔 S7 Pro**（硬件代号：`Y08_CV1813_V0`，SoC：Cvitek CV1813 ARMv7-A Cortex-A7，操作系统：Buildroot Linux 5.10 + 阿里巴巴 HaaS UI / Falcon 运行时）从**零特权环境**到**永久获得 Root 权限、免密 ADB 直通与无线 SSH 终端**的完整开发与技术解构流程，并提供后续脱离官方框架进行 Linux 原生应用开发的完整技术规范。
 
 ---
@@ -168,6 +172,7 @@ fbshow /path/to/image.png /dev/fb0
 
 ```
 .
+├── LICENSE                        # MIT 开源许可证
 ├── README.md                      # 全流程技术复盘文档 (本文件)
 ├── docs/
 │   └── s7pro_developer_guide.md  # 详细硬件接口、驱动拓扑与外设开发指南
@@ -182,6 +187,11 @@ fbshow /path/to/image.png /dev/fb0
 └── certs/
     └── appstore_cert_gen.sh      # 多域名 SAN 自签名 SSL 证书生成脚本
 ```
+
+---
+
+## 开源许可证 / License
+本项目采用 [MIT License](LICENSE) 开源许可协议。
 
 ---
 
