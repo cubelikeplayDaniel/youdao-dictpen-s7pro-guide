@@ -166,6 +166,31 @@ fbshow /path/to/image.png /dev/fb0
 ```
 或直接通过 C/Python/Go 向 `/dev/fb0` 写入 32 位 ARGB 像素数据，构建轻量 GUI（如 LVGL、SDL）。
 
+### 4. 交叉编译与 SDK 快速上手 (Native Toolchain)
+
+1. **提取设备端 Sysroot 动态库与头文件**：
+   ```bash
+   ./scripts/extract_sysroot.sh
+   ```
+2. **使用 CMake 进行交叉编译**：
+   ```bash
+   cmake -B build -DCMAKE_TOOLCHAIN_FILE=cmake/arm-cv1813.cmake
+   cmake --build build
+   ```
+3. **一键快速部署并远程执行**：
+   ```bash
+   # 有线 ADB 部署
+   ./scripts/deploy.sh build/examples/01_hello_hardware/hello_hardware /userdata/bin/ --run
+
+   # 无线 SSH 部署
+   ./scripts/deploy.sh build/examples/01_hello_hardware/hello_hardware /userdisk/bin/ --ip 192.168.2.2 --run
+   ```
+4. **统一 Docker 构建环境（可选）**：
+   ```bash
+   docker build -f docker/Dockerfile.sdk -t s7pro-sdk .
+   docker run --rm -v $(pwd):/workspace s7pro-sdk bash -c "cmake -B build -DCMAKE_TOOLCHAIN_FILE=cmake/arm-cv1813.cmake && cmake --build build"
+   ```
+
 ---
 
 ## 六、 仓库目录与配套工具集
@@ -174,6 +199,16 @@ fbshow /path/to/image.png /dev/fb0
 .
 ├── LICENSE                        # MIT 开源许可证
 ├── README.md                      # 全流程技术复盘文档 (本文件)
+├── CMakeLists.txt                 # SDK 顶层 CMake 构建配置
+├── cmake/
+│   └── arm-cv1813.cmake          # ARMv7-A Cortex-A7 交叉编译工具链定义
+├── docker/
+│   └── Dockerfile.sdk            # 统一交叉编译 SDK 容器镜像配置
+├── scripts/
+│   ├── extract_sysroot.sh        # 设备端 sysroot 自动化提取与软链接修复工具
+│   └── deploy.sh                 # 有线 ADB / 无线 SSH 一键极速部署与执行脚本
+├── examples/
+│   └── 01_hello_hardware/        # 硬件信息与 Framebuffer 探测示例源码
 ├── docs/
 │   └── s7pro_developer_guide.md  # 详细硬件接口、驱动拓扑与外设开发指南
 ├── host_tools/
