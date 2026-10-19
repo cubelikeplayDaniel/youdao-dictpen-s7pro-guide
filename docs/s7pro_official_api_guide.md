@@ -82,11 +82,15 @@
    - 宿主机交叉编译工具：仓库提供 `host_tools/qjsc` 与 `host_tools/compile_js_bin.py`，支持将 `.js` 源码直接编译为适配设备的 `.js.bin`。
 
 2. **MiniApp 无头进程管理命令行 (`miniapp_cli`)**：
-   系统提供专用命令行控制微应用进程生命周期，开发过程中无需人工操作屏幕：
+   系统提供专用命令行控制微应用进程生命周期、截图抓取与按键注入，开发过程中无需人工操作屏幕：
    ```bash
-   /usr/bin/miniapp_cli start <AppID>    # 直接启动指定小程序应用 (例如 8001666679481944)
-   /usr/bin/miniapp_cli stop <AppID>     # 终止正在运行的小程序
-   /usr/bin/miniapp_cli restart <AppID>  # 热重启小程序
+   /usr/bin/miniapp_cli start <AppID> [--page]   # 启动指定小程序应用 (例如 8001666679481944)
+   /usr/bin/miniapp_cli install <amrPath>        # 安装或热重载 .amr 应用包
+   /usr/bin/miniapp_cli uninstall <AppID>        # 卸载指定小程序
+   /usr/bin/miniapp_cli capture <save_path.png>  # 截取小程序当前渲染画面
+   /usr/bin/miniapp_cli captureFB <save_path>    # 截取 Linux 帧缓冲区原始数据
+   /usr/bin/miniapp_cli injectKey <keyCode>      # 向当前活动小程序注入按键事件
+   /usr/bin/miniapp_cli memoryUsage              # 监测 QuickJS 虚拟机内存开销
    ```
 
 ---
