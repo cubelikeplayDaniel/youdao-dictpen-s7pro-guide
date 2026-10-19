@@ -27,21 +27,37 @@
 
 ## 二、 关键官方 API 与子系统接口
 
-### 2.1 官方软键盘与拼音输入法 (`IM_PANEL_DICT`)
-* **服务入口**：`8001666679481944`
+### 2.1 官方软键盘与输入法服务子系统 (`IM_PANEL_DICT`)
+* **服务 App ID**：`8001666679481944`（分类：`IM_PANEL_DICT`）
+* **部署路径**：`/userdisk/secondary/miniapp/data/mini_app/pkg/8001666679481944/a/`
 * **底层 C++ 引擎**：内置于 `/usr/lib/libfalcon.so` 中的 `greenui::InputMethodImpl`；
-* **中文拼音解码器 API**：
-  * `im_open_decoder()`：初始化词库与分词状态；
-  * `im_search(pinyin_str)`：拼音序列前缀检索；
-  * `im_get_candidate(index)`：获取拼音候选词列表；
-  * `im_add_letter(char)`：步进输入字母；
-* **现成 UI 组件树**：
-  * `OnlyCharKeyboard`：26 键 QWERTY 全键盘（针对 240px 窄屏做过专用字母间距优化）；
-  * `NumberKeyboard`：九宫格与 T9 快捷键；
-  * `SymbolKeyboard`：分页标点与多国符号面板；
-  * `WordsPanel`：水平滚动的联想词推荐栏；
-  * `VoiceRecord`：实时语音转写上屏。
-* **调用方式**：通过 Falcon 框架的标准软键盘调度器调用：
+* **应用组件树拓扑**：
+  ```
+  8001666679481944/a/
+  ├── manifest.json                  # 清单元数据 (QuickJS 20200705, page_rotation: inherit)
+  ├── app.js.bin                     # 动画帧与样式注入入口
+  ├── app-97c7b333.js.bin            # 全局调度器 (theme-y08 / theme-apollo 适配器)
+  ├── InputPage-38d8bb4d.js.bin      # Apollo / Y08 平台主输入页面 (关键容器)
+  ├── NumberKeyboard-b9891f44.js.bin # 九宫格按键组件 (4x4 阵列，无外部依赖)
+  ├── OnlyCharKeyboard-35023e1a.js.bin # 26 键独立组件
+  ├── SymbolKeyboard-90c069d9.js.bin # 标点符号与特殊字符面板
+  ├── WordsPanel-e084886d.js.bin     # 候选词横向滚动条 (绑定 im.searchWord)
+  └── [功能按键组件]                 # CloseButton, CapsLockButton, EnterButton, DeleteButton 等
+  ```
+* **系统输入服务通信契约 (IPC / JSAPI)**：
+  * **字符上屏**：`$falcon.im.commitText(str)`（向当前焦点输入框提交字符或字符串）；
+  * **退格删除**：`$falcon.im.deleteSurroundingText(beforeLength, afterLength)`（通常传入 `1, 0` 实现退格）；
+  * **编辑器动作触发**：`$falcon.im.sendEditorAction(actionId)`（例如 `6` 对应 `ACTION_DONE` 确认完成）；
+  * **全屏编辑模式切换**：`$falcon.im.setFullscreenMode(boolean)`（控制长文本多行全屏编辑视窗）；
+  * **中文词库检索接口**：
+    ```javascript
+    // 调用底层 ime_pinyin 拼音矩阵检索核心
+    $falcon.im.searchWord(pinyinChars, function(candidateList) {
+        // 返回匹配词列表，例如 ['有道', '幼岛', '邮电']
+        this.candidates = candidateList;
+    });
+    ```
+* **第三方应用唤起方式**：通过 Falcon 框架的标准软键盘调度器调用：
   ```js
   // 唤起官方输入法
   $falcon.showSoftInput({
@@ -57,7 +73,25 @@
 
 ---
 
-### 2.2 视频播放子系统 (`VIDEOPLAYER` / `CVPlayer`)
+### 2.2 MiniApp 进程生命周期与 QuickJS 字节码机制
+词典笔所有官方 UI 应用均基于 QuickJS 2020-07-05 编译的二进制字节码运行：
+
+1. **字节码底层格式规范**：
+   - 字节码版本头标（Bytecode Version Tag）：单字节 `0x3f`（十进制 63，对应 QuickJS 2020-07-05 源码常量 `DUMP_BYTECODE = 63`）；
+   - 编译标志：必须以模块模式编译（`JS_EVAL_TYPE_MODULE | JS_EVAL_FLAG_COMPILE_ONLY`），并使用 `JS_WriteObject(..., JS_WRITE_OBJ_BYTECODE)` 导出；
+   - 宿主机交叉编译工具：仓库提供 `host_tools/qjsc` 与 `host_tools/compile_js_bin.py`，支持将 `.js` 源码直接编译为适配设备的 `.js.bin`。
+
+2. **MiniApp 无头进程管理命令行 (`miniapp_cli`)**：
+   系统提供专用命令行控制微应用进程生命周期，开发过程中无需人工操作屏幕：
+   ```bash
+   /usr/bin/miniapp_cli start <AppID>    # 直接启动指定小程序应用 (例如 8001666679481944)
+   /usr/bin/miniapp_cli stop <AppID>     # 终止正在运行的小程序
+   /usr/bin/miniapp_cli restart <AppID>  # 热重启小程序
+   ```
+
+---
+
+### 2.3 视频播放子系统 (`VIDEOPLAYER` / `CVPlayer`)
 * **服务入口**：`8001661999525016`
 * **底层硬解驱动库**：`/oem/YoudaoDictPen/output/libs/libyddal_business_cvplayer.so`
   * 直接与 CV1813 SoC 的 VPSS（视频处理子系统）与 VDEC（硬件解码器）对接。
@@ -80,7 +114,7 @@
 
 ---
 
-### 2.3 音频播放与歌词字幕同步 (`MEDIAPLAYER`)
+### 2.4 音频播放与歌词字幕同步 (`MEDIAPLAYER`)
 * **服务入口**：`8001650599023931`
 * **后台守护进程**：
   * PID 398：`/oem/YoudaoDictPen/output/SoundPlayer`
@@ -101,7 +135,7 @@
 
 ---
 
-### 2.4 网络、蓝牙与系统设置子系统 (`SETTING`)
+### 2.5 网络、蓝牙与系统设置子系统 (`SETTING`)
 * **服务入口**：`8080272425914438`
 * **系统守护进程**：
   * `/usr/bin/wifi-manager 1`（自动扫描、SSID 接入、信号监控）；
@@ -114,7 +148,7 @@
 
 ---
 
-### 2.5 系统 IPC 与多应用通信骨干
+### 2.6 系统 IPC 与多应用通信骨干
 1. **UBus IPC 总线**（`/usr/bin/ubusd`）：
    * 系统运行状态对象注册（`uevent.power_supply.status`、`uevent.input_subsystem.status`、`uevent.digital_audio_device.status`）；
    * 原生提供 `libubus.so`、`libblobmsg_json.so`，支持跨进程高性能发布/订阅模式。

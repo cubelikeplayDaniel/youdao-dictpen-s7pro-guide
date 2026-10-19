@@ -150,22 +150,42 @@ void fb_close(fb_ctx_t *ctx) {
 
 ### 2.2 触摸屏与按键输入子系统
 
-#### 设备节点拓扑
+#### 设备节点拓扑与传感器参数
 - **触摸屏事件节点**：
-  - 物理路径：`/dev/input/by-path/platform-4010000.i2c-event`
-  - 快捷符号链接：`/dev/input/by-path/axs_ts` 或 `/dev/input/event1`
-  - 驱动模块：`/lib/modules/axs_ts.ko`
+  - 物理路径：`/dev/input/event3`（驱动标识：`axs_ts`，属性：`INPUT_PROP_DIRECT`）
+  - 硬件量程规范（通过 `evtest /dev/input/event3` 实测确权）：
+    - `ABS_MT_POSITION_X` (53)：`Min = 0, Max = 170`
+    - `ABS_MT_POSITION_Y` (54)：`Min = 0, Max = 560`
+    - `ABS_MT_SLOT` (47)：`Min = 0, Max = 1`
+    - `ABS_MT_TOUCH_MAJOR` (48)：`Min = 0, Max = 255`
+    - `ABS_MT_PRESSURE` (58)：`Min = 0, Max = 255`
+    - `ABS_MT_TRACKING_ID` (57)：`0 ~ 65535`（松手送 `-1`）
+    - `BTN_TOUCH` (330) 与 `BTN_TOOL_FINGER` (325)：按下为 1，释放为 0
 - **物理按键事件节点**：
-  - 路径：`/dev/input/by-path/gpio-keys`（电源键、主页/AI 唤醒键）
-  - 辅助按键：`/dev/input/by-path/fake-keys`
+  - 路径：`/dev/input/event2`（`gpio-keys`，包含物理按键）
+  - 辅助按键：`/dev/input/event8`（`fake-keys`）
 
-#### 坐标转换算法
-触控芯片输出原始绝对坐标（`EV_ABS`，`ABS_MT_POSITION_X`，`ABS_MT_POSITION_Y`）。由于显示面板旋转了 270 度，触控输入必须进行相应的坐标变换以实现几何对齐：
+#### 正交反相坐标转换算法
+由于词典笔物理屏幕为长条横屏显示（逻辑分辨率 `1020 × 240`，像素坐标 $lx \in [0, 1019], ly \in [0, 239]$），与竖置安装的 `axs_ts` 触控 IC 之间存在正交旋转与量程缩放：
+
+$$\begin{cases} sx = \mathrm{round}\left( ly \times \dfrac{170}{239} \right) \\ sy = \mathrm{round}\left( (1019 - lx) \times \dfrac{560}{1019} \right) \end{cases}$$
+
+C 语言双向坐标映射实现：
 ```c
-void transform_touch_coordinates(int raw_x, int raw_y, int *screen_x, int *screen_y) {
-    // 原始范围通常为 0~1020 与 0~240
-    *screen_x = raw_y;
-    *screen_y = (1020 - 1) - raw_x;
+// 横屏逻辑像素坐标转为底层触摸传感器坐标 (用于仿真触摸注入)
+void screen_to_sensor_touch(int lx, int ly, int *sx, int *sy) {
+    if (lx < 0) lx = 0; if (lx > 1019) lx = 1019;
+    if (ly < 0) ly = 0; if (ly > 239) ly = 239;
+    *sx = (int)((ly * 170.0f / 239.0f) + 0.5f);
+    *sy = (int)(((1019 - lx) * 560.0f / 1019.0f) + 0.5f);
+}
+
+// 底层触摸传感器采样值转为横屏逻辑像素坐标 (用于触控驱动读取)
+void sensor_to_screen_touch(int sx, int sy, int *lx, int *ly) {
+    if (sx < 0) sx = 0; if (sx > 170) sx = 170;
+    if (sy < 0) sy = 0; if (sy > 560) sy = 560;
+    *ly = (int)((sx * 239.0f / 170.0f) + 0.5f);
+    *lx = (int)(1019.0f - (sy * 1019.0f / 560.0f) + 0.5f);
 }
 ```
 
