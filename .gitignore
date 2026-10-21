@@ -4,3 +4,5 @@ __pycache__/
 *.pyo
 *.pyd
 .env
+src/manga_reader/manga_reader
+bin/

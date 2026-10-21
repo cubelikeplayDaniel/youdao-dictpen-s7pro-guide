@@ -1,0 +1,54 @@
+{
+  "appName": "录音服务",
+  "version": "2.22.0",
+  "appid": "8001670668055425",
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false
+  },
+  "meta": {
+    "otaVersion": "4.22.0"
+  },
+  "props": {
+    "supportUnInstall": false,
+    "addDesktop": {
+      "coco_platform": false,
+      "almond_platform": false,
+      "x3s_platform": false,
+      "apollo_platform": false,
+      "plum_platform": false,
+      "melon_platform": false,
+      "exam_platform": false,
+      "olive_platform": false,
+      "hermes_platform": false,
+      "hermes_plus_platform": false,
+      "y06_platform": false
+    }
+  },
+  "cert": {
+    "app.js.bin": {
+      "size": 1445,
+      "md5": "726b16a7d340438fd083aa3d24fecb40"
+    },
+    "index.js.bin": {
+      "size": 1632,
+      "md5": "673d8cc5dabf4625fd74fa780a7b5827"
+    },
+    "page.js.bin": {
+      "size": 1333,
+      "md5": "d03832ec5a0976999495f2309909eb45"
+    },
+    "services/record-service.js.bin": {
+      "size": 8291,
+      "md5": "f784214cbc0c12381f8f0a557494dd39"
+    },
+    "libs/arm-y08/libbusiness_record.so": {
+      "size": 158484,
+      "md5": "4052a6e2949f270266b78d8f955fba1d"
+    },
+    "libs/arm-y08/libjsapi_record.so": {
+      "size": 167092,
+      "md5": "aca5ca313e5e6f04cdb87e7d1b255781"
+    }
+  }
+}

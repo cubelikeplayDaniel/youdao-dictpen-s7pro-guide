@@ -1,0 +1,602 @@
+{
+  "appName": "全科知识点",
+  "version": "2.22.0",
+  "appid": "8001677746544702",
+  "icon": "app_icon.png",
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false
+  },
+  "meta": {
+    "otaVersion": "4.22.0"
+  },
+  "props": {
+    "supportUnInstall": false,
+    "addDesktop": {
+      "coco_platform": true,
+      "almond_platform": true,
+      "x3s_platform": true,
+      "apollo_platform": false
+    },
+    "Icons": {
+      "theme-popcorn": "assets/images/app_icon/theme-popcorn/app_icon.png",
+      "theme-y03": "assets/images/app_icon/theme-y03/app_icon.png",
+      "theme-y07": "assets/images/app_icon/theme-y07/app_icon.png",
+      "theme-y02-1": "assets/images/app_icon/theme-popcorn/app_icon.png"
+    }
+  },
+  "cert": {
+    "CatalogueListItems-eba82f87.js.bin": {
+      "size": 8011,
+      "md5": "5f0bac14c2bb466e0ba819286384ef18"
+    },
+    "ChineseKnowledgePageY03-6f08dbda.js.bin": {
+      "size": 13932,
+      "md5": "3f2e1db34c6f9399d6d1c3eb50bffc82"
+    },
+    "MenuBar-3f7a2791.js.bin": {
+      "size": 9977,
+      "md5": "6e562b633c44f77403b44c8b94cdfa4f"
+    },
+    "MulSelectButton-21531eae.js.bin": {
+      "size": 10122,
+      "md5": "5c0452215727ee6faf6d01792fff939b"
+    },
+    "SectionLabel-ae10ce1a.js.bin": {
+      "size": 11991,
+      "md5": "a1599f6bf4b11ed5dfced8673aa594ea"
+    },
+    "SwitchDialog-5c1a81d6.js.bin": {
+      "size": 34879,
+      "md5": "17c769facbc12c33a9d5be2a6e80ba2b"
+    },
+    "SwitchToolButton-3d209ea0.js.bin": {
+      "size": 1192,
+      "md5": "cf0f89e56883ba519e53c5b6940a2c7c"
+    },
+    "VideoCells-df85a8ab.js.bin": {
+      "size": 16284,
+      "md5": "333ac165416ae3f205e34b9bf7ecb89f"
+    },
+    "app.js.bin": {
+      "size": 13778,
+      "md5": "908419f9b1ae22add96635682885000b"
+    },
+    "chinesePage.js.bin": {
+      "size": 10895,
+      "md5": "29ba24f704470cca2dc0d03caca3faa1"
+    },
+    "contentviewpage.js.bin": {
+      "size": 11304,
+      "md5": "ed813c447e4947b00198018523f276da"
+    },
+    "index.js.bin": {
+      "size": 150989,
+      "md5": "6de64ebab0b8b5376a83729d785c1c09"
+    },
+    "knowledgepage.js.bin": {
+      "size": 16496,
+      "md5": "6c7f1b6f94b4f91f269fe95d39531036"
+    },
+    "moremenuPage.js.bin": {
+      "size": 8727,
+      "md5": "576f00efd18b760aff4dc02f2c91ddfe"
+    },
+    "multidisciplinaryStudyManager-93c5cec5.js.bin": {
+      "size": 49886,
+      "md5": "233b7aeb5525f098dae2e8680cf93957"
+    },
+    "periodSetting.js.bin": {
+      "size": 5123,
+      "md5": "1b18ffab70a039e8410142322aeb0192"
+    },
+    "periodSettingY03.js.bin": {
+      "size": 14865,
+      "md5": "23ca0159e98d68fd702f1051aea82f39"
+    },
+    "publisherPage.js.bin": {
+      "size": 5280,
+      "md5": "27dfb6e6b314a6d0df4d3ef9bc9ac612"
+    },
+    "publisherPageY03.js.bin": {
+      "size": 15710,
+      "md5": "d191c06556720992711d49a87fd95c7e"
+    },
+    "subunitpage.js.bin": {
+      "size": 12458,
+      "md5": "e2e7909bf20a2990e3355755807715f5"
+    },
+    "unitpage.js.bin": {
+      "size": 11232,
+      "md5": "3411ef2b2f526840f160cedeea10e980"
+    },
+    "userCenterManager-797c54dd.js.bin": {
+      "size": 7086,
+      "md5": "6ab998d676a079a437263141933edc61"
+    },
+    "videoPage.js.bin": {
+      "size": 4991,
+      "md5": "dc3bb595cfb5442e5160359ea62eb5af"
+    },
+    "images/0166dc16a17756c320e681752a0a19fc.png": {
+      "size": 261,
+      "md5": "7a3335ca18cc944ea7038b1f38b5f114"
+    },
+    "images/046835366e5256ac24f384cfd9433ca3.png": {
+      "size": 33576,
+      "md5": "3de472c77674561e2097137559a975f0"
+    },
+    "images/06c3ee2477bc33e8d765978232d8b2c9.png": {
+      "size": 17091,
+      "md5": "096929943d65853e6e9935eb0feab923"
+    },
+    "images/099bee232a4909fcc18529af2d21152e.png": {
+      "size": 749,
+      "md5": "b15080e48ba3b3fade3e5de766fbc33e"
+    },
+    "images/0a82d461a8ac2e1ca51d1a62da101023.png": {
+      "size": 767,
+      "md5": "0fc79df920ceae0813b2aa8b422578f7"
+    },
+    "images/1277f9b2b155847e239ab64f520c5533.png": {
+      "size": 1027,
+      "md5": "b7ac211dc0298454e9d559c3ffe06dd8"
+    },
+    "images/176bcd5884fdefdb87a828f6db0dab8c.png": {
+      "size": 931,
+      "md5": "05ccbec18dbac0ec315dc2acabd0ae9a"
+    },
+    "images/18cd8e3064e7446cd0ae3e123ba6680c.png": {
+      "size": 684,
+      "md5": "545bc744cdb9fbaf7090b3947b503d7f"
+    },
+    "images/1c0a3b68a5c4e9e1aa4b9d9d01fc5976.png": {
+      "size": 684,
+      "md5": "545bc744cdb9fbaf7090b3947b503d7f"
+    },
+    "images/1c617c14bc528e95a97f3a10ee5f64ec.png": {
+      "size": 630,
+      "md5": "59bc4337b390f61b3c4e2ee54902abed"
+    },
+    "images/1d07b311f7ad1d2a8a9f4fe06bab2301.png": {
+      "size": 399,
+      "md5": "0edccc97918dbe1467178ef9aa20524a"
+    },
+    "images/226c7ad1b00012da1183a0f75f7b73e8.png": {
+      "size": 966,
+      "md5": "3bfd2cbe0710a8709ef2d228fd36c286"
+    },
+    "images/24a8b2c7f6129c1d4aa426070d65a28d.png": {
+      "size": 504,
+      "md5": "8f9dd26529ea6cdb957732ce3378449d"
+    },
+    "images/26b5e7e81477660a10b0ab3cbe3b17fa.png": {
+      "size": 24876,
+      "md5": "6ad16935bfb6daa988e44e160e4f3042"
+    },
+    "images/274fa047dce1e0af39ca6564cbd696d7.png": {
+      "size": 16069,
+      "md5": "6704b2761407eb5b790a0fdcbf7f5692"
+    },
+    "images/29ded4eb09143ce71eeeddf71c6524d4.png": {
+      "size": 96718,
+      "md5": "c4bee9753d54ec53ba814b050c200748"
+    },
+    "images/2b3c73c01430261b6d26d0e8faed9b88.png": {
+      "size": 684,
+      "md5": "58d1a9b49c17e15297373df411881376"
+    },
+    "images/2cbf6a51d5968f13436973d131cbe9b3.png": {
+      "size": 27638,
+      "md5": "e218fb02fdfc4b9a28b814cb3fc083c6"
+    },
+    "images/2e970bc3fae16370221f63de0d6a1688.png": {
+      "size": 22743,
+      "md5": "5f0260d6dcf9efb33ea5d13c34306a85"
+    },
+    "images/2f51ed9bcb5b19ab7d184f2c9d9d7c86.png": {
+      "size": 32928,
+      "md5": "ff8a48fa61f790cefcdab98afedac640"
+    },
+    "images/33d265e25fbe26d470427eff9dbb9f5e.png": {
+      "size": 702,
+      "md5": "7bfcdbd5c699482cf3a1caf9d84bbf3e"
+    },
+    "images/3549e99a4c58ac74ef0d595fd608c751.png": {
+      "size": 450091,
+      "md5": "b3d5a4482ba4a867b514580a1c3c37ef"
+    },
+    "images/35b5e47c2d9a513cb5761a72e8094c90.png": {
+      "size": 30486,
+      "md5": "8a357b38cd68e021fa1dcd60d8e9b332"
+    },
+    "images/39b46082286a9fe3303ef85fe982dac9.png": {
+      "size": 174259,
+      "md5": "7fd975d763ef33fcefb5126d34eb2fac"
+    },
+    "images/3e543e49d376c55cf4ea09747debd300.png": {
+      "size": 24025,
+      "md5": "c774a50dbb4d67702c526252cd9fa2df"
+    },
+    "images/3eda27587058cad9f42d7c48f038edb7.png": {
+      "size": 90700,
+      "md5": "428b07824e2c28a5efd8f733e51f1af6"
+    },
+    "images/40e37213c94c2632cdfeba52b24089bd.png": {
+      "size": 381,
+      "md5": "103c4309130fc7754d6a89937ba8e464"
+    },
+    "images/41da6e1930005ed20a8d84a7340255f8.png": {
+      "size": 663,
+      "md5": "ba44b6ec95df034c88e6ac6b11caad78"
+    },
+    "images/49714743b85500708ac0bfde6c6d8e0c.png": {
+      "size": 114626,
+      "md5": "923c2bb204aae073f85771c53c2ae107"
+    },
+    "images/4984e2a616b5654d0eebd80ea850178d.png": {
+      "size": 14465,
+      "md5": "634272b3012c5b5971f6275d8321e8db"
+    },
+    "images/4a77c2567077a467d29338cef7b0530c.png": {
+      "size": 628,
+      "md5": "ea9be86a505169a79346ca0cd98838bc"
+    },
+    "images/4a828a1dac816be1347623c589b7a0af.png": {
+      "size": 33539,
+      "md5": "f2fc1e627d8e24ef2e696419bcf08208"
+    },
+    "images/56418e282dece5ff090cffe1f72c9103.png": {
+      "size": 739,
+      "md5": "a5828965483aa298a382ffd30ad412eb"
+    },
+    "images/5914b43bb3585e04c7a50e6b1487eb87.png": {
+      "size": 133059,
+      "md5": "86b4717e599cabd4d3adf1bc10d4fc88"
+    },
+    "images/597ea999d8f6b778341a2077b6e1a7d1.png": {
+      "size": 828,
+      "md5": "6e488c2be113f3bb9990bae5e7662891"
+    },
+    "images/5f21442ab94b707579dce49df2d24136.png": {
+      "size": 48999,
+      "md5": "73e533d563e5daf216b600593d800c54"
+    },
+    "images/61fa977a6e0339c2aa186acbf78c31cc.png": {
+      "size": 364,
+      "md5": "c01c833e6f4ab1085379dde842f909bd"
+    },
+    "images/637c11c8c020202d497a1eb1dc1d6ece.png": {
+      "size": 93553,
+      "md5": "a4c8aa3ff8287f7dd8dfa3d38d1844de"
+    },
+    "images/640e188374889a259abf66c6ba168304.png": {
+      "size": 26834,
+      "md5": "28b8c562c3c1808c792f74be754e67e4"
+    },
+    "images/65600672d60248d92c1ab2c3d1c2be6c.png": {
+      "size": 614,
+      "md5": "d0800f3e24164144746d7bddf0bb92fd"
+    },
+    "images/69272c0eeb3a0f219057f71eb37b32a5.png": {
+      "size": 317,
+      "md5": "648a41bebc9b781a939708bb821ef60e"
+    },
+    "images/6b93ebbcbc04f2f0afcd846d29ef7456.png": {
+      "size": 24942,
+      "md5": "6ae045cfe2b41efe76fa5bfaa56bfb1a"
+    },
+    "images/6d4e1847e4732c4eee4d17167f062937.png": {
+      "size": 17053,
+      "md5": "d1b46296de4d81a13c5218741f287b2e"
+    },
+    "images/75760d388f29cfed2bfc171240804f43.png": {
+      "size": 293,
+      "md5": "2a6a5b0bd2fa34d1fae3ce6f6b992ad2"
+    },
+    "images/75c143b473dd1af2a8e581cb648438f9.png": {
+      "size": 356,
+      "md5": "96d6ded144943d7a2c525250b8dc23ad"
+    },
+    "images/75e94717b3ea498c434f49cfbc52618b.png": {
+      "size": 427,
+      "md5": "306dc00909f7fa9afc60bb8f08de453d"
+    },
+    "images/77901e508da4b273f1c07e162d92b2c6.png": {
+      "size": 726,
+      "md5": "6127091a4ab3a07eaf0fa4bbcb60bf44"
+    },
+    "images/7c2b8f2034185fd73ac53760448cb53f.png": {
+      "size": 357,
+      "md5": "402395989d042417a0bc7b2ba5d1afc5"
+    },
+    "images/7c7c8e74eb95ca5d0669e1f4627cf0a0.png": {
+      "size": 10790,
+      "md5": "3e50e4ff8d1d5ff48eca03b22e084b62"
+    },
+    "images/7cefed0bbef5956252bf3d17c912f368.png": {
+      "size": 674,
+      "md5": "2d53ae1036206713963ed3dd56d2d517"
+    },
+    "images/7d6533681391be3b1b7bac1c4d28fcd8.png": {
+      "size": 250,
+      "md5": "a34541ec4ede92a43dcd3bd3ee0c4f0d"
+    },
+    "images/7f315a23c2d2b5d67883e260a494a495.png": {
+      "size": 95799,
+      "md5": "bcc33bf1bbc682b4a5b06f3873ef323a"
+    },
+    "images/8003468d6a48c8d8d189aa5f7e307b3c.png": {
+      "size": 722,
+      "md5": "a074a808ef1457d7a78083bad096caa1"
+    },
+    "images/82563ae489fa3e4002ce9bcae012c5dc.png": {
+      "size": 745,
+      "md5": "ce68c5158e78ddb9426067ca7484b0fe"
+    },
+    "images/827b4811ee72c5a892bbbb78a8fb077a.png": {
+      "size": 535,
+      "md5": "586ba3f30a638750c2dd03930a396004"
+    },
+    "images/82ef7a7f29e69f9573b400a77cb2af5e.png": {
+      "size": 3670,
+      "md5": "6d781635bd0972cf1c4fafaf4207610e"
+    },
+    "images/833a9685d65b4aaff61ba6ca9d988988.png": {
+      "size": 740,
+      "md5": "b7c19beaca627baafbc61bb7502d8624"
+    },
+    "images/83658e59a446a065ca7498fa296071c2.png": {
+      "size": 1674,
+      "md5": "6e9ab4e8a7135ea31699121dbeb71e11"
+    },
+    "images/853222bd5b9f1f48319b9abd92b15610.png": {
+      "size": 702,
+      "md5": "1a1d4c6527c37a8d676593d811b54a1e"
+    },
+    "images/8ae451fee336189f413b9be1d204d8e3.png": {
+      "size": 47809,
+      "md5": "7eaaeed35c2d8a49269609618009dcf2"
+    },
+    "images/8e04e472d8a4446957899bdb5706ec18.png": {
+      "size": 53829,
+      "md5": "18d3e8fc6720d3a807d2fd879ea6b5e6"
+    },
+    "images/8f4a6c25d907f52c4883145e4c85b687.png": {
+      "size": 677,
+      "md5": "4c326e867b3a6a9a4577cdc40086662f"
+    },
+    "images/9088d3bf29683334e2cbf91e147bb66e.png": {
+      "size": 690,
+      "md5": "9cfaeb50710995a6fa5f78653c5251d4"
+    },
+    "images/913f80c11ec19d56c9a9b2f51ec2f4d7.png": {
+      "size": 695,
+      "md5": "b178e90087a9f8dae43e8f1f71b100d9"
+    },
+    "images/93138e58f6660fa2036ea9ae825f24fb.png": {
+      "size": 684,
+      "md5": "58d1a9b49c17e15297373df411881376"
+    },
+    "images/93459e84b00ba9fdf195af004de9bf0a.png": {
+      "size": 2858,
+      "md5": "1dd0c3c0d399a2b438696e9ddaa4ba40"
+    },
+    "images/99a5f67ce87529a4b177b9370b22e4d1.png": {
+      "size": 684,
+      "md5": "545bc744cdb9fbaf7090b3947b503d7f"
+    },
+    "images/9af184ed3c13c5b39b906b930e20b914.png": {
+      "size": 19352,
+      "md5": "709fd4e1fa2428f4803551e502ccea0a"
+    },
+    "images/9be1ec26da5ee6ece58e949c07d91b57.png": {
+      "size": 684,
+      "md5": "58d1a9b49c17e15297373df411881376"
+    },
+    "images/9c1f14203bf937186fb8f888ca7e461f.png": {
+      "size": 385,
+      "md5": "e32e51163860989798136cafb0364b34"
+    },
+    "images/9dbd3ded67a568590e6f8129762e1b39.png": {
+      "size": 739,
+      "md5": "a6a7a5fa130250b2a0487ab5f209a51a"
+    },
+    "images/9f63bdfc5a888aaf00ed013bf79da65f.png": {
+      "size": 418,
+      "md5": "6eac408ab3c68d71d32a3acbff997fab"
+    },
+    "images/a0eebe313f3a33217337e72709f4773d.png": {
+      "size": 33383,
+      "md5": "afd9361152f97e3544d18677b64627cf"
+    },
+    "images/a144bb18bd5cb5e8a932003dc460f591.png": {
+      "size": 17458,
+      "md5": "5986d4b041ed5896f8c230aa90848cec"
+    },
+    "images/a374d15929663c081ca85bdef294a44d.png": {
+      "size": 684,
+      "md5": "545bc744cdb9fbaf7090b3947b503d7f"
+    },
+    "images/a64c28873bfa25dc3c83cf63ecde478a.png": {
+      "size": 635,
+      "md5": "1422de76339e6db5d1e9675d59e88a03"
+    },
+    "images/ab367a1540258c9eb152f725564b9e52.png": {
+      "size": 388,
+      "md5": "fd3626c4416d385b35364aa9a0ecdd33"
+    },
+    "images/ad1fa0341f52336a8c6ef2a426d43756.png": {
+      "size": 685,
+      "md5": "0e64fc4749b7a8e1f40684e7b71935f3"
+    },
+    "images/b1a1ffa361af6a265d91b9ea68e5a9aa.png": {
+      "size": 535,
+      "md5": "45baefc9240db4912db4efd3cd9b9132"
+    },
+    "images/b64d7ec1d0f4f4033b9888761b70db65.png": {
+      "size": 8880,
+      "md5": "6732412470b410114a75f877e42ef962"
+    },
+    "images/b74d37b1d8e71f2a20130a0cdd987878.png": {
+      "size": 8338,
+      "md5": "5ba4ddae8f6eb7f9a75e072f20d9bdbc"
+    },
+    "images/b79f6f4a063db23b39d81a0ae46fe7bd.png": {
+      "size": 684,
+      "md5": "58d1a9b49c17e15297373df411881376"
+    },
+    "images/b821ad73f4875bcaf82e83c324835709.png": {
+      "size": 704,
+      "md5": "ca068ef012760d3c24ad8c88118a7d68"
+    },
+    "images/ba5074e36ea4641c81e33f1679b091a4.png": {
+      "size": 567,
+      "md5": "a9032eb7f37a3f6a0f8a588baae794e3"
+    },
+    "images/ba72a2e1cd02da7d39c1c9a0101cdd6f.png": {
+      "size": 699,
+      "md5": "7df3d96da07d1a305115c5650120cbbf"
+    },
+    "images/bcc0c29ce9d03be67ab50fe1455b1786.png": {
+      "size": 255712,
+      "md5": "ee0d3cb81b2ed0a2df74872e95ea3bc0"
+    },
+    "images/be83ae8cd1ba594149c007151ddc5183.png": {
+      "size": 396,
+      "md5": "413a2707f404d83485d294439ee3808d"
+    },
+    "images/bfa323d00a3c01ac6c1d100759b9a43b.png": {
+      "size": 26815,
+      "md5": "59dc10f3484230f0129a4376e0b0e758"
+    },
+    "images/c0152e3ca4a6992a6293276c8c4e6ef5.png": {
+      "size": 3015,
+      "md5": "7ab6adbb6a4394d172a96bf7cc381417"
+    },
+    "images/c1b991cf880b84537b8a12b8d19a4e28.png": {
+      "size": 755,
+      "md5": "7d80ca2cf3fab6b955ff2ffb4bb44e00"
+    },
+    "images/c3f6bb7ff3fad5ea075a7e44806e9618.png": {
+      "size": 640,
+      "md5": "92a7323d4b872a3540f2df80919d3617"
+    },
+    "images/c40c7bcce37f57ee4a077b0fd339b7b6.png": {
+      "size": 443,
+      "md5": "bf764f41be65854eacfedaceacc7b41e"
+    },
+    "images/c6c8d335f37a73218844dec80a45eefa.png": {
+      "size": 14485,
+      "md5": "640813ded16e612cc31ca014dd2203a0"
+    },
+    "images/c6e67e0d7d58d56e5411f467a067c9ba.png": {
+      "size": 46886,
+      "md5": "6cbced79d1bf8febd71d1bdffe1188a8"
+    },
+    "images/c90b549aef2130decdfb1f2ce75a2711.png": {
+      "size": 33859,
+      "md5": "4b7cfe25f66519cc96dfc6bf3f4b8013"
+    },
+    "images/cb2252bfd97daa52a1754bbf0debe51e.png": {
+      "size": 684,
+      "md5": "58d1a9b49c17e15297373df411881376"
+    },
+    "images/cd712746ba75b5b5d19407ba3a059fd5.png": {
+      "size": 33252,
+      "md5": "d3e2b7aa8bd7c7e537016e1165b133a9"
+    },
+    "images/d2fc15fbfdc82f6ea806b4fd7112bcfa.png": {
+      "size": 1319,
+      "md5": "449827e65530127510333d99927893f6"
+    },
+    "images/d43c789fd937c85abbe4b812bf1e06b0.png": {
+      "size": 33174,
+      "md5": "e7cef2683f63fd36ef3c69bee78af647"
+    },
+    "images/d459431a03cebff3a379ea500984ae7b.png": {
+      "size": 86501,
+      "md5": "dc823a7f6685cd5ec91e078749346b4c"
+    },
+    "images/d84e1ef515cb2e4f4ab50c3e0d4af6fc.png": {
+      "size": 562,
+      "md5": "678200cf81cceae126e984f3205bee2e"
+    },
+    "images/e2d0cb06720c9859ae9e4baae99d7d79.png": {
+      "size": 764,
+      "md5": "92a588728ebdca7380876d353645067d"
+    },
+    "images/e40b01e83cbfc7a5bfd3fb0201b1f264.png": {
+      "size": 17362,
+      "md5": "7f2e48b1c4ca43a5816196925a68430b"
+    },
+    "images/e89179987949f4defe891ac1e52199d6.png": {
+      "size": 684,
+      "md5": "545bc744cdb9fbaf7090b3947b503d7f"
+    },
+    "images/ed80c8885be5d1815722a57215637b68.png": {
+      "size": 49559,
+      "md5": "4608813c3999520af0104603e896621d"
+    },
+    "images/ee934af1944b3c9189e0edb8396952aa.png": {
+      "size": 1488,
+      "md5": "4dbe4967ed5a73b23660174ac9d76bc1"
+    },
+    "images/eebaec9c61ef01d2fcc3b1d6ae4a1657.png": {
+      "size": 26484,
+      "md5": "69021c458531e807aca2a96e356ef050"
+    },
+    "images/f44065e258b7068fd3abc881ab29be15.png": {
+      "size": 1742,
+      "md5": "54a68dfe42c0f325d166c39d4b440990"
+    },
+    "images/f4ed6b187697d73a0298fd31073a2e70.png": {
+      "size": 1649,
+      "md5": "bce0b3ebc9953259c17b47d058956bb5"
+    },
+    "images/f6fec9b1f92c9f8cbc146428f857aa33.png": {
+      "size": 412,
+      "md5": "dde0e4fce472cdecc637d25f9f7150a7"
+    },
+    "images/f725e00f9ecf01782174d205920e1056.png": {
+      "size": 442,
+      "md5": "7026c9f039994e499f607247926b901f"
+    },
+    "images/f99103d548d50b0155bc012be0533bc6.png": {
+      "size": 525,
+      "md5": "1799f45efdf3feab7a4d619921e43e90"
+    },
+    "images/fecdcaa135f7b721878091e13dbb13ab.png": {
+      "size": 23460,
+      "md5": "87ef19145fc6a806ac62ff7eab798155"
+    },
+    "images/fed077e3d3e56e70bc45d5f9305d920f.png": {
+      "size": 16243,
+      "md5": "e35b2988130f551444df657b2d6dfd60"
+    },
+    "images/ff330c49541838ca8645574d4953b2ea.png": {
+      "size": 422,
+      "md5": "ac579a5fc45783cf13816b53bc20fa0c"
+    },
+    "libs/arm-y08/libbusiness_multidisciplinary_study.so": {
+      "size": 137756,
+      "md5": "659e3305053b25601c73020f331597c7"
+    },
+    "libs/arm-y08/libjsapi_multidisciplinary_study.so": {
+      "size": 109200,
+      "md5": "743c09ff8190620861680e879cb51b8c"
+    },
+    "assets/images/app_icon/theme-popcorn/app_icon.png": {
+      "size": 29883,
+      "md5": "7b23173eb4a2d295003f0c7a756d3f7d"
+    },
+    "assets/images/app_icon/theme-y03/app_icon.png": {
+      "size": 10874,
+      "md5": "e32e308ba9e9ed7b33cd8be57ed947ff"
+    },
+    "assets/images/app_icon/theme-y07/app_icon.png": {
+      "size": 10874,
+      "md5": "e32e308ba9e9ed7b33cd8be57ed947ff"
+    }
+  }
+}

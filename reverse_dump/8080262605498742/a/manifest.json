@@ -1,0 +1,198 @@
+{
+  "appName": "拼读",
+  "version": "2.22.0",
+  "appid": "8080262605498742",
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false
+  },
+  "meta": {
+    "otaVersion": "4.22.0"
+  },
+  "props": {
+    "supportUnInstall": false,
+    "addDesktop": {
+      "coco_platform": false,
+      "almond_platform": false,
+      "x3s_platform": false,
+      "apollo_platform": false,
+      "plum_platform": false,
+      "melon_platform": false,
+      "exam_platform": false,
+      "olive_platform": false,
+      "hermes_platform": false,
+      "hermes_plus_platform": false,
+      "y06_platform": false
+    }
+  },
+  "cert": {
+    "BackToolButton-61e8bec9.js.bin": {
+      "size": 2757,
+      "md5": "29588d2d1e2ff5d2b06ed66e78a446cd"
+    },
+    "BaseToolIcon-86f99afd.js.bin": {
+      "size": 8267,
+      "md5": "794956fe47a6e2ec8f86220782435d87"
+    },
+    "Constant-1dae7f65.js.bin": {
+      "size": 3507,
+      "md5": "15e52087f1253389dccceec11fddb385"
+    },
+    "RestartToolButton-6a1f3889.js.bin": {
+      "size": 830,
+      "md5": "be9b41ea6d53ebb76a273dee222545fe"
+    },
+    "apolloIndex-6095b107.js.bin": {
+      "size": 53569,
+      "md5": "1cb950ecfc3c2b1b036355fadba57c56"
+    },
+    "app.js.bin": {
+      "size": 31863,
+      "md5": "55c167b055f3652ff62f89cfe6513eab"
+    },
+    "globalManager-3d6cf71e.js.bin": {
+      "size": 156,
+      "md5": "4204c6819c051ce8c888d800af305a81"
+    },
+    "index-5fc05c30.js.bin": {
+      "size": 23852,
+      "md5": "07ece58c1e880a148a6c229141f6e8ca"
+    },
+    "index.js.bin": {
+      "size": 1288,
+      "md5": "ba4f5bbd577bc0207bc800e29fc4868e"
+    },
+    "page.js.bin": {
+      "size": 345,
+      "md5": "29f344e4656c81d510002a1a16f9d575"
+    },
+    "spellManager-3114ff1a.js.bin": {
+      "size": 2905,
+      "md5": "f9610b58ad7551bce82d85cc4d4a8f9b"
+    },
+    "images/0166dc16a17756c320e681752a0a19fc.png": {
+      "size": 261,
+      "md5": "7a3335ca18cc944ea7038b1f38b5f114"
+    },
+    "images/0a641d7e1ea7f3a8d9322f0e2470a821.png": {
+      "size": 354,
+      "md5": "081ceb242b9af7558e9a691c15742f6f"
+    },
+    "images/16ae3fabebc62374355bdede4845ba7c.png": {
+      "size": 2037,
+      "md5": "73fdd7c03daf68871c87cdb2cbbe01bb"
+    },
+    "images/30b2023200115272d17e0d660c712da8.png": {
+      "size": 769,
+      "md5": "e5661477799dd2031c37d40ca53a6df1"
+    },
+    "images/32dbbefd9d1a8e6c46fd99244ba4d227.png": {
+      "size": 654,
+      "md5": "b47fa449e06bd9362ec694bf057210d2"
+    },
+    "images/3549e99a4c58ac74ef0d595fd608c751.png": {
+      "size": 450091,
+      "md5": "b3d5a4482ba4a867b514580a1c3c37ef"
+    },
+    "images/37ae70116eefaac17107567659d16528.png": {
+      "size": 439,
+      "md5": "4a73bed18216f7266f6426f1c7edff8e"
+    },
+    "images/39b46082286a9fe3303ef85fe982dac9.png": {
+      "size": 174259,
+      "md5": "7fd975d763ef33fcefb5126d34eb2fac"
+    },
+    "images/3b051847921a1f9a14bedf1e9c045346.png": {
+      "size": 907,
+      "md5": "d995e3b9d8774b990f97c6ffc5a93bd1"
+    },
+    "images/460a2ff2a8f7611eb9365ad7714cc706.png": {
+      "size": 404,
+      "md5": "de495c2db6fae13102738f007c92e335"
+    },
+    "images/4d225a8012bba337f68ca12b27d88d03.png": {
+      "size": 707,
+      "md5": "b5c4a89e05734cb665be08cd62bcb7ee"
+    },
+    "images/68a50505846996c2b272ac736152196e.png": {
+      "size": 526,
+      "md5": "cf85368e8e14f7da6e5f3c13d605e8b6"
+    },
+    "images/6ca53d0204ba7bff3cde7d0431e68192.png": {
+      "size": 555,
+      "md5": "53878e0900dbe84bec14565e3d26d3db"
+    },
+    "images/6f3fd7aa35370aa538cce2ed3660e5fd.png": {
+      "size": 436,
+      "md5": "be47850470dfea8d8583c9eb2fa04412"
+    },
+    "images/73234b935e4369bd04686e8bd8c17a4c.png": {
+      "size": 543,
+      "md5": "3083ac71b24ed1a6bf0bc68eb063de05"
+    },
+    "images/7d6533681391be3b1b7bac1c4d28fcd8.png": {
+      "size": 250,
+      "md5": "a34541ec4ede92a43dcd3bd3ee0c4f0d"
+    },
+    "images/863e32075905fec9cde9ca6c4991a8f8.png": {
+      "size": 447,
+      "md5": "89d456a791332b8e77ffc68ad312df75"
+    },
+    "images/924ab7166a1789c868c738ef949d6312.png": {
+      "size": 428,
+      "md5": "b2efc4db2d960f3b26f19f08f774c179"
+    },
+    "images/92fe6e6beae4442e2588b8d2e961260a.png": {
+      "size": 648,
+      "md5": "d3b26a1c68d49e63159ee321838835f1"
+    },
+    "images/a20712f49fadfd10b9a429d1ea884bc8.png": {
+      "size": 15404,
+      "md5": "37a92f74ccfe06fe72fe3f60346a4ba3"
+    },
+    "images/b64812af01e8f97ee89976ee6e023564.png": {
+      "size": 725,
+      "md5": "1c3d21747a27f04d46a190233adf3b75"
+    },
+    "images/cfeff5d025c9a46aaee106280f991176.png": {
+      "size": 512,
+      "md5": "d380c156b6f79e2f8be30fb92e95c5a1"
+    },
+    "images/e2909120635fec74c88441929bc389d1.png": {
+      "size": 700,
+      "md5": "c53c8e391cfb3072ae6ba89c5d59e438"
+    },
+    "images/ee14e464ca430f9105fdfc1fb24fc250.png": {
+      "size": 529,
+      "md5": "46b22e4d3235eb432e531a01cfedd6b7"
+    },
+    "images/f8b0edccbf379bab7ca4fb65652339a3.png": {
+      "size": 476,
+      "md5": "d0e6a353ac238de01b1854ca7894cf02"
+    },
+    "images/fc8efa320dcad90e56742a9e73d546e3.png": {
+      "size": 1041,
+      "md5": "aa1352640784adcac9bca4e25cd1cd4f"
+    },
+    "images/ff3d7e5eaf520015906e0c2eba20164c.png": {
+      "size": 1488,
+      "md5": "bfe106282b505b5c494b46647b8cecc3"
+    },
+    "images/ff7f6033fc99e2ab869334c5593182b4.png": {
+      "size": 299,
+      "md5": "9f405ff096ddf4dbf9d581d097674d8e"
+    },
+    "services/spell.js.bin": {
+      "size": 1681,
+      "md5": "4c863b5c9f63622a960ead288711f52d"
+    },
+    "libs/arm-y08/libbusiness_spell.so": {
+      "size": 228556,
+      "md5": "ad5de544ed0d96a55e7d91e511fb9274"
+    },
+    "libs/arm-y08/libjsapi_spell.so": {
+      "size": 67864,
+      "md5": "4586c289edf08914ce08ca010abea489"
+    }
+  }
+}

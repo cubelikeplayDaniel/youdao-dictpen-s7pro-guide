@@ -1,0 +1,1616 @@
+{
+  "appName": "听写",
+  "version": "2.22.0",
+  "appid": "8001679380845889",
+  "icon": "app_icon.png",
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false
+  },
+  "meta": {
+    "otaVersion": "4.22.0"
+  },
+  "props": {
+    "supportUnInstall": true,
+    "supportCleanUp": true,
+    "addDesktop": {
+      "coco_platform": false,
+      "almond_platform": false,
+      "x3s_platform": false,
+      "apollo_platform": true,
+      "hermes_platform": true,
+      "hermes_plus_platform": true,
+      "y03_platform": true,
+      "y05_platform": true,
+      "y06_platform": true,
+      "y02_1_platform": true
+    },
+    "Icons": {
+      "theme-hermes": "assets/images/app_icon/theme-hermes/app_icon.png",
+      "theme-hermes-plus": "assets/images/app_icon/theme-hermes-plus/app_icon.png",
+      "theme-popcorn": "assets/images/app_icon/theme-popcorn/app_icon.png",
+      "theme-olive": "assets/images/app_icon/theme-olive/app_icon.png",
+      "theme-y09p": "assets/images/app_icon/theme-y09p/app_icon.png",
+      "theme-y03": "assets/images/app_icon/theme-y03/app_icon.png",
+      "theme-y07": "assets/images/app_icon/theme-y07/app_icon.png",
+      "theme-y05": "assets/images/app_icon/theme-y05/app_icon.png",
+      "theme-y08": "assets/images/app_icon/theme-y08/app_icon.png",
+      "theme-y06": "assets/images/app_icon/theme-y06/app_icon.png",
+      "theme-y02-1": "assets/images/app_icon/theme-y02-1/app_icon.png"
+    }
+  },
+  "cert": {
+    "ActCorrectItem-1b2027de.js.bin": {
+      "size": 24518,
+      "md5": "529d123bd138851d0abeffce6cde16cd"
+    },
+    "ApolloBookList-5866441b.js.bin": {
+      "size": 103685,
+      "md5": "9308709a8c935f9176d78b7f2917a2f6"
+    },
+    "ActCorrectItem-913fdfb0.js.bin": {
+      "size": 10491,
+      "md5": "f36c2ae42f9565b37c4be584172146b1"
+    },
+    "ApolloPage-d5d3a562.js.bin": {
+      "size": 73193,
+      "md5": "e62a87f4122de0db7adab3fdece78a6b"
+    },
+    "ApolloButton-30040fe1.js.bin": {
+      "size": 10199,
+      "md5": "09d29fe43df4653fc12577138b861baa"
+    },
+    "BackButton-d5fb68c1.js.bin": {
+      "size": 4795,
+      "md5": "b9a469fbf5331bffaf1e997525991cf4"
+    },
+    "BasePage-581a28a8.js.bin": {
+      "size": 12918,
+      "md5": "b9b81307398a655e765fc6f4dbd22126"
+    },
+    "Button-a4d868d6.js.bin": {
+      "size": 5597,
+      "md5": "c47e91803c166f1ae414b4da5cb14e2c"
+    },
+    "CameraManager-f94f63b7.js.bin": {
+      "size": 463,
+      "md5": "32573bf099f425760762f462d5fc1c7c"
+    },
+    "CloseToolButton-293d0258.js.bin": {
+      "size": 10825,
+      "md5": "3a82178cf1559c6f804432d8fb4ad86f"
+    },
+    "CommonUtils-f56f443c.js.bin": {
+      "size": 592,
+      "md5": "1457a9e0c430054dea558a8d9b06e96f"
+    },
+    "ConfirmToolButton-22f669fa.js.bin": {
+      "size": 1146,
+      "md5": "bc6a2cb4ca9c464e5144d7ed491af34e"
+    },
+    "Constant-76191501.js.bin": {
+      "size": 3651,
+      "md5": "d6ce5b5b7c45d565af338dc880311431"
+    },
+    "DataLoading-f6472bba.js.bin": {
+      "size": 12883,
+      "md5": "6683b53050b57b7a3361c81a652b4577"
+    },
+    "DataLoadingy06-4247cea0.js.bin": {
+      "size": 6423,
+      "md5": "72379961ce984197961487bd985fe0bd"
+    },
+    "Dialog-369440e4.js.bin": {
+      "size": 23346,
+      "md5": "ed9207516917e1b256e54c17ca856dae"
+    },
+    "Dialog-f9f9c3b1.js.bin": {
+      "size": 15885,
+      "md5": "1c5d15f2b69f04dab9d48cafcad5349b"
+    },
+    "DialogCloseToolButton-b9921e34.js.bin": {
+      "size": 3789,
+      "md5": "c2de59467d9de6f06c0eb405103d2727"
+    },
+    "DialogTitle-8fed0af9.js.bin": {
+      "size": 13134,
+      "md5": "b91a59b7904347043d615e6e7ff75537"
+    },
+    "DialogTitleBar-3fb47213.js.bin": {
+      "size": 10141,
+      "md5": "96cce91ef9c9ba07e9e098b0c621225d"
+    },
+    "EmptyTip-2a6540fc.js.bin": {
+      "size": 3394,
+      "md5": "485d8baec0ed381a6816fbb840645693"
+    },
+    "HorizontalScroller-b9eba724.js.bin": {
+      "size": 1214,
+      "md5": "c7970c8a30aada30de1ffa31374ccb87"
+    },
+    "LoadingIcon-005eaa8d.js.bin": {
+      "size": 2878,
+      "md5": "1db8b81dd7545978b0ee20bb45f92bf9"
+    },
+    "LoadingIcon-f1a808ae.js.bin": {
+      "size": 2454,
+      "md5": "53ad80e607564d816ef46076ff45e4a2"
+    },
+    "NoNetWork-08b51065.js.bin": {
+      "size": 8907,
+      "md5": "db03d414c25d496503a80d232bf87939"
+    },
+    "PageBackground-cbca7e25.js.bin": {
+      "size": 12409,
+      "md5": "3b637238abd7c12e78031d0c4e0f44fc"
+    },
+    "QuitConfirmDialog-da31bcdc.js.bin": {
+      "size": 27227,
+      "md5": "80d334a9758b4a48d8f1f803d49533a3"
+    },
+    "RequestNetwork-5088ce90.js.bin": {
+      "size": 27612,
+      "md5": "74f71a48c4d0ad7a7df76f66317501bf"
+    },
+    "SelectButton-36dd1f68.js.bin": {
+      "size": 9282,
+      "md5": "9d032227a093d64fc94abbc4aad2e19b"
+    },
+    "SelectUnitBtnList-4fc32285.js.bin": {
+      "size": 46375,
+      "md5": "dc6e3d3e19e6c654cb805e2bcb688a0c"
+    },
+    "VerticalScroller-8d348f67.js.bin": {
+      "size": 1184,
+      "md5": "7d6125884855df4f97d81d73dc4c9148"
+    },
+    "WordListEmptyTips-973fd1f6.js.bin": {
+      "size": 5823,
+      "md5": "3864b9d2ab323243ae70c2c90477324a"
+    },
+    "actCorrectResult.js.bin": {
+      "size": 78987,
+      "md5": "fda073414e18557e567c348afafb0c00"
+    },
+    "actCorrectResultY06.js.bin": {
+      "size": 33339,
+      "md5": "5fe70dbbb9f07913334754937148dd1c"
+    },
+    "apolloBookList.js.bin": {
+      "size": 541,
+      "md5": "8209b2d6d48d4a349a480a2bca1f8092"
+    },
+    "apolloIndex-4b7f7911.js.bin": {
+      "size": 408778,
+      "md5": "1a0b30fcd2529a3db32a705f800fa2e9"
+    },
+    "app.js.bin": {
+      "size": 23120,
+      "md5": "fcf645be4ab395e8bd303e361c26749c"
+    },
+    "background_y05-cd5f6a91.js.bin": {
+      "size": 177,
+      "md5": "b0e8183ac0c0e6c09b36111402d72913"
+    },
+    "bg-c6f4afa4.js.bin": {
+      "size": 165,
+      "md5": "aea9aa2a1b8fdf23d7016a7a83c3063e"
+    },
+    "bookDownloadPage.js.bin": {
+      "size": 13950,
+      "md5": "97f9c602f047c18218c19225cab4f9fb"
+    },
+    "bookDownloadPagey06.js.bin": {
+      "size": 9987,
+      "md5": "676c132145628f7eea6a369f5f1e645c"
+    },
+    "brightnessManager-d9baa392.js.bin": {
+      "size": 182,
+      "md5": "73c6bd6417428b50cbbe57c19ce616e5"
+    },
+    "buttonEventManager-61cb1060.js.bin": {
+      "size": 186,
+      "md5": "404e2f09dad26b48c3792504636f136e"
+    },
+    "cleanUp.js.bin": {
+      "size": 63558,
+      "md5": "22fde1c8785a4855a1fbbb842b7d3a7e"
+    },
+    "content-e526aa60.js.bin": {
+      "size": 2336,
+      "md5": "9f385c30e8087bb66b73db192be60cfa"
+    },
+    "dictationExercisePage.js.bin": {
+      "size": 59421,
+      "md5": "85eda079c4b556e72f72b41ef5ea779f"
+    },
+    "dictationExercisePageY06.js.bin": {
+      "size": 25412,
+      "md5": "95ac9cef9108d2c84303d70c0f0281d9"
+    },
+    "dictationManager-b1704dff.js.bin": {
+      "size": 178,
+      "md5": "bcb23f9fe056c8dd271e79254eefd3f3"
+    },
+    "dictationSettingPage.js.bin": {
+      "size": 30609,
+      "md5": "2501fc708a5d1a3cf6a988136c82e5f0"
+    },
+    "dictationSettingPageY06.js.bin": {
+      "size": 21239,
+      "md5": "43967b70e32aeaa333d7df016f92e9c0"
+    },
+    "dictpenIndex-3e5d0430.js.bin": {
+      "size": 53296,
+      "md5": "1b84c8cf17349216d76d4a6d5071c40b"
+    },
+    "empty-icon-bf69ea3f.js.bin": {
+      "size": 113,
+      "md5": "3148ac670661a8dbf0e279abd5a95bcf"
+    },
+    "finishPage.js.bin": {
+      "size": 25357,
+      "md5": "55f6ccd9bea5e9b13854699246f144a8"
+    },
+    "finishPageY06.js.bin": {
+      "size": 12381,
+      "md5": "7f117951ebc9efb7d4304bdc69f47b03"
+    },
+    "globalManager-842ef7f6.js.bin": {
+      "size": 159,
+      "md5": "0fe0386d64b0ebdf71f3d9a9b495b783"
+    },
+    "grade_select-44de1dd2.js.bin": {
+      "size": 7172,
+      "md5": "7f343417ed21a5260aa394d958840ed8"
+    },
+    "historyPage.js.bin": {
+      "size": 41289,
+      "md5": "b5ed1d85dd4805956383dfdb469aebb8"
+    },
+    "historyPagey05.js.bin": {
+      "size": 58289,
+      "md5": "0a5f1cfc1848bdef75e4cbcdd79fd500"
+    },
+    "historyPagey06.js.bin": {
+      "size": 36739,
+      "md5": "c2e0f4f1d136f503172ba8d8c40cc0bf"
+    },
+    "index.js.bin": {
+      "size": 1465,
+      "md5": "157cc745e3780145696d72ae308a8ced"
+    },
+    "indexy06-971e9640.js.bin": {
+      "size": 26882,
+      "md5": "04059891fb023981e5db34346a0ebb5d"
+    },
+    "logManager-ae4935c9.js.bin": {
+      "size": 168,
+      "md5": "355c91cad3965725ea6b86d598c81228"
+    },
+    "selectOptionsPage.js.bin": {
+      "size": 26515,
+      "md5": "9e242faac9a665177981f89afc6883bc"
+    },
+    "selectOptionsPagey06.js.bin": {
+      "size": 26478,
+      "md5": "99106c0c98a0be11bdf650ce5c35167b"
+    },
+    "selectUnitInfoPage.js.bin": {
+      "size": 44991,
+      "md5": "3c2be6233714fb88028599e037d2bcc2"
+    },
+    "selectUnitInfoPagey06.js.bin": {
+      "size": 19488,
+      "md5": "ccc6c1f3e1c5112ac9c6d0676165c9de"
+    },
+    "selectUnitPage.js.bin": {
+      "size": 2452,
+      "md5": "eafc9756643ecf6eb9f5f8fe8a88a0f4"
+    },
+    "selectWordListPage.js.bin": {
+      "size": 71792,
+      "md5": "79fa7e3550d2e40be0b20a154f8ffd7a"
+    },
+    "selectWordListPageY06.js.bin": {
+      "size": 37099,
+      "md5": "fae12e80f119074e6e8f90fe5b7ec859"
+    },
+    "selectWordPage.js.bin": {
+      "size": 1696,
+      "md5": "367c1145c19c58dae0ab9d28bc3e1815"
+    },
+    "transitionAnimationPage.js.bin": {
+      "size": 6304,
+      "md5": "d00b08a6947b9f759d29059aade54dfb"
+    },
+    "transitionAnimationPageY06.js.bin": {
+      "size": 6160,
+      "md5": "9f001e7149ef482bea2fc748d57ae56e"
+    },
+    "userCenterManager-957f9250.js.bin": {
+      "size": 7065,
+      "md5": "411d9e188bb0ec54027fe94288b23a08"
+    },
+    "volumeManager-4ac304d3.js.bin": {
+      "size": 297,
+      "md5": "b7602093ee1b42971cb47f80960431b1"
+    },
+    "wifiManager-bb9a0645.js.bin": {
+      "size": 158,
+      "md5": "a21d189f5e9116dbd8b30b73d3bdc73c"
+    },
+    "wordInput.js.bin": {
+      "size": 127950,
+      "md5": "925cf52ec73c40049029ba739643dbfe"
+    },
+    "wordTabledPage.js.bin": {
+      "size": 37655,
+      "md5": "a38f842d3734b2e2a8aff82949018434"
+    },
+    "wordTabledPageY06.js.bin": {
+      "size": 10693,
+      "md5": "5eccb01b6d57bcad7a71d8518db8119e"
+    },
+    "y03Index-b71997f1.js.bin": {
+      "size": 67912,
+      "md5": "fe101a6764514cbf3cb3caf0ab1307c6"
+    },
+    "libs/arm-y08/libbusiness_dictation.so": {
+      "size": 463432,
+      "md5": "fb78847e6836a5da5ec6a8dd25673e9c"
+    },
+    "libs/arm-y08/libjsapi_dictation.so": {
+      "size": 311600,
+      "md5": "9f47fc3b6d3a77bc003b5088726be2c8"
+    },
+    "images/0166dc16a17756c320e681752a0a19fc.png": {
+      "size": 261,
+      "md5": "7a3335ca18cc944ea7038b1f38b5f114"
+    },
+    "images/02a949db2fd8901b45097299ed7df0ef.png": {
+      "size": 496666,
+      "md5": "464fd9835d05326acffd843d9acb1c1b"
+    },
+    "images/0370a7231246a2274533896c13240f63.jpg": {
+      "size": 5342,
+      "md5": "e921b095fdbfb0f8ed195294d642d721"
+    },
+    "images/053e5dcddcaeb905aa8b108980b49015.png": {
+      "size": 459,
+      "md5": "dc266432dbbfad1d0582d112d789e2a9"
+    },
+    "images/0562cc036aa2460ace9983001acad788.png": {
+      "size": 364,
+      "md5": "fc6385d27c815c2315e9190db50fe5cc"
+    },
+    "images/06227a0e8510dc726004dd285898aaef.png": {
+      "size": 1447,
+      "md5": "708421fcc08096b863d8db05b6838620"
+    },
+    "images/099bee232a4909fcc18529af2d21152e.png": {
+      "size": 749,
+      "md5": "b15080e48ba3b3fade3e5de766fbc33e"
+    },
+    "images/0a641d7e1ea7f3a8d9322f0e2470a821.png": {
+      "size": 354,
+      "md5": "081ceb242b9af7558e9a691c15742f6f"
+    },
+    "images/0a82d461a8ac2e1ca51d1a62da101023.png": {
+      "size": 767,
+      "md5": "0fc79df920ceae0813b2aa8b422578f7"
+    },
+    "images/0c182dc7db2708ad8f3ca4be66864ea4.png": {
+      "size": 868,
+      "md5": "fa922533a3361aa2259c96c6866cb0f5"
+    },
+    "images/0e2c1bd349a2feb0ce1b9ec74e70eb45.png": {
+      "size": 216221,
+      "md5": "d1e787b3a45f1e064b87234a84f7ab95"
+    },
+    "images/0e625688fd1dbdc404b191629aac368a.png": {
+      "size": 36238,
+      "md5": "b215e7c297ae21a2bf35d568aa5c4597"
+    },
+    "images/0ed14d2c6b32873a299ec3a7c458f05f.png": {
+      "size": 19064,
+      "md5": "e6d403fe688349744051b16d4f6743ed"
+    },
+    "images/114bd07cffe1fd83ec6d089288358d6c.png": {
+      "size": 117600,
+      "md5": "ab628f56f0d713b74b05241ab7838744"
+    },
+    "images/13506ec95120fb00e70ec4f148beca22.png": {
+      "size": 1549,
+      "md5": "4ce33731552ca1e05bc4cf471fef2040"
+    },
+    "images/158d0cff7770f53cc9435591ae0272db.png": {
+      "size": 27536,
+      "md5": "f3f0e2fee935536f5d0195e337f01776"
+    },
+    "images/16320a6bab2b3dbb89a14a170aae5722.png": {
+      "size": 46369,
+      "md5": "77973748ff27e9f8006c62c51a68bee4"
+    },
+    "images/165e82691ccd383bca344dbbe6447a61.png": {
+      "size": 886,
+      "md5": "9bc300391684057f7cd20f19bce6d14c"
+    },
+    "images/18cd8e3064e7446cd0ae3e123ba6680c.png": {
+      "size": 684,
+      "md5": "545bc744cdb9fbaf7090b3947b503d7f"
+    },
+    "images/1c0a3b68a5c4e9e1aa4b9d9d01fc5976.png": {
+      "size": 684,
+      "md5": "545bc744cdb9fbaf7090b3947b503d7f"
+    },
+    "images/1e0b45173fc53f64540f40bfbfdbce27.png": {
+      "size": 192,
+      "md5": "c3e4cf6dbae60acc6d7da140c6b1083b"
+    },
+    "images/1ee2c9cb58bc709eccda4767e33ca1f6.png": {
+      "size": 1243,
+      "md5": "4872419a238e795f5cf18a20b9d572e0"
+    },
+    "images/241461f3c5ad2225495d60faf46c759b.png": {
+      "size": 21272,
+      "md5": "8d76819076ad8596263df3b5b48538bb"
+    },
+    "images/280939b0b86ef88690c9a069bf0b4bf2.png": {
+      "size": 322,
+      "md5": "d47cb2a89304b4d5736197e78be19425"
+    },
+    "images/28af43dd0864e3e6172551dc0aaf431d.png": {
+      "size": 9303,
+      "md5": "995701a486f0b66ce2d7d915107263fd"
+    },
+    "images/29a7e1eb94d5c64e77f7651f4093ca90.png": {
+      "size": 55132,
+      "md5": "d778b6fc319898fa5544cf58059589d7"
+    },
+    "images/29ded4eb09143ce71eeeddf71c6524d4.png": {
+      "size": 96718,
+      "md5": "c4bee9753d54ec53ba814b050c200748"
+    },
+    "images/2b3c73c01430261b6d26d0e8faed9b88.png": {
+      "size": 684,
+      "md5": "58d1a9b49c17e15297373df411881376"
+    },
+    "images/2ec3c743cf58be9357e5993a5ddb113d.png": {
+      "size": 718,
+      "md5": "566dea1a0910a5cf5ba655fee9cbc2c8"
+    },
+    "images/2f78257aa057adf73c37d87c499ff292.png": {
+      "size": 995,
+      "md5": "b5af7bce109c655387beaebf5903fcdc"
+    },
+    "images/32772cf8d35ec6cc2aca378b75f776a4.png": {
+      "size": 69747,
+      "md5": "30c0635bf2c781e40b1948f6843a3cbc"
+    },
+    "images/33d265e25fbe26d470427eff9dbb9f5e.png": {
+      "size": 702,
+      "md5": "7bfcdbd5c699482cf3a1caf9d84bbf3e"
+    },
+    "images/3549e99a4c58ac74ef0d595fd608c751.png": {
+      "size": 450091,
+      "md5": "b3d5a4482ba4a867b514580a1c3c37ef"
+    },
+    "images/366cbc24756a7b3a8b12707282c70146.png": {
+      "size": 3317,
+      "md5": "05f3df4767e13d7b445e6ad1c39f3c55"
+    },
+    "images/39b46082286a9fe3303ef85fe982dac9.png": {
+      "size": 174259,
+      "md5": "7fd975d763ef33fcefb5126d34eb2fac"
+    },
+    "images/3a1a36905f28eb3cd6f935965fa8a9da.png": {
+      "size": 323,
+      "md5": "f06fb1d060628b37e38b5dda5635fa95"
+    },
+    "images/3a2d1b5c6e08f45d7fc33b56e9402e76.png": {
+      "size": 54933,
+      "md5": "a587c178cde039517b8dfbe2fbd7b4d4"
+    },
+    "images/3b2a87f5d6d8c3439a5ca8f48ce2824c.png": {
+      "size": 603,
+      "md5": "74899aa15bb9be8934ca56c8d2d5a0ab"
+    },
+    "images/3b4388bca1ec6f9aaf670eeaf94f63da.png": {
+      "size": 57631,
+      "md5": "42e35148540d85cf2a92268ea992107d"
+    },
+    "images/3c077b0cd1dc68894c246788678c76f7.png": {
+      "size": 491,
+      "md5": "31e3eed4889b162ad6f8a4590ebd816d"
+    },
+    "images/3cc8f814b78e4503b39353ea8414ff18.png": {
+      "size": 250,
+      "md5": "ab41e7d52a17cee904aa71a6145a7359"
+    },
+    "images/3eed84876c1ef3bd1a9fba0c91af1f2a.png": {
+      "size": 2294,
+      "md5": "a224ada0841292b68ff98a4b45f6dc6e"
+    },
+    "images/413ba6995df37573e5a3669d89714a9a.png": {
+      "size": 481,
+      "md5": "8bb103cb16560c0de41e38fc899268ae"
+    },
+    "images/43bd1b25defd778d4d486afc6ee66e68.png": {
+      "size": 282,
+      "md5": "ae00451bf22c80f40cb84ee126e8d2bc"
+    },
+    "images/4821f4701071a1c36cbe32c9f8b793cf.png": {
+      "size": 965,
+      "md5": "d2244f0ff946e1e0882f298002e7b95b"
+    },
+    "images/49714743b85500708ac0bfde6c6d8e0c.png": {
+      "size": 114626,
+      "md5": "923c2bb204aae073f85771c53c2ae107"
+    },
+    "images/4b5189028f95057ea7c51667714c32e4.png": {
+      "size": 621,
+      "md5": "f19a7e8857f94ce5d663f4074ec96544"
+    },
+    "images/4cdd4d8fb4f1dda630ec57712f0da320.png": {
+      "size": 46321,
+      "md5": "00f48388f5561dfa00c25056fec0b58d"
+    },
+    "images/558706a6f678cd1e0821d519a2181345.png": {
+      "size": 979,
+      "md5": "b02e1f25d7cfe79466a0be22abfb414e"
+    },
+    "images/55edbfe9dfc3476f028835c711e07cc3.png": {
+      "size": 708,
+      "md5": "ae18dfe43263fd69accb9205a4460e58"
+    },
+    "images/56418e282dece5ff090cffe1f72c9103.png": {
+      "size": 739,
+      "md5": "a5828965483aa298a382ffd30ad412eb"
+    },
+    "images/57285766e3183cbd7d83819527487a14.png": {
+      "size": 3313,
+      "md5": "23f8df7ed56ddb43d0afd9e049cec977"
+    },
+    "images/57527a1b8e23bb1c737092bf15d0a46f.png": {
+      "size": 734,
+      "md5": "574a77c11311424f673036835dae05d4"
+    },
+    "images/57badbf04bc0e126da17e3b8aae85a15.png": {
+      "size": 271,
+      "md5": "60e808fadf58ae490d1fd6db94226c80"
+    },
+    "images/57da033937790ae438d544a7098eaeb5.png": {
+      "size": 7953,
+      "md5": "da16e3b012434f056bf210a1e24190e9"
+    },
+    "images/5914b43bb3585e04c7a50e6b1487eb87.png": {
+      "size": 133059,
+      "md5": "86b4717e599cabd4d3adf1bc10d4fc88"
+    },
+    "images/5a9368070884d80af4ca1784f52f01a4.png": {
+      "size": 54803,
+      "md5": "657cda4b090451fa792d8d66196de50d"
+    },
+    "images/5eaf414df55ff51ea7e42043174f0878.png": {
+      "size": 513,
+      "md5": "5e2f709ac0ba608a528f4dd7a1ab9185"
+    },
+    "images/607e6289e52c1ad0561762ff28625c42.png": {
+      "size": 58558,
+      "md5": "c46fc05c5edb63feb2002a846b1e8987"
+    },
+    "images/675a4f9044fe296cadec5d2b56330e2d.png": {
+      "size": 215,
+      "md5": "cd0d4fe39f4260ac1ffe881a231a3ed2"
+    },
+    "images/681b571ed21c96550304ef3ef5da4ad9.png": {
+      "size": 2078,
+      "md5": "99eab074c47b5b179c5bd5679b302aa7"
+    },
+    "images/68431b219215424b7296a4c69b4cb153.png": {
+      "size": 35532,
+      "md5": "29395db28734d8749f1a043706972a91"
+    },
+    "images/690a8d7f0d5ac56541f178f0e34355bb.png": {
+      "size": 432,
+      "md5": "ae02238276c346b4304c8160c8e3debf"
+    },
+    "images/69272c0eeb3a0f219057f71eb37b32a5.png": {
+      "size": 317,
+      "md5": "648a41bebc9b781a939708bb821ef60e"
+    },
+    "images/695ee2e823ccb44f6a13278aac1d1daa.png": {
+      "size": 672,
+      "md5": "778563b549d10ec86d4b68f519075f4d"
+    },
+    "images/6ce21a70ffd1f59c4b19a9abb964d118.png": {
+      "size": 59535,
+      "md5": "8a622309f89fa491935955c4d335174e"
+    },
+    "images/6ce296edb7c8106cbde8258212549448.png": {
+      "size": 43398,
+      "md5": "ca4e9b86da81d981ef78b56b95bde6c7"
+    },
+    "images/6d7f4c3e3bf222e59c582ca4fe8dacb6.png": {
+      "size": 62063,
+      "md5": "b8e0377ba878ef37f90795f13bbec269"
+    },
+    "images/6e6df50b4b5ae08044dbbc460b62a908.png": {
+      "size": 599,
+      "md5": "da13af1bdde20966fe22f43850be5abf"
+    },
+    "images/71b0fb0c5530bf60df43e15b08f5632e.png": {
+      "size": 235,
+      "md5": "48519cb257faa1206dac12e66c2a230e"
+    },
+    "images/71cb8d57f099debf6b59fcb42b5ce08f.png": {
+      "size": 4530,
+      "md5": "fdd723509fe3c1780262c9faa3f8d0f2"
+    },
+    "images/739dc3c00367a6970f4b8be38ff1fe58.png": {
+      "size": 22227,
+      "md5": "5013026e26d66ef349f31b54344b6eed"
+    },
+    "images/73b5734c53f9f8e7d6e8c9e68ad17261.png": {
+      "size": 48079,
+      "md5": "af760a9729297dee603b1845db72bf71"
+    },
+    "images/73dff7bb303a836e4771d5c4c9be172c.png": {
+      "size": 3546,
+      "md5": "72429f4a5750665381948455f34a2edc"
+    },
+    "images/755c5fa98f3c7bb41260f11a9503d9ee.png": {
+      "size": 29281,
+      "md5": "f8f41d4e75519752996d7699d09cf62d"
+    },
+    "images/77901e508da4b273f1c07e162d92b2c6.png": {
+      "size": 726,
+      "md5": "6127091a4ab3a07eaf0fa4bbcb60bf44"
+    },
+    "images/790bb9c85914105a5d1b733d1673811c.png": {
+      "size": 3577,
+      "md5": "161d5989b8da2dd0b8ad465c93e9a37f"
+    },
+    "images/7a4b3566153edb083193d5f2038d13c9.png": {
+      "size": 63334,
+      "md5": "3730ce33fde87ea4e76c56bf348d26fe"
+    },
+    "images/7c2b8f2034185fd73ac53760448cb53f.png": {
+      "size": 357,
+      "md5": "402395989d042417a0bc7b2ba5d1afc5"
+    },
+    "images/7cb1e48ace35862a3429ef67e11bb522.png": {
+      "size": 28161,
+      "md5": "304dd38fac5d45dbd93959e874a0036e"
+    },
+    "images/7d6533681391be3b1b7bac1c4d28fcd8.png": {
+      "size": 250,
+      "md5": "a34541ec4ede92a43dcd3bd3ee0c4f0d"
+    },
+    "images/7f34be5dd714ba904f68fcf3035649b9.png": {
+      "size": 70734,
+      "md5": "2e81a5f90b0de0f850b3fef226998384"
+    },
+    "images/8003468d6a48c8d8d189aa5f7e307b3c.png": {
+      "size": 722,
+      "md5": "a074a808ef1457d7a78083bad096caa1"
+    },
+    "images/8026b06ed43142325a4a7449710c4ede.png": {
+      "size": 19330,
+      "md5": "8e49adf0a99f94fa51980d5aa10a0320"
+    },
+    "images/809e4c0e7ce818edbcc2e0ecf8a218ef.jpg": {
+      "size": 1789,
+      "md5": "3269197e6b171e9ab64afe42cedbb2f2"
+    },
+    "images/82563ae489fa3e4002ce9bcae012c5dc.png": {
+      "size": 745,
+      "md5": "ce68c5158e78ddb9426067ca7484b0fe"
+    },
+    "images/82d0878e84ef2e02a57731decdb89491.png": {
+      "size": 3598,
+      "md5": "851ba47259961d64cc5d4a3b8f645f10"
+    },
+    "images/833a9685d65b4aaff61ba6ca9d988988.png": {
+      "size": 740,
+      "md5": "b7c19beaca627baafbc61bb7502d8624"
+    },
+    "images/83407aae59999af52f1b1279c31e1731.png": {
+      "size": 15223,
+      "md5": "add8a46f40d05c310643133a2472597e"
+    },
+    "images/8347e4bd7b12959aad07b2ec2933042e.png": {
+      "size": 1728,
+      "md5": "51f59fa0b152247628679d5dd7a05bce"
+    },
+    "images/8402fb99a284140daf11141c4d941338.png": {
+      "size": 5068,
+      "md5": "4c8677d574b341057d2add6372710c9c"
+    },
+    "images/853222bd5b9f1f48319b9abd92b15610.png": {
+      "size": 702,
+      "md5": "1a1d4c6527c37a8d676593d811b54a1e"
+    },
+    "images/89db0e8a21daf73cc3774ec571e146d1.png": {
+      "size": 11931,
+      "md5": "a274d821d5073fa2f9dc6492653a225f"
+    },
+    "images/8cd2432091b3d81de37583ed8a41f463.png": {
+      "size": 5325,
+      "md5": "282448d7cb2b52901662842c7aba1205"
+    },
+    "images/8f19aa2bd9c66dd5413a4fab634d9152.png": {
+      "size": 5095,
+      "md5": "6b6d57a4028d6b0ad6fc8d708ebb5ebc"
+    },
+    "images/8f4a6c25d907f52c4883145e4c85b687.png": {
+      "size": 677,
+      "md5": "4c326e867b3a6a9a4577cdc40086662f"
+    },
+    "images/913f80c11ec19d56c9a9b2f51ec2f4d7.png": {
+      "size": 695,
+      "md5": "b178e90087a9f8dae43e8f1f71b100d9"
+    },
+    "images/93138e58f6660fa2036ea9ae825f24fb.png": {
+      "size": 684,
+      "md5": "58d1a9b49c17e15297373df411881376"
+    },
+    "images/9372be3d7447da26414d0e6c279b9456.png": {
+      "size": 431,
+      "md5": "c327903b88a06c8ee7eb4e085edb6a07"
+    },
+    "images/94829283d7c85f49e387c0711f7886c1.png": {
+      "size": 64594,
+      "md5": "0cec00cdf219824d97cf105292ffee4a"
+    },
+    "images/99a5f67ce87529a4b177b9370b22e4d1.png": {
+      "size": 684,
+      "md5": "545bc744cdb9fbaf7090b3947b503d7f"
+    },
+    "images/9b61cb7abfca5a087a125202a0e7f38f.png": {
+      "size": 628,
+      "md5": "381d6013743638a4f96f92b515f6e441"
+    },
+    "images/9be1ec26da5ee6ece58e949c07d91b57.png": {
+      "size": 684,
+      "md5": "58d1a9b49c17e15297373df411881376"
+    },
+    "images/9dbd3ded67a568590e6f8129762e1b39.png": {
+      "size": 739,
+      "md5": "a6a7a5fa130250b2a0487ab5f209a51a"
+    },
+    "images/9e11ac0b2d277849137445ff282a1b27.png": {
+      "size": 8868,
+      "md5": "6392504da00211835b82b03a04c1c96a"
+    },
+    "images/9f63bdfc5a888aaf00ed013bf79da65f.png": {
+      "size": 418,
+      "md5": "6eac408ab3c68d71d32a3acbff997fab"
+    },
+    "images/a05c2dab5f760d6565aeb7b532f82844.png": {
+      "size": 985,
+      "md5": "ccf4bc563b1a407b59f84b5d116e0c90"
+    },
+    "images/a1867c423a53501851385f347a242582.png": {
+      "size": 67483,
+      "md5": "b690d840fc0ed7442ee9ad5446dd45b2"
+    },
+    "images/a1db6d0e6cd6c26e43644a6c25163539.png": {
+      "size": 64439,
+      "md5": "2a005d8593f61694310832fa39da0e5b"
+    },
+    "images/a20f387710d02e5e75d51a445dc88a99.png": {
+      "size": 654,
+      "md5": "abcf856c7c9b7af3b832f88bd1d567a6"
+    },
+    "images/a28250d26ffaacfd1d861d03037c87a4.png": {
+      "size": 31431,
+      "md5": "2f41d87c1e62644ba06f50f215fe83df"
+    },
+    "images/a2ca15abe0591a8d89f8525751b2bf7b.png": {
+      "size": 5414,
+      "md5": "a0afdd928c39a3eb0aaaf137d1ea618f"
+    },
+    "images/a374d15929663c081ca85bdef294a44d.png": {
+      "size": 684,
+      "md5": "545bc744cdb9fbaf7090b3947b503d7f"
+    },
+    "images/a4e7cb489316c7a29feb3ff8e9c65ede.png": {
+      "size": 72088,
+      "md5": "4fcec00b41592d29203222f5799de278"
+    },
+    "images/a890ea8df841748929c4a73eab2266ea.png": {
+      "size": 273,
+      "md5": "04f9c09cba39fe655da526683c8e3d81"
+    },
+    "images/aa4c1df295283a7843c1e0ef5d529d26.png": {
+      "size": 519,
+      "md5": "100f018bda48219c8c1ebb32e04c4bae"
+    },
+    "images/ad1fa0341f52336a8c6ef2a426d43756.png": {
+      "size": 685,
+      "md5": "0e64fc4749b7a8e1f40684e7b71935f3"
+    },
+    "images/afcb3292d9d6fc2c9dd420e3c34bbe75.png": {
+      "size": 506,
+      "md5": "012896b1bef52e82157b2110972d7723"
+    },
+    "images/b1a1ffa361af6a265d91b9ea68e5a9aa.png": {
+      "size": 535,
+      "md5": "45baefc9240db4912db4efd3cd9b9132"
+    },
+    "images/b424755b835c4c1fe40a18945743898a.png": {
+      "size": 1793,
+      "md5": "c9ab0b6783a86d3cdb60946863bf95d5"
+    },
+    "images/b77dc0289e395218f04474a914ca9413.png": {
+      "size": 4832,
+      "md5": "9ed4d0c01255be424800396eae6d4d89"
+    },
+    "images/b79f6f4a063db23b39d81a0ae46fe7bd.png": {
+      "size": 684,
+      "md5": "58d1a9b49c17e15297373df411881376"
+    },
+    "images/b821ad73f4875bcaf82e83c324835709.png": {
+      "size": 704,
+      "md5": "ca068ef012760d3c24ad8c88118a7d68"
+    },
+    "images/b909d4637dadee4a5dab5f87e7ccfaa4.png": {
+      "size": 489,
+      "md5": "ad613a23566136d0029ea7cf4083a07c"
+    },
+    "images/ba72a2e1cd02da7d39c1c9a0101cdd6f.png": {
+      "size": 699,
+      "md5": "7df3d96da07d1a305115c5650120cbbf"
+    },
+    "images/ba8ddd5155a306caf0e9091f3aa7249b.png": {
+      "size": 188,
+      "md5": "05383671a32879dc6eda89d53cf8120f"
+    },
+    "images/bb06cbc45b5a4d331de72ff67bea0427.png": {
+      "size": 446,
+      "md5": "eeb5b8390ff9c0a8fe6372102f3fd76c"
+    },
+    "images/bcc0c29ce9d03be67ab50fe1455b1786.png": {
+      "size": 177616,
+      "md5": "ecae2915aa18651a51f8c53590453310"
+    },
+    "images/be4d7bc18abfc25f9a83b5526631f572.png": {
+      "size": 261,
+      "md5": "7a3335ca18cc944ea7038b1f38b5f114"
+    },
+    "images/be83ae8cd1ba594149c007151ddc5183.png": {
+      "size": 396,
+      "md5": "413a2707f404d83485d294439ee3808d"
+    },
+    "images/c1b991cf880b84537b8a12b8d19a4e28.png": {
+      "size": 755,
+      "md5": "7d80ca2cf3fab6b955ff2ffb4bb44e00"
+    },
+    "images/c40c7bcce37f57ee4a077b0fd339b7b6.png": {
+      "size": 443,
+      "md5": "bf764f41be65854eacfedaceacc7b41e"
+    },
+    "images/c84bdcae48aa74391447545ce54def0a.png": {
+      "size": 51481,
+      "md5": "0981f63c347f0d14b399614f8054ace8"
+    },
+    "images/cb2252bfd97daa52a1754bbf0debe51e.png": {
+      "size": 684,
+      "md5": "58d1a9b49c17e15297373df411881376"
+    },
+    "images/d176d8257e53204d80474d61a37568f5.png": {
+      "size": 58516,
+      "md5": "9ffaa7b9564475d8e89048c3bacc47a9"
+    },
+    "images/d1e4da257b01cfff3501d4952b46c3bc.png": {
+      "size": 2592,
+      "md5": "aba4c1163eb328f612a281c57cbd1aaa"
+    },
+    "images/d801cb08105cb195bf32fc747a225c2a.png": {
+      "size": 53379,
+      "md5": "a2bbe42cd28291ff5998ebd972a194a7"
+    },
+    "images/dbeb1d4faaaeab1219bde7f44f3455b8.jpg": {
+      "size": 2006,
+      "md5": "60c8b145f57978cdddc18ee050823457"
+    },
+    "images/dd3fe0331271197f5a983c4add33df79.png": {
+      "size": 1471,
+      "md5": "2fc0e5fd16f706263863068518da7d8a"
+    },
+    "images/ddf325e839a5d6bacb1df2ab86b90554.png": {
+      "size": 50646,
+      "md5": "1dad9b6c8040ad256ccde8495f900f3a"
+    },
+    "images/de58e09a863c401bb75fdd1ecce4a777.png": {
+      "size": 891,
+      "md5": "9e6fc793335ea5b0e550fbf1b9223456"
+    },
+    "images/df028d98b107954b6b6ac45c957ed918.jpg": {
+      "size": 1316,
+      "md5": "e4cd388a9f92c6b3438151e21f0dbfa2"
+    },
+    "images/e0f0ed7b9fe7bc9d5e39876f5c69f2eb.png": {
+      "size": 9221,
+      "md5": "105cae6f1b09b43ccff1f69ea59112c0"
+    },
+    "images/e0f4ccf003b1badec7a24429c875a2fc.png": {
+      "size": 71100,
+      "md5": "2de7895cba76bcfe9b74ba49883dda65"
+    },
+    "images/e2d0cb06720c9859ae9e4baae99d7d79.png": {
+      "size": 764,
+      "md5": "92a588728ebdca7380876d353645067d"
+    },
+    "images/e4747debd8c1c9fbfe940e55490a9964.png": {
+      "size": 2074,
+      "md5": "001b2f5d248b3923f19c67389547dd65"
+    },
+    "images/e6d3f0f558240432e03ac4b3747395ad.png": {
+      "size": 980,
+      "md5": "34ca4a7be509bfa72392f33ddba39a7c"
+    },
+    "images/e89179987949f4defe891ac1e52199d6.png": {
+      "size": 684,
+      "md5": "545bc744cdb9fbaf7090b3947b503d7f"
+    },
+    "images/ef9119b6e0937dc28f18bf0f3bf4bb52.png": {
+      "size": 5241,
+      "md5": "5e8c4a5590208fe02bcf793703e13238"
+    },
+    "images/f1245f4c90c2c80346be06868b68a2c0.png": {
+      "size": 380,
+      "md5": "93b449d61e4b78810a856356ce5cfe41"
+    },
+    "images/f2e4282bcaad66ecb3bd19e3577abadc.png": {
+      "size": 640,
+      "md5": "26fc18290dc76d450e5afdc1708e1991"
+    },
+    "images/f30b6116b2ef49498c750aa0b46b8bf5.png": {
+      "size": 964,
+      "md5": "bab42093602ae0f87969527460986607"
+    },
+    "images/f4d6d2d516cd5a2f71d57c4f00e4beb8.png": {
+      "size": 65382,
+      "md5": "86673de03becc26f534673767f3ff149"
+    },
+    "images/f6cf594b8fb9a16bda22119e5ce0488e.png": {
+      "size": 819,
+      "md5": "07eb3733a681c7c0ac22d7b5ba34bcd0"
+    },
+    "images/f8b0edccbf379bab7ca4fb65652339a3.png": {
+      "size": 476,
+      "md5": "d0e6a353ac238de01b1854ca7894cf02"
+    },
+    "images/f928505d899f6bd09010d8d8c9d9456e.png": {
+      "size": 65044,
+      "md5": "b74bea0ed7686b971722abe0e1773764"
+    },
+    "images/fd17136c54b89f9ba256d0940132d548.png": {
+      "size": 13918,
+      "md5": "4de2f7de30861e66a61aa0af09cac0b8"
+    },
+    "images/fd374b6bd246ca45e3c512a7a07a1727.png": {
+      "size": 1304,
+      "md5": "03085565aa8951d41f51f1995e46772c"
+    },
+    "images/ffae45729d6f6b3c901777d6a5fe242f.jpg": {
+      "size": 7049,
+      "md5": "e05794e98fa02dec4f92130b68b1f5e2"
+    },
+    "assets/images/td_images/y02/bad-icon.png": {
+      "size": 6510,
+      "md5": "f2ca7bf3c24d3b43165cf6b313cc0f0e"
+    },
+    "assets/images/td_images/y02/chineseVolume1.png": {
+      "size": 15173,
+      "md5": "e2648e80e0b99e5155b70dc808b18f67"
+    },
+    "assets/images/td_images/y02/chineseVolume2.png": {
+      "size": 14131,
+      "md5": "2dc576b81720ac86c4eaa033f1e031f2"
+    },
+    "assets/images/td_images/y02/complete-icon.png": {
+      "size": 4626,
+      "md5": "2edbf78e3a9c110eef65ba172c6a0bb6"
+    },
+    "assets/images/td_images/y02/countDown01.png": {
+      "size": 13379,
+      "md5": "6115c1880bd7901543d9a544ece52f86"
+    },
+    "assets/images/td_images/y02/countDown02.png": {
+      "size": 14610,
+      "md5": "3c01fa5fd2ccdd6a6f03c90b7b743c8b"
+    },
+    "assets/images/td_images/y02/countDown03.png": {
+      "size": 14850,
+      "md5": "d96c8031cf5cb69c82f0787e32cee88e"
+    },
+    "assets/images/td_images/y02/customDictation.png": {
+      "size": 4486,
+      "md5": "ef3b7a6df1a5edc43f768a9ae1bff3e5"
+    },
+    "assets/images/td_images/y02/custom_book.png": {
+      "size": 9219,
+      "md5": "36e8822bcedb9ad41afcaed058070eb7"
+    },
+    "assets/images/td_images/y02/englishVolume1.png": {
+      "size": 3254,
+      "md5": "1e8bb839b31598c89db9627d14feb05b"
+    },
+    "assets/images/td_images/y02/englishVolume2.png": {
+      "size": 3647,
+      "md5": "260992d4cf85f8f9c4dda60f0abe377c"
+    },
+    "assets/images/td_images/y02/history.png": {
+      "size": 604,
+      "md5": "338ffa67112a6333a54a874f4b741d36"
+    },
+    "assets/images/td_images/y02/icon-bord-bad.png": {
+      "size": 32945,
+      "md5": "5e3aa99bc7f38ea3ab1362290c2b3b03"
+    },
+    "assets/images/td_images/y02/icon-bord-great.png": {
+      "size": 36460,
+      "md5": "02579d85929f413cfa8c10fdaba710d0"
+    },
+    "assets/images/td_images/y02/loadingPic.png": {
+      "size": 12148,
+      "md5": "0e086eb8dc317258a7194b098fdd641b"
+    },
+    "assets/images/td_images/y02/next.png": {
+      "size": 553,
+      "md5": "ece2d4a082ef3ef83b109fb7d908176d"
+    },
+    "assets/images/td_images/y02/nice-icon.png": {
+      "size": 8619,
+      "md5": "7aa9402dff675d9446fb2a3c844fd45c"
+    },
+    "assets/images/td_images/y02/no-select.png": {
+      "size": 734,
+      "md5": "574a77c11311424f673036835dae05d4"
+    },
+    "assets/images/td_images/y02/pause.png": {
+      "size": 270,
+      "md5": "bb823597068464a3cff9141455f986dc"
+    },
+    "assets/images/td_images/y02/play.png": {
+      "size": 485,
+      "md5": "713c4623f37270589132528eafa5e78d"
+    },
+    "assets/images/td_images/y02/prev.png": {
+      "size": 594,
+      "md5": "230ba62426a9d074ffc7a317ec3e38bb"
+    },
+    "assets/images/td_images/y02/selected.png": {
+      "size": 779,
+      "md5": "0bc013cd1c416f821100705c1e302c0c"
+    },
+    "assets/images/td_images/y02/settings.png": {
+      "size": 619,
+      "md5": "404494a76eca7d1e5eee207846abb5a7"
+    },
+    "assets/images/td_images/y03/bad-icon.png": {
+      "size": 6510,
+      "md5": "f2ca7bf3c24d3b43165cf6b313cc0f0e"
+    },
+    "assets/images/td_images/y03/ch_title_icon.png": {
+      "size": 4352,
+      "md5": "6ac3d8c2d327a8043bc5ab86b0eb4e30"
+    },
+    "assets/images/td_images/y03/chineseVolume1.png": {
+      "size": 25234,
+      "md5": "0a99e3820b7dfbd7c75641e0eb2fffed"
+    },
+    "assets/images/td_images/y03/chineseVolume2.png": {
+      "size": 24709,
+      "md5": "1622efb9835373c0b100f6798b094be3"
+    },
+    "assets/images/td_images/y03/complete-icon.png": {
+      "size": 8028,
+      "md5": "5f39564a4ffb6a47c9e3b469a569027b"
+    },
+    "assets/images/td_images/y03/countDown01.png": {
+      "size": 409536,
+      "md5": "0caf50b2837d5719885133f7598ce749"
+    },
+    "assets/images/td_images/y03/countDown02.png": {
+      "size": 407399,
+      "md5": "6c2e84a536633ce2857804bbb55b80dd"
+    },
+    "assets/images/td_images/y03/countDown03.png": {
+      "size": 406177,
+      "md5": "075654c759acb53eb77bc7301b670d62"
+    },
+    "assets/images/td_images/y03/customDictation.png": {
+      "size": 7682,
+      "md5": "fa1e6084f55520eabdd9820047a93ed1"
+    },
+    "assets/images/td_images/y03/custom_book.png": {
+      "size": 36510,
+      "md5": "19d999d640e337ac4cc29053f8044964"
+    },
+    "assets/images/td_images/y03/englishVolume1.png": {
+      "size": 15144,
+      "md5": "b64007818e8342382b27b361351d8e92"
+    },
+    "assets/images/td_images/y03/history.png": {
+      "size": 818,
+      "md5": "093f507a9e02de90bd86e8d1d718f0fc"
+    },
+    "assets/images/td_images/y03/englishVolume2.png": {
+      "size": 15144,
+      "md5": "b64007818e8342382b27b361351d8e92"
+    },
+    "assets/images/td_images/y03/ic_camera.png": {
+      "size": 603,
+      "md5": "74899aa15bb9be8934ca56c8d2d5a0ab"
+    },
+    "assets/images/td_images/y03/icon-bord-bad.png": {
+      "size": 32945,
+      "md5": "5e3aa99bc7f38ea3ab1362290c2b3b03"
+    },
+    "assets/images/td_images/y03/icon-bord-great.png": {
+      "size": 36460,
+      "md5": "02579d85929f413cfa8c10fdaba710d0"
+    },
+    "assets/images/td_images/y03/icon-down.png": {
+      "size": 1113,
+      "md5": "00c4e49806b2a1f4387e092c09c92e7c"
+    },
+    "assets/images/td_images/y03/icon-selected.png": {
+      "size": 636,
+      "md5": "af1040e93d4972e7a30f10da2626a071"
+    },
+    "assets/images/td_images/y03/loadingPic.png": {
+      "size": 12148,
+      "md5": "0e086eb8dc317258a7194b098fdd641b"
+    },
+    "assets/images/td_images/y03/next.png": {
+      "size": 816,
+      "md5": "56821f545e6acb34d99ae6392591dd99"
+    },
+    "assets/images/td_images/y03/nice-icon.png": {
+      "size": 8619,
+      "md5": "7aa9402dff675d9446fb2a3c844fd45c"
+    },
+    "assets/images/td_images/y03/no-select.png": {
+      "size": 889,
+      "md5": "8f972869c4b79f24661d20da492e20f9"
+    },
+    "assets/images/td_images/y03/pause.png": {
+      "size": 3842,
+      "md5": "7ea2b084d4bbe4f26310227e9e056c60"
+    },
+    "assets/images/td_images/y03/play.png": {
+      "size": 4031,
+      "md5": "5f675fe5927fe2f2ae12777570240cf8"
+    },
+    "assets/images/td_images/y03/prev.png": {
+      "size": 837,
+      "md5": "6997f5f25e39f5239fe2421fee6ac6df"
+    },
+    "assets/images/td_images/y03/selected.png": {
+      "size": 982,
+      "md5": "43cf9c6c2ef17db7d4dc47366273868a"
+    },
+    "assets/images/td_images/y03/settings.png": {
+      "size": 931,
+      "md5": "05ccbec18dbac0ec315dc2acabd0ae9a"
+    },
+    "assets/images/td_images/y09/bad-icon.png": {
+      "size": 4501,
+      "md5": "eb9b830f2f0440004dddf7cecf93fc40"
+    },
+    "assets/images/td_images/y09/chineseVolume1.png": {
+      "size": 22135,
+      "md5": "8c0dafb465db5cb4ee36a2274814cbdd"
+    },
+    "assets/images/td_images/y09/chineseVolume2.png": {
+      "size": 20345,
+      "md5": "202563eaf575214f44566b00a49181a3"
+    },
+    "assets/images/td_images/y09/complete-icon.png": {
+      "size": 2771,
+      "md5": "95b6af985b909b2c50222042adef84a0"
+    },
+    "assets/images/td_images/y09/countDown01.png": {
+      "size": 22029,
+      "md5": "2f0868aefa0c665df8b7119938bdd476"
+    },
+    "assets/images/td_images/y09/countDown02.png": {
+      "size": 23104,
+      "md5": "53b899a0fffb7877592cfc43fd06e0d9"
+    },
+    "assets/images/td_images/y09/countDown03.png": {
+      "size": 23354,
+      "md5": "2cbb929b29917c31e15455e8df062a76"
+    },
+    "assets/images/td_images/y09/customDictation.png": {
+      "size": 7682,
+      "md5": "fa1e6084f55520eabdd9820047a93ed1"
+    },
+    "assets/images/td_images/y09/englishVolume1.png": {
+      "size": 11036,
+      "md5": "60bec34fe387e7f2c3fa16a0bcc4117a"
+    },
+    "assets/images/td_images/y09/englishVolume2.png": {
+      "size": 11036,
+      "md5": "60bec34fe387e7f2c3fa16a0bcc4117a"
+    },
+    "assets/images/td_images/y09/history.png": {
+      "size": 604,
+      "md5": "338ffa67112a6333a54a874f4b741d36"
+    },
+    "assets/images/td_images/y09/icon-bord-bad.png": {
+      "size": 12676,
+      "md5": "a4be84e84e9360e485955ef6bc4c4755"
+    },
+    "assets/images/td_images/y09/icon-bord-great.png": {
+      "size": 12699,
+      "md5": "61dcaacc848a9f56d738e6008548d33d"
+    },
+    "assets/images/td_images/y09/loadingPic.png": {
+      "size": 12148,
+      "md5": "0e086eb8dc317258a7194b098fdd641b"
+    },
+    "assets/images/td_images/y09/next.png": {
+      "size": 423,
+      "md5": "c16fc004e86b54ab4845435d4d059d55"
+    },
+    "assets/images/td_images/y09/nice-icon.png": {
+      "size": 3650,
+      "md5": "5b21bfb4d6d557cc8dab7bda1de60956"
+    },
+    "assets/images/td_images/y09/no-select.png": {
+      "size": 734,
+      "md5": "574a77c11311424f673036835dae05d4"
+    },
+    "assets/images/td_images/y09/pause.png": {
+      "size": 295,
+      "md5": "826349eacc16c3515076e6faf5a89c50"
+    },
+    "assets/images/td_images/y09/play.png": {
+      "size": 485,
+      "md5": "713c4623f37270589132528eafa5e78d"
+    },
+    "assets/images/td_images/y09/prev.png": {
+      "size": 433,
+      "md5": "37cfe42aff5162d848f4d198e8e9f813"
+    },
+    "assets/images/td_images/y09/selected.png": {
+      "size": 779,
+      "md5": "0bc013cd1c416f821100705c1e302c0c"
+    },
+    "assets/images/td_images/y09/settings.png": {
+      "size": 432,
+      "md5": "5ee56a3ec6d91e83ec3d2d4c6de52d58"
+    },
+    "assets/images/td_images/y06/bg.png": {
+      "size": 13587,
+      "md5": "d4f77fca8fca51079e0bf2aac2755d57"
+    },
+    "assets/images/td_images/y06/ch_title_icon.png": {
+      "size": 4352,
+      "md5": "6ac3d8c2d327a8043bc5ab86b0eb4e30"
+    },
+    "assets/images/td_images/y06/chineseVolume1.png": {
+      "size": 19458,
+      "md5": "18ec2e54ed6128436391bc575efc8410"
+    },
+    "assets/images/td_images/y06/chineseVolume2.png": {
+      "size": 19458,
+      "md5": "18ec2e54ed6128436391bc575efc8410"
+    },
+    "assets/images/td_images/y06/complete-icon.png": {
+      "size": 5507,
+      "md5": "6db2ee652a5f8d91b80ad33b61e642b7"
+    },
+    "assets/images/td_images/y06/countDown01.png": {
+      "size": 10139,
+      "md5": "d60149a987dcf35403b45d0669e4b599"
+    },
+    "assets/images/td_images/y06/countDown02.png": {
+      "size": 13253,
+      "md5": "1d0e10944260f332af85cdbababa42c1"
+    },
+    "assets/images/td_images/y06/countDown03.png": {
+      "size": 13932,
+      "md5": "36573fa942c58ab3cec5d17a6a4fc9ae"
+    },
+    "assets/images/td_images/y06/custom_book.png": {
+      "size": 18017,
+      "md5": "6bcab4cc70c63a47353eaed56e89a863"
+    },
+    "assets/images/td_images/y06/englishVolume1.png": {
+      "size": 11346,
+      "md5": "af32ab28c320aac47440d4d6487e6f70"
+    },
+    "assets/images/td_images/y06/englishVolume2.png": {
+      "size": 11346,
+      "md5": "af32ab28c320aac47440d4d6487e6f70"
+    },
+    "assets/images/td_images/y06/history.png": {
+      "size": 1388,
+      "md5": "26c3a1761ca801a62101a365bafba98a"
+    },
+    "assets/images/td_images/y06/ic-close-black.png": {
+      "size": 458,
+      "md5": "85617084d258f0016239076a48d66817"
+    },
+    "assets/images/td_images/y06/ic-close-white.png": {
+      "size": 267,
+      "md5": "4a55d7dad0fa12332b06814b404e6f82"
+    },
+    "assets/images/td_images/y06/ic_camera.png": {
+      "size": 1164,
+      "md5": "96e0a24f99d851332f6e42e223ae72c0"
+    },
+    "assets/images/td_images/y06/icon-down.png": {
+      "size": 1113,
+      "md5": "00c4e49806b2a1f4387e092c09c92e7c"
+    },
+    "assets/images/td_images/y06/no-select.png": {
+      "size": 752,
+      "md5": "209c83c9628173c13896db23d18cf60a"
+    },
+    "assets/images/td_images/y06/result_bg.png": {
+      "size": 32462,
+      "md5": "42236f8eb0b251f8568f4a739711f56d"
+    },
+    "assets/images/td_images/y06/selected.png": {
+      "size": 546,
+      "md5": "4dfc58c9007642da553f325f64af6193"
+    },
+    "assets/images/td_images/y06/settings.png": {
+      "size": 928,
+      "md5": "d3cdbd0089bfbf376ef8828f0575a56d"
+    },
+    "assets/images/td_images/y06/start.png": {
+      "size": 6422,
+      "md5": "7f55edc57d908714b7c498ab7ee5ea17"
+    },
+    "assets/images/td_images/y05/bad-icon.png": {
+      "size": 6510,
+      "md5": "f2ca7bf3c24d3b43165cf6b313cc0f0e"
+    },
+    "assets/images/td_images/y05/ch_title_icon.png": {
+      "size": 4352,
+      "md5": "6ac3d8c2d327a8043bc5ab86b0eb4e30"
+    },
+    "assets/images/td_images/y05/chineseVolume1.png": {
+      "size": 25234,
+      "md5": "0a99e3820b7dfbd7c75641e0eb2fffed"
+    },
+    "assets/images/td_images/y05/chineseVolume2.png": {
+      "size": 24709,
+      "md5": "1622efb9835373c0b100f6798b094be3"
+    },
+    "assets/images/td_images/y05/complete-icon.png": {
+      "size": 8028,
+      "md5": "5f39564a4ffb6a47c9e3b469a569027b"
+    },
+    "assets/images/td_images/y05/countDown01.png": {
+      "size": 409536,
+      "md5": "0caf50b2837d5719885133f7598ce749"
+    },
+    "assets/images/td_images/y05/countDown02.png": {
+      "size": 407399,
+      "md5": "6c2e84a536633ce2857804bbb55b80dd"
+    },
+    "assets/images/td_images/y05/countDown03.png": {
+      "size": 406177,
+      "md5": "075654c759acb53eb77bc7301b670d62"
+    },
+    "assets/images/td_images/y05/customDictation.png": {
+      "size": 7682,
+      "md5": "fa1e6084f55520eabdd9820047a93ed1"
+    },
+    "assets/images/td_images/y05/custom_book.png": {
+      "size": 36510,
+      "md5": "19d999d640e337ac4cc29053f8044964"
+    },
+    "assets/images/td_images/y05/englishVolume1.png": {
+      "size": 15144,
+      "md5": "b64007818e8342382b27b361351d8e92"
+    },
+    "assets/images/td_images/y05/englishVolume2.png": {
+      "size": 15144,
+      "md5": "b64007818e8342382b27b361351d8e92"
+    },
+    "assets/images/td_images/y05/history.png": {
+      "size": 801,
+      "md5": "f1a3d8d7804bb1e18b7f63062034af2a"
+    },
+    "assets/images/td_images/y05/icon-bord-bad.png": {
+      "size": 32945,
+      "md5": "5e3aa99bc7f38ea3ab1362290c2b3b03"
+    },
+    "assets/images/td_images/y05/ic_camera.png": {
+      "size": 603,
+      "md5": "74899aa15bb9be8934ca56c8d2d5a0ab"
+    },
+    "assets/images/td_images/y05/icon-bord-great.png": {
+      "size": 36460,
+      "md5": "02579d85929f413cfa8c10fdaba710d0"
+    },
+    "assets/images/td_images/y05/icon-down.png": {
+      "size": 1113,
+      "md5": "00c4e49806b2a1f4387e092c09c92e7c"
+    },
+    "assets/images/td_images/y05/icon-selected.png": {
+      "size": 636,
+      "md5": "af1040e93d4972e7a30f10da2626a071"
+    },
+    "assets/images/td_images/y05/loadingPic.png": {
+      "size": 12148,
+      "md5": "0e086eb8dc317258a7194b098fdd641b"
+    },
+    "assets/images/td_images/y05/next.png": {
+      "size": 816,
+      "md5": "56821f545e6acb34d99ae6392591dd99"
+    },
+    "assets/images/td_images/y05/nice-icon.png": {
+      "size": 8619,
+      "md5": "7aa9402dff675d9446fb2a3c844fd45c"
+    },
+    "assets/images/td_images/y05/no-select.png": {
+      "size": 889,
+      "md5": "8f972869c4b79f24661d20da492e20f9"
+    },
+    "assets/images/td_images/y05/pause.png": {
+      "size": 3842,
+      "md5": "7ea2b084d4bbe4f26310227e9e056c60"
+    },
+    "assets/images/td_images/y05/play.png": {
+      "size": 4031,
+      "md5": "5f675fe5927fe2f2ae12777570240cf8"
+    },
+    "assets/images/td_images/y05/prev.png": {
+      "size": 837,
+      "md5": "6997f5f25e39f5239fe2421fee6ac6df"
+    },
+    "assets/images/td_images/y05/selected.png": {
+      "size": 982,
+      "md5": "43cf9c6c2ef17db7d4dc47366273868a"
+    },
+    "assets/images/td_images/y05/settings.png": {
+      "size": 931,
+      "md5": "05ccbec18dbac0ec315dc2acabd0ae9a"
+    },
+    "assets/images/td_images/y09p/bad-icon.png": {
+      "size": 6494,
+      "md5": "44a448499b5e6688ea4bf0e3a8109c06"
+    },
+    "assets/images/td_images/y09p/chineseVolume1.png": {
+      "size": 34238,
+      "md5": "70e43aa876313a8b7989bf3bd7fc2bfd"
+    },
+    "assets/images/td_images/y09p/chineseVolume2.png": {
+      "size": 31576,
+      "md5": "c9a44ede752da81f735ca5ce6d607eb9"
+    },
+    "assets/images/td_images/y09p/complete-icon.png": {
+      "size": 4626,
+      "md5": "2edbf78e3a9c110eef65ba172c6a0bb6"
+    },
+    "assets/images/td_images/y09p/countDown01.png": {
+      "size": 37273,
+      "md5": "dc3cb1c8160a4628bbb3ea919605c785"
+    },
+    "assets/images/td_images/y09p/countDown02.png": {
+      "size": 38160,
+      "md5": "682ed4df39ba800069ffb9a2e8e09eae"
+    },
+    "assets/images/td_images/y09p/countDown03.png": {
+      "size": 38337,
+      "md5": "59de54b1c668f9a5409e345ef6f495b3"
+    },
+    "assets/images/td_images/y09p/customDictation.png": {
+      "size": 7682,
+      "md5": "fa1e6084f55520eabdd9820047a93ed1"
+    },
+    "assets/images/td_images/y09p/englishVolume1.png": {
+      "size": 16900,
+      "md5": "aa74f901b2248c049139742a1c0c800b"
+    },
+    "assets/images/td_images/y09p/englishVolume2.png": {
+      "size": 15700,
+      "md5": "49039802c14094ef9781943eeabc60ad"
+    },
+    "assets/images/td_images/y09p/history.png": {
+      "size": 604,
+      "md5": "338ffa67112a6333a54a874f4b741d36"
+    },
+    "assets/images/td_images/y09p/icon-bord-bad.png": {
+      "size": 17952,
+      "md5": "f208b6f264d3697228ecf56ea69598a2"
+    },
+    "assets/images/td_images/y09p/icon-bord-great.png": {
+      "size": 21132,
+      "md5": "dbf871687b621e0c8c155bcfa95aca73"
+    },
+    "assets/images/td_images/y09p/loadingPic.png": {
+      "size": 12148,
+      "md5": "0e086eb8dc317258a7194b098fdd641b"
+    },
+    "assets/images/td_images/y09p/next.png": {
+      "size": 553,
+      "md5": "ece2d4a082ef3ef83b109fb7d908176d"
+    },
+    "assets/images/td_images/y09p/nice-icon.png": {
+      "size": 5304,
+      "md5": "f9269241f0b697f1dbcca15d3111a641"
+    },
+    "assets/images/td_images/y09p/no-select.png": {
+      "size": 734,
+      "md5": "574a77c11311424f673036835dae05d4"
+    },
+    "assets/images/td_images/y09p/pause.png": {
+      "size": 270,
+      "md5": "bb823597068464a3cff9141455f986dc"
+    },
+    "assets/images/td_images/y09p/play.png": {
+      "size": 485,
+      "md5": "713c4623f37270589132528eafa5e78d"
+    },
+    "assets/images/td_images/y09p/prev.png": {
+      "size": 594,
+      "md5": "230ba62426a9d074ffc7a317ec3e38bb"
+    },
+    "assets/images/td_images/y09p/selected.png": {
+      "size": 779,
+      "md5": "0bc013cd1c416f821100705c1e302c0c"
+    },
+    "assets/images/td_images/y09p/settings.png": {
+      "size": 619,
+      "md5": "404494a76eca7d1e5eee207846abb5a7"
+    },
+    "assets/images/app_icon/theme-hermes/app_icon.png": {
+      "size": 3340,
+      "md5": "1345f12ef00834a86d7ce491436058a9"
+    },
+    "assets/images/app_icon/theme-hermes-plus/app_icon.png": {
+      "size": 6507,
+      "md5": "8d097eef37015bcdf7174a4954630682"
+    },
+    "assets/images/app_icon/theme-olive/app_icon.png": {
+      "size": 9478,
+      "md5": "88edc9fdaf361fe5bc2c50a5f197d9a6"
+    },
+    "assets/images/app_icon/theme-y02-1/app_icon.png": {
+      "size": 27057,
+      "md5": "9f71b0fea943c334e0d624e79880ac4b"
+    },
+    "assets/images/app_icon/theme-y05/app_icon.png": {
+      "size": 15460,
+      "md5": "8691cd8cdfd5970e53decde282cfe54c"
+    },
+    "assets/images/app_icon/theme-y03/app_icon.png": {
+      "size": 11839,
+      "md5": "7e28caa08f0241393e5f203b98193483"
+    },
+    "assets/images/app_icon/theme-popcorn/app_icon.png": {
+      "size": 27057,
+      "md5": "9f71b0fea943c334e0d624e79880ac4b"
+    },
+    "assets/images/app_icon/theme-y06/app_icon.png": {
+      "size": 15251,
+      "md5": "5c83a40c44ac91faf35f2df7cc8f935f"
+    },
+    "assets/images/app_icon/theme-y07/app_icon.png": {
+      "size": 11000,
+      "md5": "c0c49d4aa109995c1c05595129362ce0"
+    },
+    "assets/images/app_icon/theme-y08/app_icon.png": {
+      "size": 14467,
+      "md5": "2bba9e60ec847270180a645c6740ae18"
+    },
+    "assets/images/app_icon/theme-y09p/app_icon.png": {
+      "size": 11639,
+      "md5": "c9a252572ed4533fe239bde4ff377a50"
+    }
+  }
+}

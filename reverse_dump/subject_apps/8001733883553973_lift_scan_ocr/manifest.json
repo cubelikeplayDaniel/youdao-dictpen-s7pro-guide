@@ -1,0 +1,49 @@
+{
+  "appName": "提笔即扫OCR",
+  "version": "2.22.0",
+  "appid": "8001733883553973",
+  "icon": "app_icon.png",
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false
+  },
+  "meta": {
+    "otaVersion": "4.22.0"
+  },
+  "props": {
+    "supportUnInstall": false,
+    "addDesktop": {
+      "coco_platform": false,
+      "almond_platform": false,
+      "x3s_platform": false,
+      "apollo_platform": false,
+      "hermes_platform": false,
+      "plum_platform": false,
+      "melon_platform": false,
+      "exam_platform": true,
+      "olive_platform": false,
+      "pear_platform": false,
+      "peach_platform": false,
+      "pineapple_platform": false,
+      "hermes_plus_platform": false,
+      "popcorn_platform": false,
+      "y08_platform": false,
+      "y09_platform": false,
+      "y09p_platform": false
+    }
+  },
+  "cert": {
+    "app.js.bin": {
+      "size": 13081,
+      "md5": "0947210ce3efce63369f4a3967da38ca"
+    },
+    "images/0166dc16a17756c320e681752a0a19fc.png": {
+      "size": 261,
+      "md5": "7a3335ca18cc944ea7038b1f38b5f114"
+    },
+    "images/7d6533681391be3b1b7bac1c4d28fcd8.png": {
+      "size": 250,
+      "md5": "a34541ec4ede92a43dcd3bd3ee0c4f0d"
+    }
+  }
+}

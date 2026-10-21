@@ -1,0 +1,1050 @@
+{
+  "appName": "下拉菜单",
+  "version": "2.22.0",
+  "appid": "8080222501178405",
+  "quickjs": {
+    "version": "20200705",
+    "bigNum": false
+  },
+  "meta": {
+    "otaVersion": "4.22.0"
+  },
+  "props": {
+    "supportUnInstall": false,
+    "addDesktop": {
+      "coco_platform": false,
+      "almond_platform": false,
+      "x3s_platform": false,
+      "apollo_platform": false,
+      "plum_platform": false,
+      "melon_platform": false,
+      "exam_platform": false,
+      "olive_platform": false,
+      "hermes_platform": false,
+      "pineapple_platform": false,
+      "hermes_plus_platform": false
+    },
+    "page_rotation": {
+      "nav": "inherit",
+      "index": "inherit"
+    }
+  },
+  "cert": {
+    "app.js.bin": {
+      "size": 7278,
+      "md5": "f55e79b45385d20f1dc391e0c1abede4"
+    },
+    "globalManager-3d6cf71e.js.bin": {
+      "size": 156,
+      "md5": "4204c6819c051ce8c888d800af305a81"
+    },
+    "hScreenIndex-bbf7c630.js.bin": {
+      "size": 881,
+      "md5": "ca8441b1d753724e17c5339e1a48e993"
+    },
+    "hvScreenBasePage-bcbc1026.js.bin": {
+      "size": 89144,
+      "md5": "f339dca92716515e8858c2744c955822"
+    },
+    "index-a2c87d84.js.bin": {
+      "size": 95974,
+      "md5": "c9aebc0b2843d7c458164aced8877390"
+    },
+    "index.js.bin": {
+      "size": 2183,
+      "md5": "503d9088bebdf1f9588433eb0e6462e8"
+    },
+    "indexPage-3ef349ba.js.bin": {
+      "size": 209287,
+      "md5": "84c77db46238cf71bb3d34e27bb38c6d"
+    },
+    "mediaPlayerManager-6f877d3a.js.bin": {
+      "size": 414,
+      "md5": "177c7970f17b6ea444163a15d3cb8643"
+    },
+    "nav.js.bin": {
+      "size": 18739,
+      "md5": "1a69976af2b59f74e3c7a284b4565a04"
+    },
+    "vScreenIndex-23d5c202.js.bin": {
+      "size": 881,
+      "md5": "7f16ebeaab7550bcc93e20d76789eefa"
+    },
+    "images/023a2dac367591072ebb6401523c67da.png": {
+      "size": 9788,
+      "md5": "d43c0ce6b3f78c778ab6249bc34d9abd"
+    },
+    "images/03fd80dd2b5f9ef93889d65e40a904f1.png": {
+      "size": 50430,
+      "md5": "f61ff271c49abb442c411fa84e648bbe"
+    },
+    "images/05ea34047fd631c7fa781503cbfdeadf.png": {
+      "size": 216590,
+      "md5": "34d7d017f4ec22095e73fab46e1f4f35"
+    },
+    "images/064b5f345676b4b0d9c33710d0060bd7.png": {
+      "size": 108420,
+      "md5": "13fd87b43bcb4a14d336a0b2f7fc8446"
+    },
+    "images/0678d0e3bbc4c6fdc60d0a9bc3699140.png": {
+      "size": 53012,
+      "md5": "128fda0401cf6e70d8fb406c2a4eda2d"
+    },
+    "images/09b076395c1b82fe17f11aa0b345cc2e.png": {
+      "size": 1225,
+      "md5": "6ad66e1d231bc6917d73163e66c890d8"
+    },
+    "images/09d38bae8e0e77e63a7405fca5d67a91.png": {
+      "size": 929,
+      "md5": "9d7e21d10367cab6aec3f35f348e738b"
+    },
+    "images/170c70307c9daecb5697ff96d68cbee2.png": {
+      "size": 14950,
+      "md5": "7f8a31aceaa1a395150a0111e78ae2f6"
+    },
+    "images/1741aec1efdd8f13677fc52442d70d80.png": {
+      "size": 661,
+      "md5": "cc0afa59129e1a9c1f5cc2feee45a83d"
+    },
+    "images/1c67b297a12180323b24343525ea69ea.png": {
+      "size": 971,
+      "md5": "b1c0398eb1d66f685f50f3c3bba7c1fa"
+    },
+    "images/1fe17eaa9701b8c02c183bdf0b145f29.png": {
+      "size": 861,
+      "md5": "617d6f4a246b201e3cb032427f004faa"
+    },
+    "images/1fe4c475d758dd16acdadcfa0af3c802.png": {
+      "size": 534,
+      "md5": "6982f5b1b6b0377ad76b3c3c7bb30a92"
+    },
+    "images/21ca6e12a154da69520549a97f4f83aa.png": {
+      "size": 1116,
+      "md5": "b32167cfdf69900d26847365d29b17b0"
+    },
+    "images/238e1e02917bd33124a23710db27a5fd.png": {
+      "size": 697,
+      "md5": "a046d7a137821fa54d0fcc20ad1b261d"
+    },
+    "images/24b762fb51774ff4e1fbefb399c71d74.png": {
+      "size": 1204,
+      "md5": "6cbc23e6aea0b636d699ca64c833393f"
+    },
+    "images/27079878b84374a14d564f678c3ad075.png": {
+      "size": 50846,
+      "md5": "4ab0c797f492421c8a30d97018a9a09f"
+    },
+    "images/2877a7d351092695a2054e28ca818dad.png": {
+      "size": 766,
+      "md5": "6dd0ebe1b2cea5d8481758933119e152"
+    },
+    "images/2c26d96c3a0e687918317750b3d4e0fb.png": {
+      "size": 53282,
+      "md5": "f783a7bdf8adb3d64f6d2357da91d7f5"
+    },
+    "images/2e5ac3990a1cf34d280368363b442644.png": {
+      "size": 2876,
+      "md5": "2c44c8c2c52f77dd668a32b9ce0234bc"
+    },
+    "images/33d23050b6115a20f38615f570c976ed.png": {
+      "size": 487571,
+      "md5": "4acaf242ca7223dfe06004025bb79ffc"
+    },
+    "images/347fe7424c41aa8991fb63aecca9226d.png": {
+      "size": 1103,
+      "md5": "6e66736cfe0c53af109575c99cfa8c6d"
+    },
+    "images/3676064b53d998472070fd24c39cfce9.png": {
+      "size": 768,
+      "md5": "ee2ee04c003d2285e10f03fd64f2646c"
+    },
+    "images/3c1ddac61accdbd3704e82367b758e88.png": {
+      "size": 663,
+      "md5": "7c2e7d4f34df469fb937459a186020ec"
+    },
+    "images/43e79eaa2f3dd68b25a97f7ddbfb4e22.png": {
+      "size": 52153,
+      "md5": "ed6f15042210fe71d23dce07d3c6a62a"
+    },
+    "images/44eda03065cbc2a0964e7a11fcc4cb24.png": {
+      "size": 768,
+      "md5": "2e348d8a71e19b5f7ac43b05f1f50499"
+    },
+    "images/51ad6b910566aad21a145b4bc0fdd37b.png": {
+      "size": 1431,
+      "md5": "451b999e0fc96ff73851a62d4d76eb2f"
+    },
+    "images/51ff2e5675016d28fc5491747d2cb632.png": {
+      "size": 919,
+      "md5": "819cab8ff532b1e1e63912e3f6644577"
+    },
+    "images/5236ec2ca579f6ca562bb94030f71071.png": {
+      "size": 646,
+      "md5": "1b4ef4b91a61927b17d3c3e52f2813af"
+    },
+    "images/52cb458315961daa76b973b7dcd2eebd.png": {
+      "size": 747,
+      "md5": "dbc2db0141223990450cacac2dc32c80"
+    },
+    "images/55cd3ff6a0f3a0188d3913fa4d7be419.png": {
+      "size": 175576,
+      "md5": "8fd12770372b278ee137aecafaf9d520"
+    },
+    "images/5c1466957757f6b12cd5aa55f2085664.png": {
+      "size": 5427,
+      "md5": "0c7e1ae16323fca13d4ebc91672ba854"
+    },
+    "images/5d078e5ccb9538ed1fadd9628855e5fc.png": {
+      "size": 1509,
+      "md5": "1d20e9cbe2364d36dcf2991c39dd64b7"
+    },
+    "images/5f2cbf5816e3bcb264c40c262f617369.png": {
+      "size": 1308,
+      "md5": "7f8517109d308bcf3d9bbf95ca8a5587"
+    },
+    "images/5f60a92ecc26db1e4c8518fe3dde2190.png": {
+      "size": 5343,
+      "md5": "82737c9b040592483ed73681254764ca"
+    },
+    "images/629ed53877e6fa84a46aee7fd763390a.png": {
+      "size": 52809,
+      "md5": "396a6933217f8a41b57b20f4c47399ef"
+    },
+    "images/64880be0197dc365fd41adcf82fbab21.png": {
+      "size": 662,
+      "md5": "db14df241497522cdf7c9fd468e8a4c8"
+    },
+    "images/65f3fd28d98c135c19889957ffe0c9a8.png": {
+      "size": 478,
+      "md5": "b4ca63e7c3cabc5f128923a92a594caf"
+    },
+    "images/6760fc888b8211fac5bcf8e58394a5a8.png": {
+      "size": 1032,
+      "md5": "9a200fcee1f2c906b816e7258eb64bcd"
+    },
+    "images/695115f09204c9560fb8df4f758184b4.png": {
+      "size": 960,
+      "md5": "c276f4edd777972d833f1df513b34d0f"
+    },
+    "images/6cd52077a7ae698a7b146560ded55aae.png": {
+      "size": 473,
+      "md5": "e3226148c9d5794b83c9831f3ed45ec2"
+    },
+    "images/701076abfab08e98d4da8e705e9c53d3.png": {
+      "size": 767,
+      "md5": "511194aa465c629226cb44bf0e7423c5"
+    },
+    "images/7686eea47e40f2a8ed8766d36a6ac241.png": {
+      "size": 59083,
+      "md5": "04f9c2363dbd963ac1cd624fdfadb189"
+    },
+    "images/77da9112cd6c8257e99fed30057d2191.png": {
+      "size": 52276,
+      "md5": "6f677b7f03b6d4b1e0e9d27a8f7470e4"
+    },
+    "images/7a41ed9564df9d95875251dcc776c1e0.png": {
+      "size": 10582,
+      "md5": "5b8525b78cd355c2e9dbde7d83655690"
+    },
+    "images/843ddc317f22824292a3de1554d41839.png": {
+      "size": 646,
+      "md5": "1b4ef4b91a61927b17d3c3e52f2813af"
+    },
+    "images/8aee0d835960ad496919cdeebffb01a8.png": {
+      "size": 1053,
+      "md5": "c5b9aef3197a5d302981b0fc9aeb32d5"
+    },
+    "images/91fa51cfd37b9fab2f3db95e72ee0783.png": {
+      "size": 14062,
+      "md5": "54d53f1e2b10fcfab5cf78a4a5ff1d7b"
+    },
+    "images/925ed0c856df88b1d33125545db52208.png": {
+      "size": 384,
+      "md5": "32dfca463e5d5fbb044eb3c0849f613c"
+    },
+    "images/945601618f49934c1fb3210272f2742e.png": {
+      "size": 816,
+      "md5": "ad0c172c8f84d8771fbb0f4263074646"
+    },
+    "images/9724aa79b28ffc2813b7037f80095804.png": {
+      "size": 963,
+      "md5": "9bac97dd4bf01930875b7b2199da0936"
+    },
+    "images/986b3d16a35e0f1127f3dad881930181.png": {
+      "size": 29501,
+      "md5": "be242035577e2ec0366bc292b06027bd"
+    },
+    "images/9fd59d0a1f842bbbe8b4a429e98fb908.png": {
+      "size": 16972,
+      "md5": "ae7eea85fd66b2ef17af1c04af6b3e85"
+    },
+    "images/a1519e5979098231b3d2702a645d6b11.png": {
+      "size": 830,
+      "md5": "a50b14cdbb20be9709266aa7194a812e"
+    },
+    "images/a474ecef9b7f1d802c1a8f71a3b0df5a.png": {
+      "size": 21807,
+      "md5": "c1d000c914897924e7e3c8037b60d1bf"
+    },
+    "images/a7842c2df8deebc53ae60cea8ebf6e6c.png": {
+      "size": 683,
+      "md5": "07dc840fce361da04bd051d378af6a02"
+    },
+    "images/ad0ff08682bad01347cb717d5e141944.png": {
+      "size": 912,
+      "md5": "0af7b8e2389f568fdcd8442f59706a0b"
+    },
+    "images/ad4c488954f43a188167e5adfdb5aab6.png": {
+      "size": 28521,
+      "md5": "00eda433324cc20ed0ab15e422bb7aab"
+    },
+    "images/b31c82eb9a4ff7be5ea7197e341de61c.png": {
+      "size": 186420,
+      "md5": "14eaf14e140784f44514e920779542c9"
+    },
+    "images/b7c73f744b1fdae69e05404d03d9e380.png": {
+      "size": 426,
+      "md5": "3901701b9776cd494ec5ced7a80a3a94"
+    },
+    "images/b7e152c3837d507afff831be2f9c86b0.png": {
+      "size": 519,
+      "md5": "6514d5995abf7ef1b7ec8c22acf19147"
+    },
+    "images/b85fdc78aa462e6d521b271dd3f6e0ce.png": {
+      "size": 1113,
+      "md5": "79f0a74847024363e74fd468b33d32eb"
+    },
+    "images/b943f86bc55874ecdeb7b3d507c6ea61.png": {
+      "size": 1219,
+      "md5": "a15359ed305170706d9cfdd45adcd2e8"
+    },
+    "images/bc1a09307447f21414d2b2917a30df3d.png": {
+      "size": 4433,
+      "md5": "623c4453c9365125567ca5862aa7e764"
+    },
+    "images/c4fc43203e2a435e26b3c9c121fbf287.png": {
+      "size": 300,
+      "md5": "e083d56b7381bc059f8ca5fd272e9b9a"
+    },
+    "images/c803e6b5beae5bf09ddf48f2dda0e4d0.png": {
+      "size": 223400,
+      "md5": "722eae352252c84e249f1a388014eb4d"
+    },
+    "images/cec8650e45dac5180455d911c99fd95f.png": {
+      "size": 34196,
+      "md5": "26f56494cf0c6c91f87f901dbeca9574"
+    },
+    "images/d4f1cb5e07ff9b1e17f8624fddec6820.png": {
+      "size": 561,
+      "md5": "6c47acc12fcc4c6949c72b994303ff25"
+    },
+    "images/d59e9a12d6972b4ed45b4e7ade74cc36.png": {
+      "size": 511,
+      "md5": "5d1306655025373a1637ab80ca4ddd05"
+    },
+    "images/d5b6bcace0bc324d3cc158244d567a6a.png": {
+      "size": 709,
+      "md5": "cd87e2f27f461fbdf11fc34c3875bc61"
+    },
+    "images/d6708edda0de1282951e545ba30b7dea.png": {
+      "size": 22158,
+      "md5": "065586b67ad103860e53dcfcbf46ff1d"
+    },
+    "images/da50639aece66014e35ef020e2f4ee3a.png": {
+      "size": 483,
+      "md5": "d17b0d596d1f418ffb97da5a608d7135"
+    },
+    "images/db27c7f62f1ffe3c267ffab9775eae85.png": {
+      "size": 1449,
+      "md5": "83f0666aaea7f6fdaacdb3cb562b24eb"
+    },
+    "images/dc60f22503ca0217be4dadde3090ea12.png": {
+      "size": 906,
+      "md5": "e52e9af8ccbedccee331c03ad9a99c89"
+    },
+    "images/ddcd04fd4c6393dcf80812414c371c47.png": {
+      "size": 226,
+      "md5": "c3045acf11a4079df62a9e03610a932e"
+    },
+    "images/e35ec9a9a0d30cfcb75d8ee06452d175.png": {
+      "size": 5624,
+      "md5": "cf623cfcae623cb0de9488ea4a10c620"
+    },
+    "images/e784331b2bde57e5dfc9b89b60984aff.png": {
+      "size": 861,
+      "md5": "b7b67052ad8bcdeb85ff8561f02ea29b"
+    },
+    "images/e80301b7c3586826bc60b2d13e7e7b7e.png": {
+      "size": 235918,
+      "md5": "124560278b0449e93fe15869dfa80621"
+    },
+    "images/ebf2b3606544bf185eb95f18b1ac730d.png": {
+      "size": 1616,
+      "md5": "c0f2bb97f67dbfb9028e461625480f46"
+    },
+    "images/f6520a605a28b06984ee558c5ee5a60f.png": {
+      "size": 630,
+      "md5": "6567ffd58a36cb1b6e62da4b4fdea6d9"
+    },
+    "images/f6dcd6b68b91973a4544ba5f28d4cd7d.png": {
+      "size": 4657,
+      "md5": "27481243a69e481a2d01c2d94bc7783c"
+    },
+    "images/f8803d4c9d908f422c3971009edb77b4.png": {
+      "size": 180338,
+      "md5": "039758f21d2f9127b2c509ec623b7dbe"
+    },
+    "images/f97c629a61b177bf2019f2345283ae22.png": {
+      "size": 1499,
+      "md5": "959b1afe40bb16a2ec683564600d0cfd"
+    },
+    "images/fa63aa7c4e159d88f51a0ad89d2dba97.png": {
+      "size": 239,
+      "md5": "5c29bd83727a3f1337a60d32cd21da87"
+    },
+    "images/fc11965162dfc724d53074b13e7e034a.png": {
+      "size": 768,
+      "md5": "ee2ee04c003d2285e10f03fd64f2646c"
+    },
+    "images/fc851c4b1d8e5ced119cf83e7a8b27ab.png": {
+      "size": 3189,
+      "md5": "14dc3343c4594533f13ec544eaaf2314"
+    },
+    "images/fe0fa6c2dceaccb0ec740d5b6fd0a33b.png": {
+      "size": 1477,
+      "md5": "af07222ace4f7aef08ba03f4d4e36fcd"
+    },
+    "assets/images/audio_next.png": {
+      "size": 459,
+      "md5": "93add228f8974a4ec9f66df60c14b599"
+    },
+    "assets/images/audio_prev.png": {
+      "size": 481,
+      "md5": "031003c2ab88eb637bcf19af66fbf9ca"
+    },
+    "assets/images/bt_middle_pang.png": {
+      "size": 707,
+      "md5": "158ffe32f22ae643783b2287e2791412"
+    },
+    "assets/images/bt_middle_ping.png": {
+      "size": 710,
+      "md5": "aeb6f476e3ba1137af83043a6e5b7f3a"
+    },
+    "assets/images/bt_off.png": {
+      "size": 612,
+      "md5": "e4c6caa5ed00090f37110fad69047d7f"
+    },
+    "assets/images/charging.png": {
+      "size": 256,
+      "md5": "208f3d420d2abafb5fcd60ebb77a1952"
+    },
+    "assets/images/device_open.png": {
+      "size": 6654,
+      "md5": "ec3a068333b8497b2b908ab1ff06dfaf"
+    },
+    "assets/images/lum.png": {
+      "size": 669,
+      "md5": "f1c8787a4e50081aa7d7d857e436bbe5"
+    },
+    "assets/images/lum_half.png": {
+      "size": 607,
+      "md5": "cd328bc20ac44d541cdd0927f6616586"
+    },
+    "assets/images/lum_off.png": {
+      "size": 565,
+      "md5": "a352ae222ed2d33e1cd20af4f78275be"
+    },
+    "assets/images/miniplayer_bg.png": {
+      "size": 40536,
+      "md5": "8889bc12bf983f3cb33a40490ca72c4e"
+    },
+    "assets/images/pause2play.png": {
+      "size": 406,
+      "md5": "4917db5768568466be98f4161c53cc6f"
+    },
+    "assets/images/play2pause.png": {
+      "size": 259,
+      "md5": "52062386d810219f44051b845f147431"
+    },
+    "assets/images/volum.png": {
+      "size": 572,
+      "md5": "30d75e4ac29aa6ba069bd9a8da1a0902"
+    },
+    "assets/images/volum_half.png": {
+      "size": 442,
+      "md5": "baf2a4655a6522ddd0f0d665ec0e48e1"
+    },
+    "assets/images/volum_off.png": {
+      "size": 540,
+      "md5": "24c2b2c80848be1fd364f87dc155d8f0"
+    },
+    "assets/images/wifi_middle_high.png": {
+      "size": 585,
+      "md5": "03533813a673877654f898ea9188148a"
+    },
+    "assets/images/wifi_middle_low.png": {
+      "size": 726,
+      "md5": "c1351026b2628453e29b2dfc77a0fcc0"
+    },
+    "assets/images/wifi_middle_mid.png": {
+      "size": 670,
+      "md5": "a97521528d0dd19b29693dbf1ae1df75"
+    },
+    "assets/images/wifi_off.png": {
+      "size": 585,
+      "md5": "03533813a673877654f898ea9188148a"
+    },
+    "assets/images/td_images/hermes/audio_next.png": {
+      "size": 226,
+      "md5": "a18a808428a4645a558a5ebd88984b92"
+    },
+    "assets/images/td_images/hermes/audio_prev.png": {
+      "size": 245,
+      "md5": "218910dac4be8b08a9a316bd156feb7b"
+    },
+    "assets/images/td_images/hermes/bg_panel.png": {
+      "size": 2211,
+      "md5": "a18db5834af841069903402c2d2d9034"
+    },
+    "assets/images/td_images/hermes/bt_middle_pang.png": {
+      "size": 376,
+      "md5": "d61707f22e8ecaca088f615550c502e6"
+    },
+    "assets/images/td_images/hermes/bt_middle_ping.png": {
+      "size": 377,
+      "md5": "babc62761d1671c1855d7870e2308ed7"
+    },
+    "assets/images/td_images/hermes/bt_off.png": {
+      "size": 309,
+      "md5": "42bc6c07105dcd26bf498f658ca094b0"
+    },
+    "assets/images/td_images/hermes/charging.png": {
+      "size": 200,
+      "md5": "3733ac54e15f6bf217c4e4890a4b5eba"
+    },
+    "assets/images/td_images/hermes/device_open.png": {
+      "size": 535,
+      "md5": "01da38ea93a24479bee17b091cc49299"
+    },
+    "assets/images/td_images/hermes/lum.png": {
+      "size": 701,
+      "md5": "2429c5a855fdf400e9f8d8c9589af8be"
+    },
+    "assets/images/td_images/hermes/lum_half.png": {
+      "size": 669,
+      "md5": "34c0f87b625e92efadad774b71b8192e"
+    },
+    "assets/images/td_images/hermes/lum_off.png": {
+      "size": 496,
+      "md5": "a891e11a1d91a2f6b514ad86da8b0f4a"
+    },
+    "assets/images/td_images/hermes/miniplayer_bg.png": {
+      "size": 953,
+      "md5": "1f992c256e8e8b3f8874b89d36d3373b"
+    },
+    "assets/images/td_images/hermes/music_icon_default.png": {
+      "size": 1995,
+      "md5": "ffe6795c15a3b518a5b53b298632659a"
+    },
+    "assets/images/td_images/hermes/pause2play.png": {
+      "size": 501,
+      "md5": "94abca00950fb9f0190849c7b0714526"
+    },
+    "assets/images/td_images/hermes/play2pause.png": {
+      "size": 438,
+      "md5": "6124f9f70f05f7dca02f55f4c34b3499"
+    },
+    "assets/images/td_images/hermes/seekbar_bg.png": {
+      "size": 536,
+      "md5": "9392f619ff406b96360bdbb3b5fc6b5d"
+    },
+    "assets/images/td_images/hermes/setting.png": {
+      "size": 390,
+      "md5": "21f379460561488d862df04f53b45dc3"
+    },
+    "assets/images/td_images/hermes/value_bg.png": {
+      "size": 668,
+      "md5": "60f96c1851c5f42f7d57bcaf9a6d7ee0"
+    },
+    "assets/images/td_images/hermes/volum.png": {
+      "size": 565,
+      "md5": "3ae8e42f9806d15cfdb47b75a925aaa7"
+    },
+    "assets/images/td_images/hermes/volum_half.png": {
+      "size": 420,
+      "md5": "739d976a9330cb787bd9d03ee7665040"
+    },
+    "assets/images/td_images/hermes/volum_off.png": {
+      "size": 592,
+      "md5": "fffc6cdf322fda436aadde6dc6780a72"
+    },
+    "assets/images/td_images/hermes/wifi_middle_high.png": {
+      "size": 339,
+      "md5": "fcee0e0c459175f8cd69d5aa88294a85"
+    },
+    "assets/images/td_images/hermes/wifi_middle_low.png": {
+      "size": 390,
+      "md5": "5bf2645a7249df5db9e5505e30120439"
+    },
+    "assets/images/td_images/hermes/wifi_middle_mid.png": {
+      "size": 378,
+      "md5": "bca5617e1b99850ef9976538d6f31bfd"
+    },
+    "assets/images/td_images/hermes/wifi_off.png": {
+      "size": 339,
+      "md5": "fcee0e0c459175f8cd69d5aa88294a85"
+    },
+    "assets/images/td_images/pear/audio_next.png": {
+      "size": 510,
+      "md5": "f17b4e206aa1c19b27aa6bf8e8a81648"
+    },
+    "assets/images/td_images/pear/audio_prev.png": {
+      "size": 518,
+      "md5": "1b1e4a5484627b63e14749bb6da58bba"
+    },
+    "assets/images/td_images/pear/charging.png": {
+      "size": 256,
+      "md5": "208f3d420d2abafb5fcd60ebb77a1952"
+    },
+    "assets/images/td_images/pear/device_off.png": {
+      "size": 971,
+      "md5": "b1c0398eb1d66f685f50f3c3bba7c1fa"
+    },
+    "assets/images/td_images/pear/device_open.png": {
+      "size": 1275,
+      "md5": "a621c4545115c8d10ae30ca4c749f235"
+    },
+    "assets/images/td_images/pear/miniplayer_bg.png": {
+      "size": 9379,
+      "md5": "3b587ac9e32aa1d61086860ab7ef3c79"
+    },
+    "assets/images/td_images/pear/pause2play.png": {
+      "size": 406,
+      "md5": "4917db5768568466be98f4161c53cc6f"
+    },
+    "assets/images/td_images/pear/play2pause.png": {
+      "size": 259,
+      "md5": "52062386d810219f44051b845f147431"
+    },
+    "assets/images/td_images/pear/seekbar_bg.png": {
+      "size": 1596,
+      "md5": "cd03fd455472e88403cc1eb4eabbaf46"
+    },
+    "assets/images/td_images/pear/setting_bg.png": {
+      "size": 971,
+      "md5": "b1c0398eb1d66f685f50f3c3bba7c1fa"
+    },
+    "assets/images/td_images/y09/audio_next.png": {
+      "size": 510,
+      "md5": "f17b4e206aa1c19b27aa6bf8e8a81648"
+    },
+    "assets/images/td_images/y09/audio_prev.png": {
+      "size": 518,
+      "md5": "1b1e4a5484627b63e14749bb6da58bba"
+    },
+    "assets/images/td_images/y09/charging.png": {
+      "size": 256,
+      "md5": "208f3d420d2abafb5fcd60ebb77a1952"
+    },
+    "assets/images/td_images/y09/device_off.png": {
+      "size": 891,
+      "md5": "b4e2a28caa2ed9c8fb8556cd13f1f537"
+    },
+    "assets/images/td_images/y09/device_open.png": {
+      "size": 801,
+      "md5": "8501a55d3288cadf3b8b32a42ead4b00"
+    },
+    "assets/images/td_images/y09/lte_0.png": {
+      "size": 154,
+      "md5": "989006702ba5fb37324377b8008369e0"
+    },
+    "assets/images/td_images/y09/lte_1.png": {
+      "size": 220,
+      "md5": "5b604d58fdfe3321ec2bfd2ccc05f49b"
+    },
+    "assets/images/td_images/y09/lte_2.png": {
+      "size": 219,
+      "md5": "69ff5a74bb3ba19592401f3df3211419"
+    },
+    "assets/images/td_images/y09/lte_3.png": {
+      "size": 221,
+      "md5": "10d221b23d3bd8b120ebabc8654811c8"
+    },
+    "assets/images/td_images/y09/lte_4.png": {
+      "size": 192,
+      "md5": "e83d2d1e7b31740689690a94b166c270"
+    },
+    "assets/images/td_images/y09/miniplayer_bg.png": {
+      "size": 9969,
+      "md5": "e1181458efd073c7f30dd5c8aec936d1"
+    },
+    "assets/images/td_images/y09/pause2play.png": {
+      "size": 406,
+      "md5": "4917db5768568466be98f4161c53cc6f"
+    },
+    "assets/images/td_images/y09/play2pause.png": {
+      "size": 259,
+      "md5": "52062386d810219f44051b845f147431"
+    },
+    "assets/images/td_images/y09/seekbar_bg.png": {
+      "size": 3298,
+      "md5": "4975540c6566c17f0c09c50dee4f5f2c"
+    },
+    "assets/images/td_images/y09/setting_bg.png": {
+      "size": 971,
+      "md5": "b1c0398eb1d66f685f50f3c3bba7c1fa"
+    },
+    "assets/images/td_images/hermes-plus/audio_next.png": {
+      "size": 421,
+      "md5": "4e45b46fcf43bca36c2b8f345dfac71f"
+    },
+    "assets/images/td_images/hermes-plus/audio_prev.png": {
+      "size": 412,
+      "md5": "c0da74e4c0957e8bf77b1aa566302ac3"
+    },
+    "assets/images/td_images/hermes-plus/bg_panel.png": {
+      "size": 2599,
+      "md5": "bd6b712db3a15f510839a74c904edd0c"
+    },
+    "assets/images/td_images/hermes-plus/bt_middle_pang.png": {
+      "size": 753,
+      "md5": "f6d31ae95382e5a764f54ee7e71b3614"
+    },
+    "assets/images/td_images/hermes-plus/bt_middle_ping.png": {
+      "size": 753,
+      "md5": "96e808926257a71509fc7e7a3767ff8e"
+    },
+    "assets/images/td_images/hermes-plus/bt_off.png": {
+      "size": 602,
+      "md5": "a365ee12ef8f4d3a14fa93a456e63d9a"
+    },
+    "assets/images/td_images/hermes-plus/charging.png": {
+      "size": 256,
+      "md5": "208f3d420d2abafb5fcd60ebb77a1952"
+    },
+    "assets/images/td_images/hermes-plus/device_open.png": {
+      "size": 1100,
+      "md5": "8134a2666b51b67f4acf82aa74b26c5c"
+    },
+    "assets/images/td_images/hermes-plus/lum.png": {
+      "size": 1277,
+      "md5": "bede5fabb917dff5d82c4101e71b1d2a"
+    },
+    "assets/images/td_images/hermes-plus/lum_half.png": {
+      "size": 1067,
+      "md5": "4c355f3cd0157b38db84378fdcd764a3"
+    },
+    "assets/images/td_images/hermes-plus/lum_off.png": {
+      "size": 1045,
+      "md5": "a82b9440d1edd330e07aceb3d3dc2612"
+    },
+    "assets/images/td_images/hermes-plus/miniplayer_bg.png": {
+      "size": 2087,
+      "md5": "eb4634bf8e83ed77549f38f033d87dc5"
+    },
+    "assets/images/td_images/hermes-plus/music_icon_default.png": {
+      "size": 4091,
+      "md5": "f60200c56d27e1a3cbb7ad91208e96f8"
+    },
+    "assets/images/td_images/hermes-plus/pause2play.png": {
+      "size": 974,
+      "md5": "abe5fb59707378a784968b4c2a9ea95c"
+    },
+    "assets/images/td_images/hermes-plus/play2pause.png": {
+      "size": 866,
+      "md5": "3c08627772bf2a67a61f9658795119b7"
+    },
+    "assets/images/td_images/hermes-plus/setting.png": {
+      "size": 693,
+      "md5": "b5a0d70a77e2cd78fbf20c120c306322"
+    },
+    "assets/images/td_images/hermes-plus/volum.png": {
+      "size": 1007,
+      "md5": "9c52e6c1e76cadb54b0e9b80e8f1ec42"
+    },
+    "assets/images/td_images/hermes-plus/volum_half.png": {
+      "size": 737,
+      "md5": "2f2dc6594232632c6848bf2a6ba4d23f"
+    },
+    "assets/images/td_images/hermes-plus/volum_off.png": {
+      "size": 920,
+      "md5": "474aeb6b3d90b1f8c680ddfba922780a"
+    },
+    "assets/images/td_images/hermes-plus/wifi_middle_high.png": {
+      "size": 584,
+      "md5": "8e4c2304ab6f3aa8c22cb92f25f0ab0a"
+    },
+    "assets/images/td_images/hermes-plus/wifi_middle_low.png": {
+      "size": 718,
+      "md5": "9cd327589046d61679a3293b3a2bd542"
+    },
+    "assets/images/td_images/hermes-plus/wifi_middle_mid.png": {
+      "size": 695,
+      "md5": "ff36a709c2096bd8fe71009abc6a21e5"
+    },
+    "assets/images/td_images/hermes-plus/wifi_off.png": {
+      "size": 584,
+      "md5": "8e4c2304ab6f3aa8c22cb92f25f0ab0a"
+    },
+    "assets/images/td_images/y03/audio_next.png": {
+      "size": 802,
+      "md5": "3709213785a0eeb147faee8f71f9b71e"
+    },
+    "assets/images/td_images/y03/audio_next_no_play.png": {
+      "size": 803,
+      "md5": "ec607ba629b6ced023238f3e4f748649"
+    },
+    "assets/images/td_images/y03/audio_prev.png": {
+      "size": 807,
+      "md5": "7ac0fcdaf91cd309e93e94619bef155e"
+    },
+    "assets/images/td_images/y03/audio_prev_no_play.png": {
+      "size": 799,
+      "md5": "79a55436e09b48b1386ecf7fa41cf841"
+    },
+    "assets/images/td_images/y03/battery-tip.png": {
+      "size": 142,
+      "md5": "8a9847ee34464ce1856e8d4db5d7f5d8"
+    },
+    "assets/images/td_images/y03/bluetooth-headset.png": {
+      "size": 595,
+      "md5": "54552475dda699550f9b60a72d0d2cc3"
+    },
+    "assets/images/td_images/y03/bluetooth.png": {
+      "size": 413,
+      "md5": "a9974f8f032b37aba896d446ec754ba1"
+    },
+    "assets/images/td_images/y03/bt_middle_pang.png": {
+      "size": 1288,
+      "md5": "bce746bbb08fefaf5667bde59b7a294b"
+    },
+    "assets/images/td_images/y03/bt_middle_ping.png": {
+      "size": 1289,
+      "md5": "232feeb05193fa544da1f24bd062bb13"
+    },
+    "assets/images/td_images/y03/bt_off.png": {
+      "size": 1096,
+      "md5": "c5712b31bcb4efc8965c66ab3c738c24"
+    },
+    "assets/images/td_images/y03/charging.png": {
+      "size": 261,
+      "md5": "c8515cf02e7f07f17f98510471b60402"
+    },
+    "assets/images/td_images/y03/dict.png": {
+      "size": 802,
+      "md5": "d256f1f67f48db87ad8ad2bcc1e563bc"
+    },
+    "assets/images/td_images/y03/lte_0.png": {
+      "size": 154,
+      "md5": "989006702ba5fb37324377b8008369e0"
+    },
+    "assets/images/td_images/y03/lte_1.png": {
+      "size": 220,
+      "md5": "5b604d58fdfe3321ec2bfd2ccc05f49b"
+    },
+    "assets/images/td_images/y03/lte_2.png": {
+      "size": 219,
+      "md5": "69ff5a74bb3ba19592401f3df3211419"
+    },
+    "assets/images/td_images/y03/lte_3.png": {
+      "size": 221,
+      "md5": "10d221b23d3bd8b120ebabc8654811c8"
+    },
+    "assets/images/td_images/y03/lte_4.png": {
+      "size": 192,
+      "md5": "e83d2d1e7b31740689690a94b166c270"
+    },
+    "assets/images/td_images/y03/lum.png": {
+      "size": 1244,
+      "md5": "48a3f2129144ff6cf67356884c8443cd"
+    },
+    "assets/images/td_images/y03/lum_half.png": {
+      "size": 1255,
+      "md5": "4bcfdeb76fb257a3d44761ecc33f6cbc"
+    },
+    "assets/images/td_images/y03/lum_off.png": {
+      "size": 1056,
+      "md5": "472e1e57711fe4528169a791d550395a"
+    },
+    "assets/images/td_images/y03/multi_scan.png": {
+      "size": 882,
+      "md5": "015ad6264b96b9017db7b7a7f43e1745"
+    },
+    "assets/images/td_images/y03/multi_scan_icon.png": {
+      "size": 716,
+      "md5": "d2ebeef0b1360a5480b1f573d1375eb1"
+    },
+    "assets/images/td_images/y03/no_sim_card.png": {
+      "size": 751,
+      "md5": "73c0e7c47449336d3f8b1b4429ac7779"
+    },
+    "assets/images/td_images/y03/pause2play.png": {
+      "size": 598,
+      "md5": "b096ecb06bc5148652ba6305ce332b02"
+    },
+    "assets/images/td_images/y03/play2pause.png": {
+      "size": 340,
+      "md5": "9ac9cdec3c736bb07136a131ae3a25bc"
+    },
+    "assets/images/td_images/y03/scan.png": {
+      "size": 820,
+      "md5": "53898bf748028aa04e4c0deacf759276"
+    },
+    "assets/images/td_images/y03/seekbar_bg.png": {
+      "size": 2532,
+      "md5": "4e12d674e27e125a851df7ab26d670f0"
+    },
+    "assets/images/td_images/y03/setting.png": {
+      "size": 1413,
+      "md5": "93acd147f04447491acb55109a282d77"
+    },
+    "assets/images/td_images/y03/sim_card.png": {
+      "size": 484,
+      "md5": "ff8711729c6f0797e1da650811f83aa7"
+    },
+    "assets/images/td_images/y03/sim_loading.png": {
+      "size": 702,
+      "md5": "6bd483731198ea485de0ee93bbdf68b3"
+    },
+    "assets/images/td_images/y03/traffic.png": {
+      "size": 1084,
+      "md5": "a0274c094845bb0d13f82b387be49eb9"
+    },
+    "assets/images/td_images/y03/traffic_unVerify.png": {
+      "size": 1170,
+      "md5": "ec6a8d563753219b862877de3af8fcc2"
+    },
+    "assets/images/td_images/y03/volum.png": {
+      "size": 1162,
+      "md5": "e13cccc31c042e053afc0df88f87e26e"
+    },
+    "assets/images/td_images/y03/volum_half.png": {
+      "size": 747,
+      "md5": "0cf1fdbe2e872edb7285cd17853f6a8a"
+    },
+    "assets/images/td_images/y03/volum_off.png": {
+      "size": 817,
+      "md5": "6da758facba66196e9113796c8fb2491"
+    },
+    "assets/images/td_images/y03/wifi_icon_high.png": {
+      "size": 456,
+      "md5": "6cff11938d2ba30ed4d70d84fbc6df3c"
+    },
+    "assets/images/td_images/y03/wifi_icon_low.png": {
+      "size": 498,
+      "md5": "7cea7ffb58cfbdf1252afad416d73269"
+    },
+    "assets/images/td_images/y03/wifi_icon_mid.png": {
+      "size": 508,
+      "md5": "58bc7a82906cbc05530df7297c475800"
+    },
+    "assets/images/td_images/y03/wifi_icon_no_net.png": {
+      "size": 858,
+      "md5": "7ef4013556149b6311e0554193e4fb58"
+    },
+    "assets/images/td_images/y03/wifi_middle_high.png": {
+      "size": 615,
+      "md5": "11537c2df494c8770ce7280ef21e9ce6"
+    },
+    "assets/images/td_images/y03/wifi_middle_low.png": {
+      "size": 761,
+      "md5": "4b1574b793a846e033bea8dfa1faa073"
+    },
+    "assets/images/td_images/y03/wifi_middle_mid.png": {
+      "size": 750,
+      "md5": "d2f9676bf838e4e31cabf6ac7c00f69d"
+    },
+    "assets/images/td_images/y03/wifi_off.png": {
+      "size": 615,
+      "md5": "11537c2df494c8770ce7280ef21e9ce6"
+    },
+    "assets/images/td_images/y09p/bt_middle_pang.png": {
+      "size": 707,
+      "md5": "158ffe32f22ae643783b2287e2791412"
+    },
+    "assets/images/td_images/y09p/bt_middle_ping.png": {
+      "size": 710,
+      "md5": "aeb6f476e3ba1137af83043a6e5b7f3a"
+    },
+    "assets/images/td_images/y09p/bt_off.png": {
+      "size": 612,
+      "md5": "e4c6caa5ed00090f37110fad69047d7f"
+    },
+    "assets/images/td_images/y09p/charging.png": {
+      "size": 256,
+      "md5": "208f3d420d2abafb5fcd60ebb77a1952"
+    },
+    "assets/images/td_images/y09p/device_off.png": {
+      "size": 1200,
+      "md5": "be982306f1d54e2c76cd78a1987c69d2"
+    },
+    "assets/images/td_images/y09p/device_open.png": {
+      "size": 1087,
+      "md5": "3a960ab9c52665a0a4168df26c8cf2c4"
+    },
+    "assets/images/td_images/y09p/lum.png": {
+      "size": 669,
+      "md5": "f1c8787a4e50081aa7d7d857e436bbe5"
+    },
+    "assets/images/td_images/y09p/lum_half.png": {
+      "size": 607,
+      "md5": "cd328bc20ac44d541cdd0927f6616586"
+    },
+    "assets/images/td_images/y09p/lum_off.png": {
+      "size": 565,
+      "md5": "a352ae222ed2d33e1cd20af4f78275be"
+    },
+    "assets/images/td_images/y09p/miniplayer_bg.png": {
+      "size": 20706,
+      "md5": "d7cd3d55c2bd597d71d337147de6638f"
+    },
+    "assets/images/td_images/y09p/miniplayer_bg_y08.png": {
+      "size": 20299,
+      "md5": "1ed553c5e82e04f63fd9e362c8275776"
+    },
+    "assets/images/td_images/y09p/pause2play.png": {
+      "size": 483,
+      "md5": "d17b0d596d1f418ffb97da5a608d7135"
+    },
+    "assets/images/td_images/y09p/play2pause.png": {
+      "size": 300,
+      "md5": "e083d56b7381bc059f8ca5fd272e9b9a"
+    },
+    "assets/images/td_images/y09p/seekbar_bg.png": {
+      "size": 1433,
+      "md5": "ac322baad39cb7ec95dbc02a736ef352"
+    },
+    "assets/images/td_images/y09p/setting_bg.png": {
+      "size": 1416,
+      "md5": "2c4f5e74eaad2a91c92ba1c6e72978fb"
+    },
+    "assets/images/td_images/y09p/volum.png": {
+      "size": 572,
+      "md5": "30d75e4ac29aa6ba069bd9a8da1a0902"
+    },
+    "assets/images/td_images/y09p/volum_half.png": {
+      "size": 442,
+      "md5": "baf2a4655a6522ddd0f0d665ec0e48e1"
+    },
+    "assets/images/td_images/y09p/volum_off.png": {
+      "size": 540,
+      "md5": "24c2b2c80848be1fd364f87dc155d8f0"
+    },
+    "assets/images/td_images/y09p/wifi_middle_high.png": {
+      "size": 667,
+      "md5": "a28b862d1eb1c3ceeb65cd88acbc3d4c"
+    },
+    "assets/images/td_images/y09p/wifi_middle_low.png": {
+      "size": 825,
+      "md5": "5c9c33d845b70019decbb25ccab48621"
+    },
+    "assets/images/td_images/y09p/wifi_middle_mid.png": {
+      "size": 797,
+      "md5": "49ca28c9588bb49d3d74d6a68e11480e"
+    },
+    "assets/images/td_images/y09p/wifi_off.png": {
+      "size": 667,
+      "md5": "a28b862d1eb1c3ceeb65cd88acbc3d4c"
+    }
+  }
+}
