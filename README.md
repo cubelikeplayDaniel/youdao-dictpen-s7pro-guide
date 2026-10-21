@@ -192,33 +192,33 @@ fbshow /path/to/image.png /dev/fb0
    ./scripts/deploy.sh s7pro_runner /userdata/bin/
    ```
 
-### 5. 官方桌面卡片进入与无感返回机制 (App Card Lifecycle)
+### 5. 桌面卡片进入与前台切换机制 (App Card Lifecycle)
 
-通过应用商店安装的“极客工具箱”卡片，原生打通了**双系统无缝共存与切换**：
-1. **点击卡片启动**：桌面点击图标，Falcon 容器以 root 权限加载 Native SO 并触发 `/userdata/app/default/init.sh`；
-2. **硬件独占接管**：后台运行 `s7pro_runner`，向官方前台发送 `SIGSTOP` 优雅挂起，秒级接管 Framebuffer（`/dev/fb0`）；
-3. **触控与按键退出监听**：`s7pro_runner` 内置防抖监听 `/dev/input/by-path/gpio-keys`（物理 Home 键）与 `/dev/input/by-path/axs_ts`（屏幕触控）；
-4. **秒级恢复官方桌面**：用户只要**按一下侧边按键**或**点击屏幕**（或 15 秒无操作超时保底），程序向官方进程发送 `SIGCONT`，0.05 秒内无缝返回官方有道查词桌面。
+通过应用商店安装的微应用卡片，可实现前后台进程调度与显示切换：
+1. **点击卡片启动**：桌面点击图标，Falcon 容器加载 Native SO 并触发 `/userdata/app/default/init.sh`；
+2. **硬件接管**：后台运行 `s7pro_runner`，向官方前台发送 `SIGSTOP` 信号挂起前台进程，接管 Framebuffer（`/dev/fb0`）；
+3. **输入事件监听**：`s7pro_runner` 监听 `/dev/input/by-path/gpio-keys`（物理 Home 键）与 `/dev/input/by-path/axs_ts`（屏幕触控）；
+4. **恢复桌面**：按下按键、点击屏幕或达到 15 秒超时时，向挂起的官方进程发送 `SIGCONT` 信号，恢复原桌面进程运行。
 
 ---
 
 ## 六、 官方系统服务与 API 子系统全景
 
-为了避免在应用层重复造轮子或手写简陋的 UI/多媒体框架，我们对词典笔出厂固件（`/oem/secondary/etc/miniapp/`、`/usr/lib/libfalcon.so`、`/oem/YoudaoDictPen/output/libs/`）进行了深度解构，梳理出设备自带的官方服务与硬件加速 API：
+词典笔出厂固件（`/oem/secondary/etc/miniapp/`、`/usr/lib/libfalcon.so`、`/oem/YoudaoDictPen/output/libs/`）包含以下系统服务与硬件加速接口：
 
 1. **输入法服务 (`8001666679481944` / `greenui::InputMethodImpl`)**：
-   - 内置 QWERTY 全键盘、九宫格 T9、符号面板、水平拼音候选词推荐与语音转文字；
-   - 官方标准调用接口：`$falcon.showSoftInput({ type, placeholder, onConfirm })`。
+   - 包含 QWERTY 全键盘、九宫格、符号面板、拼音候选词推荐与语音转文字接口；
+   - 系统调用接口：`$falcon.showSoftInput({ type, placeholder, onConfirm })`。
 2. **视频播放服务 (`8001661999525016` / `CVPlayer` & `softvplayer`)**：
-   - 包含硬解层 `libyddal_business_cvplayer.so`，直接对接 CV1813 VPSS/VDEC 硬件单元；
-   - 支持图层视口硬件裁剪（`videoCrop`）、倍速播放（`setRate`）与硬件图层定位（`setVideoSurface`）。
+   - 包含硬件解码库 `libyddal_business_cvplayer.so`，对接 CV1813 VPSS/VDEC 硬件单元；
+   - 支持图层视口硬件裁剪（`videoCrop`）、倍速播放（`setRate`）与图层定位（`setVideoSurface`）。
 3. **音频播放服务 (`8001650599023931` / `media_player` & `SoundPlayer`)**：
-   - 守护进程 `/oem/YoudaoDictPen/output/SoundPlayer` 直接管控 AW883XX SmartPA 智能功放（`hw:1,0`）；
-   - 自带 LRC 歌词解析与双语字幕同步引擎（`playNextLrc`、`getSubtitleStatus`）。
+   - 守护进程 `/oem/YoudaoDictPen/output/SoundPlayer` 管控 AW883XX SmartPA 智能功放（`hw:1,0`）；
+   - 提供 LRC 歌词解析与字幕同步接口（`playNextLrc`、`getSubtitleStatus`）。
 4. **网络与系统设置 (`8080272425914438` / `libjsapi_settings.so`)**：
-   - 后台常驻 `wifi-manager` 与 `bt-manager`，提供 Wi-Fi/蓝牙自动化接入与背光 PWM 平滑调光。
+   - 常驻 `wifi-manager` 与 `bt-manager`，提供 Wi-Fi/蓝牙接入与背光 PWM 调光接口。
 
-> 📖 **完整官方 API 规范与杀手级应用构建指南**：详见 [docs/s7pro_official_api_guide.md](docs/s7pro_official_api_guide.md)。
+> 📖 **完整官方 API 规范与子系统手册**：详见 [docs/s7pro_official_api_guide.md](docs/s7pro_official_api_guide.md)。
 
 ---
 

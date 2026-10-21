@@ -4,16 +4,19 @@ import os
 import re
 import subprocess
 
-def compile_js_to_bin(js_path, bin_path, is_module=False):
+def compile_js_to_bin(js_path, bin_path, is_module=False, external_modules=None):
     repo_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     qjsc = os.path.join(repo_dir, "host_tools", "qjsc")
     if not os.path.exists(qjsc):
         raise FileNotFoundError(f"qjsc compiler not found at {qjsc}")
-    
+
     c_out = bin_path + ".tmp.c"
     cmd = [qjsc]
     if is_module:
         cmd.append("-m")
+    if external_modules:
+        for mod in external_modules:
+            cmd.extend(["-M", mod])
     cmd.extend(["-c", "-o", c_out, js_path])
     
     res = subprocess.run(cmd, capture_output=True, text=True)
@@ -40,8 +43,12 @@ def compile_js_to_bin(js_path, bin_path, is_module=False):
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print("Usage: compile_js_bin.py <input.js> <output.js.bin> [-m]")
+        print("Usage: compile_js_bin.py <input.js> <output.js.bin> [-m] [-M module_name]")
         sys.exit(1)
     is_m = "-m" in sys.argv
-    size = compile_js_to_bin(sys.argv[1], sys.argv[2], is_module=is_m)
+    ext_mods = []
+    for i, arg in enumerate(sys.argv):
+        if arg == "-M" and i + 1 < len(sys.argv):
+            ext_mods.append(sys.argv[i + 1])
+    size = compile_js_to_bin(sys.argv[1], sys.argv[2], is_module=is_m, external_modules=ext_mods)
     print(f"Compiled {sys.argv[1]} -> {sys.argv[2]} ({size} bytes)")
