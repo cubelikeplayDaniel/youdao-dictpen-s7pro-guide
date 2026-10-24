@@ -278,7 +278,46 @@ Falcon 运行时内置的 JS 解释器为 QuickJS 2020-07-05 版本（`libquickj
 
 ---
 
-## 第五章 词典笔硬件抽象层 (HAL) 深度实战
+## 第五章 官方系统模块复用铁律与硬件抽象层 (HAL) 深度实战
+
+### 5.0 核心设计哲学：严禁从零造轮子，积极复用官方内建模块与 JSAPI
+
+在有道词典笔 S7 Pro 的嵌入式 MiniApp 体系中，**严禁从零重写整套系统应用底层基础设施**。系统在 C++ 引擎与核心框架层已高度沉淀了完善的数据持久化、用户交互反馈、微服务 RPC 与硬件控制体系。官方应用（如设置、百度网盘、网易云音乐、云词本等）均高度复用这些底层基础设施：
+
+1. **官方模块复用优先权**：
+   - **持久化键值存储**：严禁私自引入巨大的第三方纯 JS 存储库或自己用文件 I/O 模拟 KV。必须复用官方全局 `$falcon.jsapi.storage`（底层由 C++ 散列与 SQLite/Shared Preferences 维护），具备异步读写与进程崩溃保护机制。
+   - **交互反馈与 Toast 气泡**：严禁自写繁琐浮动 DOM 图层来模拟吐司提示。必须直接调用系统级 `$falcon.jsapi.prompt.showToast({ message })` 或 `$falcon.jsapi.toast.show({ message })`，直接由系统顶级 Window 图层（Z-Index 8000+）进行硬件级无缝覆盖呈现。
+   - **系统生命周期与视口适配**：必须继承官方 `$falcon.App` 与 `$falcon.Page`，调用 `this.$page.setSupportTopPanel(false)` 与 `this.$page.finish()`，严禁自行 Hook 底层事件总线强退进程。
+   - **多媒体与音视频服务**：复用官方 `$service_proxy` 全局 RPC 总线调度 `falcon://8001650599023931/mediaPlayerService`，严禁在前端直连 ALSA 硬件驱动。
+
+#### 官方通用系统能力复用示例矩阵：
+```javascript
+// 1. 系统持久化存储复用 (Storage)
+if (typeof $falcon !== 'undefined' && $falcon.jsapi && $falcon.jsapi.storage) {
+  // 写入存储 (异步 C++ 驱动写入 /data/sharedpreferences)
+  $falcon.jsapi.storage.setStorage({ key: 'user_setting', data: 'value' });
+  
+  // 读取存储
+  const res = await $falcon.jsapi.storage.getStorage({ key: 'user_setting' });
+  console.log('Stored value:', res.data);
+}
+
+// 2. 官方原生 Toast 吐司提示复用 (Prompt/Toast)
+if (typeof $falcon !== 'undefined' && $falcon.jsapi) {
+  if ($falcon.jsapi.prompt && $falcon.jsapi.prompt.showToast) {
+    $falcon.jsapi.prompt.showToast({ message: '操作成功' });
+  } else if ($falcon.jsapi.toast && $falcon.jsapi.toast.show) {
+    $falcon.jsapi.toast.show({ message: '操作成功' });
+  }
+}
+```
+
+> **QuickJS 编译关键注意点 (`qjsc`)**：
+> 在编译多模块 ES 项目时，若根入口文件（如 `app.js`）`import` 了本地子模块（如 `./index.js`），`qjsc` 会先输出所有依赖模块的 C 字节数组，并将当前编译的主模块放置在 C 文件的最末尾。构建工具（如 `build_amr.py`）必须准确提取最后一个数组作为目标模块字节码，否则可能导致入口函数丢失而静默回退桌面！
+
+---
+
+### 5.1 词典笔硬件抽象层 (HAL) 构造器模式
 
 词典笔硬件通过 QuickJS C++ 原生扩展导出至 JS 运行时环境。所有 HAL 模块均遵循固定的 **PascalCase 构造器实例化模式**：
 
@@ -935,17 +974,118 @@ Page({
 
 ---
 
-### 9.2 案例二：官方原生双列画卷瀑布流漫画阅读器（AppID: `8080999900000002`）
+### 9.2 案例二：官方原生双列画卷瀑布流漫画阅读器工程实战与全景经验沉淀（AppID: `8001888800000001`）
 
-#### 架构设计：
-- 摒弃任何外部独立二进制或暂停 `miniapp` 的破坏性方案。
-- 100% 采用 Falcon 原生 `<scroller>` 组件构建平滑惯性瀑布流。
-- 采用双列弹性卡片布局（左列宽度 480px，右列宽度 480px，间隙 20px）。
-- 集成顶部悬浮毛玻璃导航与退出按钮。
-- 在 `packages.json` 与 `manifest.json` 中配置原生卡片，在词典笔主屏以 Retina 视网膜圆角图标展示。
+漫画阅读器作为一款运行在 128MB RAM、单核 Cortex-A7 处理器及 1020×240 超宽带鱼屏上的极限图文应用，集中体现了嵌入式 Falcon MiniApp 开发中最为严苛的工程挑战与设计哲学。本案例完整沉淀了真实设备交付过程中的核心技术方案与避坑规范：
+
+#### 1. 1020×240 超宽屏 474px 硬件点对点直通渲染（彻底杜绝摩尔纹与软缩放虚边）
+- **物理视口几何计算**：词典笔逻辑宽度为 1020px，左侧设置统一 48px 超窄纯图标侧边栏（屏占比高达 95.3%），右侧画卷视口为 $1020 - 48 = 972\text{px}$。扣除左右边距各 12px 后，双列有效宽度为 $948\text{px}$，单列卡片严格锁定 **474px 物理 1:1 直通**（$474 \times 2 = 948\text{px}$）。
+- **抗摩尔纹（Moiré Pattern）与 Skia 线性下采样避坑**：
+  - 在 ~110 DPI 低点距嵌入式液晶屏上，任何浮点缩放比或实时非整数采样均会引起高频网点干涉，产生强烈的网状摩尔纹。
+  - Falcon 内置的 Skia 软光栅引擎在实时缩放高分辨率图片时，不仅 CPU 占用高达 90%+ 造成滑动严重顿挫，而且双线性插值（Bilinear Interpolation）会导致文字线条严重发虚模糊。
+  - **黄金规范**：严禁在前端运行时对原图执行大跨度缩放。端侧离线/后台直接将图像预采样为宽度严格对齐 474px 的点对点优化图，`<image>` 组件样式锁定 `resize: 'cover'`，彻底消除实时重采样抖动，实现文字线条发丝级清晰度。
+
+#### 2. 端侧多进程协作：ARM NEON WebP 转码守护进程与双进度条透明架构
+- **WebP 解码痛点**：用户导入的外部漫画大量采用 `.webp` 格式。但 Falcon 引擎内置的 Skia 剥离了 WebP 软解模块，前端无法直接加载 WebP 图像，直接导入会导致页数识别为 0 或卡死。
+- **后台守护进程架构 (`/userdisk/bin/webp_daemon.sh`)**：
+  - 在 Linux 系统层部署独立的低优先级守护脚本，利用端侧由 ARM NEON 汇编指令加速的 `ffmpeg`，针对用户 MTP 导入目录（`/userdisk/Favorite`、`/userdisk/Music`、`/userdisk/skip_re` 等）执行后台静默转码：
+    ```bash
+    # 逐页转为标准 JPEG，并同步生成 474px 硬件点对点直通缩略图
+    ffmpeg -y -i "$webp_file" -q:v 3 "$target_jpg" -loglevel error </dev/null
+    ffmpeg -y -i "$target_jpg" -vf 'scale=474:-1' -q:v 4 "$target_thumb" -loglevel error </dev/null
+    ```
+- **应用内双转换进度条（Dual Progress Bars）体验设计**：
+  - 为避免用户盲目等待，书架卡片设计了双独立进度条：
+    1. **WebP 解码转换进度条**（青蓝/翠绿）：直观显示后台守护进程对 `.webp` 的转码张数进度（如 `54/120`）与百分比。
+    2. **474px 硬件点对点优化进度条**（琥珀/翠绿）：记录端侧分片切片对 474px 硬件直通缩略图生成的进度。
+  - 应用通过轻量文件系统探测驱动 2 秒增量轮询，转码期间按钮显示“转码中…”，完成瞬间无感平滑展开，让硬件限制下的后台转换过程 100% 透明可视化。
+
+#### 3. Falcon C++ Yoga 布局引擎深度陷阱：水平 `<scroller>` 弹性方向降级与容器包装铁律
+- **致命陷阱**：在书架开发中，使用 `<scroller scroll-direction="horizontal">` 直接挂载多个书籍卡片节点时，**新进入页面时卡片被排版为单列垂直堆叠（height 212px 内堆叠多张 198px 卡片），导致第一张漫画向上越界被截断，而在手动刷新后才变成三列横向排布**。
+- **底层根因**：Falcon 的 `<scroller>` 原生对应 `greenui::ScrollView`，其内容布局完全由 C++ Yoga Flexbox 引擎计算。在 Yoga 规范中，容器节点的内部子节点流动默认方向始终为 `flex-direction: column`。当 `<scroller>` 直接挂载子节点且首帧初次测量时，若未显式为内容层建立行上下文，子节点将直接沿垂直流排布；只有在后续发生重绘或窗口尺寸更新事件时，才可能触发横向重排。
+- **确定性防错范式**：在 `<scroller scroll-direction="horizontal">` 内部，**必须嵌套一层显式带有 `flex-direction: row; height: 100%; align-items: center` 的包装容器 `<div>`**，从而强制初次渲染在 C++ Yoga 节点树构建时即严格锁定为水平多列排布：
+  ```javascript
+  h('scroller', {
+    attrs: { 'scroll-direction': 'horizontal', 'show-scrollbar': false },
+    style: { width: '972px', height: '212px', flexDirection: 'row' }
+  }, [
+    h('div', {
+      style: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        height: '212px'
+      }
+    }, this.bookshelf.map((book, idx) => { ... }))
+  ])
+  ```
+
+#### 4. 虚拟滚动窗口化与 VNode Diff 零开销铁律
+- **性能雪崩根因**：在 120 页乃至上千页的长篇漫画中，若一次性生成全部 VNode 挂载到 `<scroller>`，单核 1.0GHz CPU 将不堪重负，每次手指滑动都会在 QuickJS 与 Falcon 之间产生数万次跨语言属性校验与 VNode 比较，造成极度严重的滑动卡顿。
+- **确定性优化四部曲**：
+  1. **$O(\log N)$ 二分查找快速定位**：预先测算各行绝对偏移高度（OffsetY），滑动中利用二分查找毫秒级确定当前可视行（activeRow）。
+  2. **45px 步长门禁限频驱动**：滑动追踪回调中，仅当垂直位移跨越 45px 步长门禁时才更新响应式 `waterfallScrollY`，杜绝 60Hz 逐像素全树 Diff。
+  3. **预加载窗口缓冲（Pre-buffering）**：在可视窗口前后各保留 2~3 排缓冲区，手指滑动至当前排时提前挂载下两排并触发底层 Skia 异步预解码，杜绝黑屏白块。
+  4. **持久化进度节流写入**：滚动停止后通过 50ms Debounce 防抖将页码进度异步存入 `$falcon.jsapi.storage`，杜绝闪存频繁 I/O 阻塞。
+
+#### 5. 多模触控消解状态机（双击放大 vs 单击返回 vs 边缘滑动返回）
+- **手势冲突消解机制**：在单页模式下，用户操作涉及“单击返回瀑布流”、“双击 2.0x 局部放大/复原”与“屏幕左侧滑动多级返回”。
+- **三阶手势分发流**：
+  1. **边缘向右滑动（Highest Priority）**：在 `touchstart` 时检测 `pageX <= 108px`（放大状态下）或 `160px`（常规状态下）。若横向位移 $\Delta x \ge 36\text{px}$ 且横向位移占优，立即拦截并消费，直接返回上一层级（单页 $\to$ 瀑布流 $\to$ 书架 $\to$ 桌面），绝不误触发图像平移。
+  2. **双击与单击消解窗口**：触点抬起时，若位移 $\le 24\text{px}$ 且按压时间 $\le 500\text{ms}$，不立即执行单击逻辑，而是启动 480ms 延时计时器（容差半径 95px）。若在 480ms 内收到第二次轻点，立即取消单击定时器并平滑切换 2.0x 放大状态；若超时无二次轻点，才判定为单击返回画卷。
+  3. **放大状态平移钳位（Clamp）**：放大模式下根据实际缩放尺寸动态计算 $\text{maxPan} / \text{minPan}$ 严格贴合图像边缘，拖拽平移到头时严格停止，杜绝穿透翻页。
+
+#### 6. MTP 暴露存储沙箱、轻量目录签名指纹（0ms 秒开）与自然数字排序
+- **MTP 存储可见性约束**：词典笔连接电脑 USB 时，系统通过 MTP 仅向主机暴露 `/userdisk/Favorite`、`/userdisk/Music`、`/userdisk/skip_re` 等固定目录。漫画必须存放在这些可见目录内，否则用户无法通过电脑添加或管理漫画文件。
+- **目录轻量签名指纹（Fingerprint Cache）实现 0ms 启动**：启动时若逐一遍历成百上千张图片，冷启动耗时将长达数秒。阅读器在启动时仅读取候选目录与子文件夹的条目数量组合生成轻量签名（`currentSig`）。若签名未变且无待转码任务，直接复用内存持久化缓存，**0ms 瞬间秒进书架**；仅在检测到文件变动或用户点击 ↻ 刷新时才执行全量深层扫描。
+- **自然数字排序算法（Natural Numeric Sort）**：嵌入式 Linux 文件系统默认遍历顺序无序，而常规字符串字典序会将 `1.jpg, 2.jpg, 10.jpg` 错排为 `1, 10, 2`。必须采用基于连续数字片段拆分的自然排序比较器（Natural Comparator），确保上百页漫画严格按物理页码自然展开。
+
+#### 7. 电源休眠与唤醒防重绘闪黑机制
+- **问题现象**：电源键锁屏休眠再唤醒时，屏幕出现黑屏闪烁，漫画重新加载变黑又恢复。
+- **根因排查**：定时器轮询频繁重设样式引发整树重绘，或者图像在唤醒后重复触发 `@load` 事件导致布局重新计算。
+- **防错方案**：彻底剔除所有高频轮询重绘定时器；在图像对象上设立 `geometryVerified` 单次几何验证锁，初次 `@load` 测算画幅后立即锁定，休眠唤醒时直接使用确定几何尺寸渲染，杜绝任何重复布局导致的闪烁。
 
 ---
 
 ## 结语：迈向工业级嵌入式 MiniApp
 
 有道词典笔 S7 Pro 运行时的精妙之处在于：在极低功耗与仅 128MB 物理 RAM 的严苛硬件限制下，通过 QuickJS 字节码执行、Google Skia 矢量加速、Facebook Yoga 布局缓存与双向屏幕几何映射，实现了流畅媲美旗舰手机的交互体验。遵循本指南建立的规范与避坑规则，开发者将能充分释放这颗便携硬件的所有潜能，构建出体验极致的原生嵌入式应用生态。
+
+---
+
+## 附录：厂商官方研发级 SDK 深度逆向专项参考手册索引
+
+针对词典笔各底层硬件与固件核心子系统，本项目通过全量二进制反汇编、符号追踪与数据流分析，编撰了一整套媲美官方内部研发级的专项架构指南与技术参考手册：
+
+| 领域 / 核心子系统 | 对应技术参考手册与权威文档 | 重点涵盖与反汇编解析范围 |
+| :--- | :--- | :--- |
+| **原生组件与 VDOM 布局引擎** | [falcon_native_components_and_vdom_layout_engine_manual.md](falcon_native_components_and_vdom_layout_engine_manual.md) | `ComponentRegistry` 注册表、Yoga Flexbox 测量排版、`greenui::ScrollView` 惯性滚动物理模型 |
+| **原生事件循环与定时调度引擎** | [falcon_event_loop_looper_and_timer_scheduling_manual.md](falcon_event_loop_looper_and_timer_scheduling_manual.md) | `JQuick::Looper` epoll/eventfd 机制、QuickJS 微任务清空、`Choreographer` Vsync 帧同步 |
+| **图形渲染管线、Skia 与 FB0** | [falcon_graphics_pipeline_skia_and_fb0_manual.md](falcon_graphics_pipeline_skia_and_fb0_manual.md) | ARM NEON `yd_l_rotate90_S32` 4×4 像素转置、Skia 脏矩形求并双缓冲、`FBIOPAN_DISPLAY` 零撕裂刷新 |
+| **安装包规范、PMS 与沙箱隔离** | [falcon_packaging_manifest_signature_and_pms_manual.md](falcon_packaging_manifest_signature_and_pms_manual.md) | `.amr` PKZIP 归档规范、A/B 双槽位轮换升级、`patchelf_rpath_deps` 运行时链接修补与权限白名单 |
+| **官方内置应用反编译与架构模式** | [falcon_official_apps_architectural_patterns_and_case_studies.md](falcon_official_apps_architectural_patterns_and_case_studies.md) | 41 款官方内置应用全景解构、`$falcon.App`/`$falcon.Page` 双阶生命周期、Launcher 过滤注入 |
+| **资源、图片解码与字体引擎** | [falcon_resource_image_font_and_assets_pipeline_manual.md](falcon_resource_image_font_and_assets_pipeline_manual.md) | 4MB 内存上限 LRU 缓存、LunaSVG 矢量渲染、FreeType 字体阶梯 fallback 与 WebP 避坑 |
+| **硬件扫描传感器、CIS 与 OCR 管线** | [falcon_scanner_cis_sensor_and_ocr_subsystem_manual.md](falcon_scanner_cis_sensor_and_ocr_subsystem_manual.md) | 320×152 单通道灰度 CIS 传感器、96 槽 DMA 环形缓冲区、CV1813H 端侧 TPU 硬件加速 OCR |
+| **音频解码管线、ALSA 与音频焦点** | [falcon_audio_media_decoder_and_hardware_playback_manual.md](falcon_audio_media_decoder_and_hardware_playback_manual.md) | AW883XX SmartPA 硬件节点、POSIX 共享内存双轨播放、WSOLA 变速不变调与 8.4ms 硬件截断 |
+| **电源管理、WakeLock、调频与电池** | [falcon_power_management_wakelock_and_battery_manual.md](falcon_power_management_wakelock_and_battery_manual.md) | AXP2101 PMIC、`/sys/power/wake_lock`、1.0 GHz 固定频点决策、20 kHz 超声频 PWM 背光防啸叫 |
+| **存储子系统、SQLite 与 KV 持久化** | [falcon_storage_sqlite_and_kv_persistence_manual.md](falcon_storage_sqlite_and_kv_persistence_manual.md) | SPI NAND/eMMC 15 分区、`sharedpreferences` 内存散列、原生 SQLite 驱动与 WAL 锁避让 |
+| **网络通信栈、Wi-Fi 与 TLS/HTTPS** | [falcon_network_wifi_tls_and_cloud_api_manual.md](falcon_network_wifi_tls_and_cloud_api_manual.md) | `wpa_supplicant` 控制套接字、`ubus` 状态机、6 并发任务队列、mbedtls 双向握手与 WebSocket |
+| **语音助手 ASR、VAD 与口语跟读评测** | [falcon_voice_assistant_asr_and_speech_evaluation_manual.md](falcon_voice_assistant_asr_and_speech_evaluation_manual.md) | `libcapt.so` 8.9MB Kaldi/MNN 离线评测引擎、双 PDM 麦克风 AFE 降噪、800ms VAD 断句与 RecordService |
+| **QuickJS 字节码虚拟机与模块** | [falcon_quickjs_module_loader_and_bytecode_protocol.md](falcon_quickjs_module_loader_and_bytecode_protocol.md) | QuickJS 2020 字节码 Tag/Flag 协议、ES6 模块动态导入机制、JSFM 跨语言通道 |
+| **触控输入、手势识别与双向几何** | [falcon_touch_input_event_and_gesture_subsystem_manual.md](falcon_touch_input_event_and_gesture_subsystem_manual.md) | AXS15205 驱动剪裁边界（$X_{raw} \le 170$ 物理限制）、Linux Multi-Touch 协议 B、长按/双击手势 |
+| **页面生命周期与路由导航体系** | [falcon_page_lifecycle_and_router_navigation_manual.md](falcon_page_lifecycle_and_router_navigation_manual.md) | 导航栈压栈/出栈状态机、`setSupportTopPanel` 顶部状态栏避让、返回键与侧滑手势拦截 |
+| **系统守护进程 IPC、Domain Socket 与事件总线** | [falcon_daemon_ipc_and_event_bus_manual.md](falcon_daemon_ipc_and_event_bus_manual.md) | `miniapp-dbg.socket` 15 大端点、`JQPublishObject` 红黑树快照隔离、D-Bus/Ubus 桥接与 WAL 历史库 |
+| **Native C++ 插件与 JSAPI 扩展架构** | [falcon_native_cpp_plugin_and_jsapi_extension_manual.md](falcon_native_cpp_plugin_and_jsapi_extension_manual.md) | ARMv7-A 硬浮点 ABI、Patchelf 动态段重写、10位随机后缀隔离、QuickJS JSValue 封送与 Opaque 绑定 |
+| **原生硬件 JSAPI 与系统 IPC 总线** | [falcon_native_hardware_jsapi_and_ipc_manual.md](falcon_native_hardware_jsapi_and_ipc_manual.md) | `libjsapi_export_core.so` 符号表、`JQSignal` 响应式总线、Unix Domain Sockets 守护通信 |
+| **OTA 固件更新、A/B 分区容灾与 Bootloader** | [falcon_ota_update_ab_partition_recovery_and_bootloader_manual.md](falcon_ota_update_ab_partition_recovery_and_bootloader_manual.md) | eMMC 15分区拓扑、`misc` 分区 AVB `\0AB0` 结构体、U-Boot 容灾回滚与 Adups FOTA 块差分 |
+| **离线词典检索、端侧 NMT 与汉字矢量笔顺** | [falcon_offline_dict_nmt_and_translation_engine_manual.md](falcon_offline_dict_nmt_and_translation_engine_manual.md) | `.dat` 专有双模 XOR 混淆、两级分桶稀疏索引、CV1813 TPU 加速 Tiny-Transformer 与骨骼笔顺 |
+| **重力传感器 Gsensor、握姿识别与硬件遥测** | [falcon_gsensor_orientation_and_hardware_telemetry_manual.md](falcon_gsensor_orientation_and_hardware_telemetry_manual.md) | I2C-1 SC7A20、六面体空间朝向、左右手 180° 视口转置、NEON 像素翻转与抬笔唤醒 |
+| **蓝牙通信协议栈、BLE GATT 与 A2DP HAL** | [falcon_bluetooth_stack_ble_and_a2dp_subsystem_manual.md](falcon_bluetooth_stack_ble_and_a2dp_subsystem_manual.md) | SKW 4线 UART 1.5Mbps、BlueZ D-Bus 桥接、BlueALSA A2DP 发射、AVRCP 反控与 GB18030 转码 |
+| **安全沙箱机制、代码完整性与动态链接器** | [falcon_security_sandbox_integrity_and_dynamic_linker_manual.md](falcon_security_sandbox_integrity_and_dynamic_linker_manual.md) | UID 0 特权模型、空证书绕过、版本回退检测、NixOS patchelf 运行时重写与 Native 沙箱穿透 |
+| **输入法服务、软键盘与拼音输入引擎** | [falcon_ime_virtual_keyboard_and_input_method_engine_manual.md](falcon_ime_virtual_keyboard_and_input_method_engine_manual.md) | 双窗口图层隔离、Google Pinyin 矩阵搜索算法、`greenui::EditText` 视口自动避让与按键连击 |
+| **异常崩溃防御、硬件/软件看门狗与 LogManager** | [falcon_crash_handling_watchdog_and_logmanager_manual.md](falcon_crash_handling_watchdog_and_logmanager_manual.md) | `sigaltstack` 栈溢出保护、10槽位 Tombstone、Breakpad Minidump、ANR 5s 检测与看门狗复位 |
+| **摄像头视觉采集、条码识别与畸变矫正** | [falcon_camera_vision_and_barcode_scanning_manual.md](falcon_camera_vision_and_barcode_scanning_manual.md) | 双光学通道、96槽环形显存、Surface 挖洞黑科技、Bradley-Roth 自适应二值化与相位相干拼接 |
+| **视频播放、硬件 VDEC/VPSS 解码器与 CVPlayer** | [falcon_video_hardware_decoding_cvplayer_and_vpss_manual.md](falcon_video_hardware_decoding_cvplayer_and_vpss_manual.md) | H.264 VPU 硬解、VPSS 270°硬件转置、ION 显存映射、Surface 挖洞 OSD 叠加与 ALSA 音画同步 |
+| **硬件按键驱动、GPIO 中断与笔尖微动开关** | [falcon_gpio_keys_hardware_interrupt_and_button_driver_manual.md](falcon_gpio_keys_hardware_interrupt_and_button_driver_manual.md) | GPIOA_14/18 中断拓扑、16 字节 ABI 对齐、三阶段 KeyEvent 分发、600ms 长按 / 300ms 双击状态机与固件 Typo 兼容 |
+| **双 PDM 麦克风录音、AFE 降噪与音频输入管线** | [falcon_audio_recording_mic_array_and_afe_subsystem_manual.md](falcon_audio_recording_mic_array_and_afe_subsystem_manual.md) | PDM 3.072 MHz 过采样、GSC 波束成形 NEON 加速、AEC 回声消除、POSIX 共享内存零拷贝与 RecordService RPC |
+| **状态栏、下拉控制中心与系统通知架构** | [falcon_statusbar_notification_and_dropdown_panel_manual.md](falcon_statusbar_notification_and_dropdown_panel_manual.md) | Z-Index 5000 状态栏、8000 下拉面板、`setSupportTopPanel` 沉浸式避让、图标注册与通知事件总线 |
+
