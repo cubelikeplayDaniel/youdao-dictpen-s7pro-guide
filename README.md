@@ -261,6 +261,56 @@ fbshow /path/to/image.png /dev/fb0
 
 ---
 
+## 八、 厂商官方研发级 SDK 深度逆向参考手册索引
+
+针对有道 S7 Pro 搭载的阿里 HaaS UI / Falcon 混合引擎与 CV1813H 芯片硬件体系，本项目通过全量二进制反汇编、符号追踪与数据流分析，编撰了一整套媲美官方内部研发级的专项架构指南与技术参考手册：
+
+| 领域 / 核心子系统 | 对应技术参考手册与权威文档 | 核心技术亮点与反汇编解析范围 |
+| :--- | :--- | :--- |
+| **原生组件与 VDOM 布局引擎** | [docs/falcon_native_components_and_vdom_layout_engine_manual.md](docs/falcon_native_components_and_vdom_layout_engine_manual.md) | `ComponentRegistry` 原生注册表、Yoga Flexbox 排版算法、`greenui::ScrollView` 惯性滚动物理衰减 |
+| **原生事件循环与定时调度引擎** | [docs/falcon_event_loop_looper_and_timer_scheduling_manual.md](docs/falcon_event_loop_looper_and_timer_scheduling_manual.md) | `JQuick::Looper` epoll/eventfd 机制、QuickJS 微任务清空、`Choreographer` Vsync 帧同步 |
+| **图形渲染管线、Skia 与 FB0** | [docs/falcon_graphics_pipeline_skia_and_fb0_manual.md](docs/falcon_graphics_pipeline_skia_and_fb0_manual.md) | ARM NEON `yd_l_rotate90_S32` 4×4 像素转置、Skia 脏矩形求并双缓冲、`FBIOPAN_DISPLAY` 零撕裂刷新 |
+| **安装包规范、PMS 与沙箱隔离** | [docs/falcon_packaging_manifest_signature_and_pms_manual.md](docs/falcon_packaging_manifest_signature_and_pms_manual.md) | `.amr` PKZIP 归档规范、A/B 双槽位轮换升级、`patchelf_rpath_deps` 运行时链接修补与权限白名单 |
+| **官方内置应用反编译与架构模式** | [docs/falcon_official_apps_architectural_patterns_and_case_studies.md](docs/falcon_official_apps_architectural_patterns_and_case_studies.md) | 41 款官方内置应用全景解构、`$falcon.App`/`$falcon.Page` 双阶生命周期、Launcher 过滤注入 |
+| **资源、图片解码与字体引擎** | [docs/falcon_resource_image_font_and_assets_pipeline_manual.md](docs/falcon_resource_image_font_and_assets_pipeline_manual.md) | 4MB 内存上限 LRU 缓存、LunaSVG 矢量渲染、FreeType 字体阶梯 fallback 与 WebP 避坑 |
+| **硬件扫描传感器、CIS 与 OCR 管线** | [docs/falcon_scanner_cis_sensor_and_ocr_subsystem_manual.md](docs/falcon_scanner_cis_sensor_and_ocr_subsystem_manual.md) | 320×152 单通道灰度 CIS 传感器、96 槽 DMA 环形缓冲区、CV1813H 端侧 TPU 硬件加速 OCR |
+| **音频解码管线、ALSA 与音频焦点** | [docs/falcon_audio_media_decoder_and_hardware_playback_manual.md](docs/falcon_audio_media_decoder_and_hardware_playback_manual.md) | AW883XX SmartPA 硬件节点、POSIX 共享内存双轨播放、WSOLA 变速不变调与 8.4ms 硬件截断 |
+| **电源管理、WakeLock、调频与电池** | [docs/falcon_power_management_wakelock_and_battery_manual.md](docs/falcon_power_management_wakelock_and_battery_manual.md) | AXP2101 PMIC、`/sys/power/wake_lock`、1.0 GHz 固定频点决策、20 kHz 超声频 PWM 背光防啸叫 |
+| **存储子系统、SQLite 与 KV 持久化** | [docs/falcon_storage_sqlite_and_kv_persistence_manual.md](docs/falcon_storage_sqlite_and_kv_persistence_manual.md) | SPI NAND/eMMC 15 分区、`sharedpreferences` 内存散列、原生 SQLite 驱动与 WAL 锁避让 |
+| **网络通信栈、Wi-Fi 与 TLS/HTTPS** | [docs/falcon_network_wifi_tls_and_cloud_api_manual.md](docs/falcon_network_wifi_tls_and_cloud_api_manual.md) | `wpa_supplicant` 控制套接字、`ubus` 状态机、6 并发任务队列、mbedtls 双向握手与 WebSocket |
+| **语音助手 ASR、VAD 与口语跟读评测** | [docs/falcon_voice_assistant_asr_and_speech_evaluation_manual.md](docs/falcon_voice_assistant_asr_and_speech_evaluation_manual.md) | `libcapt.so` 8.9MB Kaldi/MNN 离线评测引擎、双 PDM 麦克风 AFE 降噪、800ms VAD 断句与 RecordService |
+| **QuickJS 字节码虚拟机与模块** | [docs/falcon_quickjs_module_loader_and_bytecode_protocol.md](docs/falcon_quickjs_module_loader_and_bytecode_protocol.md) | QuickJS 2020 字节码 Tag/Flag 协议、ES6 模块动态导入机制、JSFM 跨语言通道 |
+| **触控输入、手势识别与双向几何** | [docs/falcon_touch_input_event_and_gesture_subsystem_manual.md](docs/falcon_touch_input_event_and_gesture_subsystem_manual.md) | AXS15205 驱动剪裁边界（$X_{raw} \le 170$ 物理限制）、Linux Multi-Touch 协议 B、长按/双击手势 |
+| **页面生命周期与路由导航体系** | [docs/falcon_page_lifecycle_and_router_navigation_manual.md](docs/falcon_page_lifecycle_and_router_navigation_manual.md) | 导航栈压栈/出栈状态机、`setSupportTopPanel` 顶部状态栏避让、返回键与侧滑手势拦截 |
+| **系统守护进程 IPC、Domain Socket 与事件总线** | [docs/falcon_daemon_ipc_and_event_bus_manual.md](docs/falcon_daemon_ipc_and_event_bus_manual.md) | `miniapp-dbg.socket` 15 大端点、`JQPublishObject` 红黑树快照隔离、D-Bus/Ubus 桥接与 WAL 历史库 |
+| **Native C++ 插件与 JSAPI 扩展架构** | [docs/falcon_native_cpp_plugin_and_jsapi_extension_manual.md](docs/falcon_native_cpp_plugin_and_jsapi_extension_manual.md) | ARMv7-A 硬浮点 ABI、Patchelf 动态段重写、10位随机后缀隔离、QuickJS JSValue 封送与 Opaque 绑定 |
+| **原生硬件 JSAPI 与系统 IPC 总线** | [docs/falcon_native_hardware_jsapi_and_ipc_manual.md](docs/falcon_native_hardware_jsapi_and_ipc_manual.md) | `libjsapi_export_core.so` 符号表、`JQSignal` 响应式总线、Unix Domain Sockets 守护通信 |
+| **OTA 固件更新、A/B 分区容灾与 Bootloader** | [docs/falcon_ota_update_ab_partition_recovery_and_bootloader_manual.md](docs/falcon_ota_update_ab_partition_recovery_and_bootloader_manual.md) | eMMC 15分区拓扑、`misc` 分区 AVB `\0AB0` 结构体、U-Boot 容灾回滚与 Adups FOTA 块差分 |
+| **离线词典检索、端侧 NMT 与汉字矢量笔顺** | [docs/falcon_offline_dict_nmt_and_translation_engine_manual.md](docs/falcon_offline_dict_nmt_and_translation_engine_manual.md) | `.dat` 专有双模 XOR 混淆、两级分桶稀疏索引、CV1813 TPU 加速 Tiny-Transformer 与骨骼笔顺 |
+| **重力传感器 Gsensor、握姿识别与硬件遥测** | [docs/falcon_gsensor_orientation_and_hardware_telemetry_manual.md](docs/falcon_gsensor_orientation_and_hardware_telemetry_manual.md) | I2C-1 SC7A20、六面体空间朝向、左右手 180° 视口转置、NEON 像素翻转与抬笔唤醒 |
+| **蓝牙通信协议栈、BLE GATT 与 A2DP HAL** | [docs/falcon_bluetooth_stack_ble_and_a2dp_subsystem_manual.md](docs/falcon_bluetooth_stack_ble_and_a2dp_subsystem_manual.md) | SKW 4线 UART 1.5Mbps、BlueZ D-Bus 桥接、BlueALSA A2DP 发射、AVRCP 反控与 GB18030 转码 |
+| **安全沙箱机制、代码完整性与动态链接器** | [docs/falcon_security_sandbox_integrity_and_dynamic_linker_manual.md](docs/falcon_security_sandbox_integrity_and_dynamic_linker_manual.md) | UID 0 特权模型、空证书绕过、版本回退检测、NixOS patchelf 运行时重写与 Native 沙箱穿透 |
+| **输入法服务、软键盘与拼音输入引擎** | [docs/falcon_ime_virtual_keyboard_and_input_method_engine_manual.md](docs/falcon_ime_virtual_keyboard_and_input_method_engine_manual.md) | 双窗口图层隔离、Google Pinyin 矩阵搜索算法、`greenui::EditText` 视口自动避让与按键连击 |
+| **异常崩溃防御、硬件/软件看门狗与 LogManager** | [docs/falcon_crash_handling_watchdog_and_logmanager_manual.md](docs/falcon_crash_handling_watchdog_and_logmanager_manual.md) | `sigaltstack` 栈溢出保护、10槽位 Tombstone、Breakpad Minidump、ANR 5s 检测与看门狗复位 |
+| **摄像头视觉采集、条码识别与畸变矫正** | [docs/falcon_camera_vision_and_barcode_scanning_manual.md](docs/falcon_camera_vision_and_barcode_scanning_manual.md) | 双光学通道、96槽环形显存、Surface 挖洞黑科技、Bradley-Roth 自适应二值化与相位相干拼接 |
+| **视频播放、硬件 VDEC/VPSS 解码器与 CVPlayer** | [docs/falcon_video_hardware_decoding_cvplayer_and_vpss_manual.md](docs/falcon_video_hardware_decoding_cvplayer_and_vpss_manual.md) | H.264 VPU 硬解、VPSS 270°硬件转置、ION 显存映射、Surface 挖洞 OSD 叠加与 ALSA 音画同步 |
+| **硬件按键驱动、GPIO 中断与笔尖微动开关** | [docs/falcon_gpio_keys_hardware_interrupt_and_button_driver_manual.md](docs/falcon_gpio_keys_hardware_interrupt_and_button_driver_manual.md) | GPIOA_14/18 中断拓扑、16 字节 ABI 对齐、三阶段 KeyEvent 分发、600ms 长按 / 300ms 双击状态机与固件 Typo 兼容 |
+| **双 PDM 麦克风录音、AFE 降噪与音频输入管线** | [docs/falcon_audio_recording_mic_array_and_afe_subsystem_manual.md](docs/falcon_audio_recording_mic_array_and_afe_subsystem_manual.md) | PDM 3.072 MHz 过采样、GSC 波束成形 NEON 加速、AEC 回声消除、POSIX 共享内存零拷贝与 RecordService RPC |
+| **状态栏、下拉控制中心与系统通知架构** | [docs/falcon_statusbar_notification_and_dropdown_panel_manual.md](docs/falcon_statusbar_notification_and_dropdown_panel_manual.md) | Z-Index 5000 状态栏、8000 下拉面板、`setSupportTopPanel` 沉浸式避让、图标注册与通知事件总线 |
+| **全景踩坑排错与避坑防御指南** | [docs/falcon_miniapp_pitfalls_and_failure_prevention.md](docs/falcon_miniapp_pitfalls_and_failure_prevention.md) | 二十一项黄金防错清单：Yoga 弹性流塌陷、低 DPI 摩尔纹消解、多模触控消解状态机与 MTP 沙箱 |
+| **原生 Image 架构与内存优化** | [docs/falcon_image_subsystem_and_memory_optimization.md](docs/falcon_image_subsystem_and_memory_optimization.md) | 474px 硬件点对点直通渲染、WebP 后台转码守护进程、Skia 脏矩形与双转换进度条架构 |
+| **原生 19 核心组件与 CSS 规范** | [docs/falcon_miniapp_component_and_css_reference.md](docs/falcon_miniapp_component_and_css_reference.md) | `greenui` 原生控件集、CSS 盒模型约束与属性白名单全量速查 |
+| **Vue SFC 编译器与 VDOM 架构** | [docs/falcon_vue_compiler_and_vdom_architecture.md](docs/falcon_vue_compiler_and_vdom_architecture.md) | 模板 AST 解析、render 函数转译与 QuickJS 字节码生成机制 |
+| **BindingX 物理动效与手势引擎** | [docs/falcon_bindingx_physics_and_animation_guide.md](docs/falcon_bindingx_physics_and_animation_guide.md) | 60FPS 原生手势动力学、插值公式与高性能动画绑定 |
+| **现代化构建工具链与脚手架** | [docs/falcon_miniapp_vite_rollup_toolchain_guide.md](docs/falcon_miniapp_vite_rollup_toolchain_guide.md) | 基于 Vite/Rollup 与 QuickJS 的现代化编译与热重载流 |
+| **原生 JSAPI 与系统服务全量调用字典** | [docs/falcon_native_jsapi_and_system_services_manual.md](docs/falcon_native_jsapi_and_system_services_manual.md) | 词典笔原生软硬件 JSAPI 与底层系统服务全量接口字典 |
+| **官方系统服务 RPC 通信指南** | [docs/falcon_ipc_service_rpc_communication_guide.md](docs/falcon_ipc_service_rpc_communication_guide.md) | Falcon IPC 总线机制、Unix Domain Socket 服务契约与消息流 |
+| **TTS 语音合成与低延迟发音引擎** | [docs/falcon_tts_audio_synthesis_and_voice_dict_manual.md](docs/falcon_tts_audio_synthesis_and_voice_dict_manual.md) | TTS 语音合成、离线发音词库与低延迟音频播放子系统深度逆向指南 |
+| **桌面启动器与多屏滑动卡片架构** | [docs/falcon_launcher_architecture_and_card_slider_manual.md](docs/falcon_launcher_architecture_and_card_slider_manual.md) | 系统桌面启动器 Launcher、PagesSlider 多屏滑动与卡片管理 |
+| **官方原生 MiniApp 全生态开发教程** | [docs/s7pro_miniapp_master_tutorial.md](docs/s7pro_miniapp_master_tutorial.md) | 全景开发实战教程：双阶生命周期、Native 双列瀑布流、双向触控、资源管控与避坑规范 |
+
+---
+
 ## 开源许可证 / License
 本项目采用 [MIT License](LICENSE) 开源许可协议。
 

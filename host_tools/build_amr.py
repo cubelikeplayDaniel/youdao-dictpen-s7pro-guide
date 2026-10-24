@@ -18,7 +18,9 @@ from pathlib import Path
 FALCON_BUILTIN_MODULES = {
     "wifi", "soundPlayer", "device", "kv", "file", "network", "system",
     "prompt", "battery", "media", "audio", "display", "storage", "sensor",
-    "bluetooth", "clipboard", "vibrator", "record", "tts", "ocr"
+    "bluetooth", "clipboard", "vibrator", "record", "tts", "ocr",
+    "fs", "path", "zip", "sqlite3", "util", "http", "crypto", "miniapp",
+    "wpa", "net", "process", "$service_proxy"
 }
 
 def get_qjsc_compiler():
@@ -54,17 +56,20 @@ def compile_js_to_bin(qjsc_bin, js_path, output_bin_path, extra_modules=None):
 
     detected_modules = extract_imported_modules(js_content)
     all_modules = set(detected_modules)
+    all_modules.update(FALCON_BUILTIN_MODULES)
     if extra_modules:
         all_modules.update(extra_modules)
 
-    tmp_c_path = output_bin_path + ".tmp.c"
+    tmp_c_path = os.path.abspath(output_bin_path + ".tmp.c")
+    js_dir = os.path.dirname(os.path.abspath(js_path))
+    rel_js = os.path.basename(js_path)
 
-    cmd = [qjsc_bin, "-m"]
+    cmd = [os.path.abspath(qjsc_bin), "-m"]
     for mod in sorted(all_modules):
         cmd.extend(["-M", mod])
-    cmd.extend(["-c", "-o", tmp_c_path, js_path])
+    cmd.extend(["-c", "-o", tmp_c_path, rel_js])
 
-    res = subprocess.run(cmd, capture_output=True, text=True)
+    res = subprocess.run(cmd, cwd=js_dir, capture_output=True, text=True)
     if res.returncode != 0:
         raise RuntimeError(f"qjsc compilation failed for '{js_path}':\n{res.stderr.strip()}")
 
@@ -74,11 +79,15 @@ def compile_js_to_bin(qjsc_bin, js_path, output_bin_path, extra_modules=None):
     if os.path.exists(tmp_c_path):
         os.remove(tmp_c_path)
 
-    match = re.search(r"const uint8_t [^\[]+\[\d+\] = \{([^}]+)\};", c_code, re.DOTALL)
-    if not match:
+    # Find the specific C array corresponding to the target module being compiled.
+    # When rel_js imports other local modules, qjsc emits bytecode for dependencies first,
+    # and the target module's array (prefixed or suffixed with module name) is emitted last.
+    matches = re.findall(r"const uint8_t ([^\[]+)\[\d+\] = \{([^}]+)\};", c_code, re.DOTALL)
+    if not matches:
         raise ValueError(f"Could not extract bytecode array from qjsc output for '{js_path}'")
 
-    raw_hex = match.group(1)
+    # Target array is the last array in the generated C file (the root module being compiled)
+    target_var_name, raw_hex = matches[-1]
     byte_vals = [int(x.strip(), 16) for x in raw_hex.split(",") if x.strip()]
     bin_data = bytes(byte_vals)
 
@@ -136,8 +145,8 @@ def build_amr_package(src_dir, output_amr_path, generate_cert=True, extra_extern
         for root, _, files in os.walk(src_path):
             for f in files:
                 rel_path = os.path.relpath(os.path.join(root, f), src_path)
-                # Manifest itself is never in the cert table
-                if rel_path == "manifest.json":
+                # Manifest itself, output packages, and temporary files are never in the cert table
+                if rel_path == "manifest.json" or f.endswith(".amr") or f.endswith(".tmp.c") or f.endswith(".c") or f == ".DS_Store":
                     continue
                 # Do not include original .js source files if .js.bin is deployed
                 if f.endswith(".js") and os.path.exists(os.path.join(root, f + ".bin")):
@@ -169,7 +178,7 @@ def build_amr_package(src_dir, output_amr_path, generate_cert=True, extra_extern
         # Write all files
         for root, _, files in os.walk(src_path):
             for f in files:
-                if f == "manifest.json":
+                if f == "manifest.json" or f.endswith(".amr") or f.endswith(".tmp.c") or f.endswith(".c") or f == ".DS_Store":
                     continue
                 # Skip source .js if compiled .js.bin exists
                 if f.endswith(".js") and os.path.exists(os.path.join(root, f + ".bin")):
@@ -225,6 +234,48 @@ def main():
         print(f"[Deploy] Installing via /usr/bin/miniapp_cli install {target_remote_amr}...")
         install_res = subprocess.run([pen_ssh, f"/usr/bin/miniapp_cli install {target_remote_amr}"], capture_output=True, text=True)
         print(install_res.stdout.strip())
+
+        # Ensure webp_daemon.sh is deployed with 474px point-to-point hardware scaling
+        print("[Deploy] Updating /userdisk/bin/webp_daemon.sh with 474px point-to-point scaling...")
+        daemon_setup = (
+            "mkdir -p /userdisk/bin && cat << 'EOF' > /userdisk/bin/webp_daemon.sh\n"
+            "#!/bin/sh\n"
+            "# High-Performance WebP Decoder & 474px Point-to-Point Image Optimizer\n"
+            "TARGET_DIRS=\"/userdisk/Favorite /userdisk/Music /userdisk/skip_re /userdisk/Comics /userdisk/manga\"\n"
+            "\n"
+            "while true; do\n"
+            "  for root in $TARGET_DIRS; do\n"
+            "    if [ -d \"$root\" ]; then\n"
+            "      find \"$root\" -type f -name \"*.webp\" 2>/dev/null | while read -r webp_file; do\n"
+            "        target_jpg=\"${webp_file%.webp}.jpg\"\n"
+            "        target_thumb=\"${webp_file%.webp}_thumb.jpg\"\n"
+            "        if [ ! -f \"$target_jpg\" ]; then\n"
+            "          ffmpeg -y -i \"$webp_file\" -q:v 3 \"$target_jpg\" -loglevel error </dev/null\n"
+            "          ffmpeg -y -i \"$target_jpg\" -vf 'scale=474:-1' -q:v 4 \"$target_thumb\" -loglevel error </dev/null\n"
+            "          if [ -s \"$target_jpg\" ]; then\n"
+            "            chmod 666 \"$target_jpg\" \"$target_thumb\" 2>/dev/null\n"
+            "            rm -f \"$webp_file\"\n"
+            "          fi\n"
+            "        fi\n"
+            "      done\n"
+            "\n"
+            "      find \"$root\" -type f \\( -name \"*.jpg\" -o -name \"*.png\" \\) ! -name \"*_thumb.jpg\" 2>/dev/null | while read -r img_file; do\n"
+            "        thumb_file=\"${img_file%.*}_thumb.jpg\"\n"
+            "        if [ ! -f \"$thumb_file\" ]; then\n"
+            "          ffmpeg -y -i \"$img_file\" -vf 'scale=474:-1' -q:v 4 \"$thumb_file\" -loglevel error </dev/null\n"
+            "          [ -s \"$thumb_file\" ] && chmod 666 \"$thumb_file\" 2>/dev/null\n"
+            "        fi\n"
+            "      done\n"
+            "    fi\n"
+            "  done\n"
+            "  sleep 2\n"
+            "done\n"
+            "EOF\n"
+            "chmod +x /userdisk/bin/webp_daemon.sh\n"
+            "killall webp_daemon.sh 2>/dev/null\n"
+            "nohup /userdisk/bin/webp_daemon.sh >/dev/null 2>&1 &\n"
+        )
+        subprocess.run([pen_ssh, daemon_setup], capture_output=True, text=True)
 
         if args.start:
             print(f"[Deploy] Starting app {appid}...")
