@@ -10,22 +10,19 @@
 ---
 
 ## 目录
-- [一、 设备软硬件架构与设计背景](#一-设备软硬件架构与设计背景)
-- [二、 突破思路与方案选型演进](#二-突破思路与方案选型演进)
-- [三、 完整突破链条深度解析](#三-完整突破链条深度解析)
-  - [3.1 macOS 热点与透明代理搭建](#31-macos-热点与透明代理搭建)
-  - [3.2 官方应用商店协议逆向与伪造注入](#32-官方应用商店协议逆向与伪造注入)
-  - [3.3 破解关键安装缺陷 (家长管控与版本回退)](#33-破解关键安装缺陷-家长管控与版本回退)
-  - [3.4 Falcon 容器特权模型与 Native SO 筛选机制](#34-falcon-容器特权模型与-native-so-筛选机制)
-  - [3.5 ELF 符号劫持与 Root Shell 初始化](#35-elf-符号劫持与-root-shell-初始化)
-- [四、 永久固化机制 (开机免密 ADB + 无线 SSH)](#四-永久固化机制-开机免密-adb--无线-ssh)
-- [五、 原生应用极速开发工作流](#五-原生应用极速开发工作流)
-- [六、 官方系统服务与 API 子系统全景](#六-官方系统服务与-api-子系统全景)
-- [七、 仓库目录与配套工具集](#七-仓库目录与配套工具集)
+- [一、 设备软硬件架构与平台规格](#一-设备软硬件架构与平台规格)
+- [二、 开发者权限与设备解锁](#二-开发者权限与设备解锁)
+- [三、 原生应用极速开发工作流](#三-原生应用极速开发工作流)
+- [四、 官方系统服务与 API 子系统全景](#四-官方系统服务与-api-子系统全景)
+- [五、 仓库目录架构与配套工具集](#五-仓库目录架构与配套工具集)
+- [六、 官方微应用与系统子系统反编译深度剖析报告](#六-官方微应用与系统子系统反编译深度剖析报告)
+- [七、 厂商官方研发级 SDK 深度逆向参考手册索引](#七-厂商官方研发级-sdk-深度逆向参考手册索引)
+- [八、 词典笔开源生态关联项目](#八-词典笔开源生态关联项目)
+- [九、 开源许可证与免责声明](#九-开源许可证与免责声明)
 
 ---
 
-## 一、 设备软硬件架构与设计背景
+## 一、 设备软硬件架构与平台规格
 
 - **SoC 芯片**：Cvitek（算能）CV1813H / CV181X ARM Cortex-A7，主频最高 ~1.0 GHz，支持 Hard-Float（`armhf`）。
 - **内存与存储**：512MB / 1GB LPDDR3，板载 eMMC 5.1。
@@ -118,9 +115,9 @@ fbshow /path/to/image.png /dev/fb0
 
 ---
 
-## 六、 官方系统服务与 API 子系统全景
+## 四、 官方系统服务与 API 子系统全景
 
-词典笔出厂固件（`/oem/secondary/etc/miniapp/`、`/usr/lib/libfalcon.so`、`/oem/YoudaoDictPen/output/libs/`）包含以下系统服务与硬件加速接口：
+词典笔出厂固件（`/oem/secondary/etc/miniapp/`、`/usr/lib/libfalcon.so`、`/oem/YoudaoDictPen/output/libs/`）包含以下核心系统服务与硬件加速接口：
 
 1. **输入法服务 (`8001666679481944` / `greenui::InputMethodImpl`)**：
    - 包含 QWERTY 全键盘、九宫格、符号面板、拼音候选词推荐与语音转文字接口；
@@ -138,9 +135,9 @@ fbshow /path/to/image.png /dev/fb0
 
 ---
 
-## 七、 仓库目录与配套工具集
+## 五、 仓库目录架构与配套工具集
 
-```
+```text
 .
 ├── LICENSE                        # MIT 开源许可证
 ├── README.md                      # 全流程技术复盘文档 (本文件)
@@ -155,29 +152,58 @@ fbshow /path/to/image.png /dev/fb0
 │   ├── display_image.sh          # 屏幕图像快速刷新工具
 │   └── restore_official_ui.sh    # 官方词典界面一键恢复工具
 ├── examples/
-│   └── 01_hello_hardware/        # 硬件信息与 Framebuffer 探测示例源码
-├── docs/
-│   ├── s7pro_official_api_guide.md # 官方系统 API、服务子系统与组件架构开发指南
+│   ├── 01_hello_hardware/        # 硬件信息与 Framebuffer 探测示例源码 (C Native)
+│   └── 02_hardware_toolbox/      # 系统硬件工具箱微应用示例源码 (Falcon MiniApp)
+├── docs/                         # 55 篇全栈逆向文档与官方 API 指南
 │   ├── s7pro_developer_guide.md  # 详细硬件接口、驱动拓扑与外设开发指南
-│   └── fb_verify.png             # 物理屏幕 240x1020 真实回读截图
-├── host_tools/
-│   ├── appstore_server.py        # macOS 端透明代理与应用商店拦截下发服务器
-│   ├── patch_so.py               # ELF 动态库 Native Hook 自动修补工具
-│   ├── quickjs_atom_tool.py      # QuickJS 字节码 (.js.bin) 原子表解析器
-│   └── runner/                   # 原生 App 进退与输入监听守护程序 (Go)
-│       ├── main.go
-│       └── build.sh
-├── device_payload/
-│   ├── skip_login.sh             # 设备端永久开机固化执行脚本
-│   ├── adb_auth.sh               # 永久放行的 mock adb_auth 脚本
-│   └── shadow                   # 固化 root 密码为 root 的 shadow 配置文件
-└── certs/
-    └── appstore_cert_gen.sh      # 多域名 SAN 自签名 SSL 证书生成脚本
+│   ├── s7pro_official_api_guide.md # 官方系统 API、服务子系统与组件架构开发指南
+│   ├── s7pro_miniapp_master_tutorial.md # 官方原生 MiniApp 全生态开发实战教程
+│   ├── official_miniapp_architecture_report.md # 官方原生 MiniApp 前端组件与工程开发规范报告
+│   ├── analysis_*.md             # 11 篇核心官方微应用与系统子系统反编译深度剖析报告
+│   └── falcon_*.md               # 40 部厂商官方研发级专项技术参考手册
+└── host_tools/                   # 宿主开发与编译逆向工具链
+    ├── build_amr.py              # MiniApp AMR 自动化封包与签名构建工具
+    ├── compile_js_bin.py         # QuickJS 模块字节码编译工具
+    ├── falcon_qjs_decompiler.py  # Falcon 专有 QuickJS 字节码逆向还原反编译器
+    ├── falcon_vue_compiler.js    # Vue 2 SFC 转 Falcon 渲染函数 Webpack 编译器
+    ├── falcon_vue_compiler.py    # Vue 编译器 Python 驱动脚本
+    ├── fb2png.py                 # 物理 Framebuffer 原始像素转码还原工具
+    ├── qjs_disasm.py             # QuickJS 字节码反汇编分析器
+    ├── qjs_atoms.py              # QuickJS 字节码 Atom 原子表提取器
+    ├── qjs_dumper.py             # QuickJS 函数结构树解析工具
+    ├── qjs_opcodes.py            # QuickJS 字节码 Opcode 指令映射表
+    ├── qjsc                      # QuickJS 2020-07-05 宿主编译器二进制 (macOS arm64)
+    ├── quickjs_atom_tool.py      # QuickJS 字节码 (.js.bin) 原子表解析器
+    ├── s7pro_touch.py            # 屏幕双向几何映射与多模触控输入模拟工具
+    ├── send_touch.py             # 硬件触控事件网络中继分发脚本
+    ├── runner/                   # 原生 App 进退与输入监听守护程序 (Go)
+    └── quickjs_src/              # QuickJS 2020-07-05 原生内核源码与头文件库
 ```
 
 ---
 
-## 八、 厂商官方研发级 SDK 深度逆向参考手册索引
+## 六、 官方微应用与系统子系统反编译深度剖析报告
+
+针对固件出厂自带的 41 款核心微应用与系统服务，深度提取源码/字节码并逆向反汇编，输出覆盖 11 大技术领域的全景剖析报告：
+
+| 领域 / 核心子系统 | 剖析文档路径 | 核心分析对象与逆向技术成果 |
+| :--- | :--- | :--- |
+| **AI 视觉、CIS 与 OCR 架构** | [docs/analysis_ai_vision_ocr.md](docs/analysis_ai_vision_ocr.md) | CIS 传感器 320×152 灰度流、96 槽 DMA 环形缓冲、端侧 TPU 加速 OCR 与提笔识别 |
+| **系统桌面、下拉菜单与系统设置** | [docs/analysis_desktop_system.md](docs/analysis_desktop_system.md) | Launcher 桌面卡片压栈流、`SettingManager`、通知中心事件总线与系统背光 PWM 控制 |
+| **核心词典、云同步与权限管控** | [docs/analysis_dictionary_cloud_system.md](docs/analysis_dictionary_cloud_system.md) | 8 款官方核心应用拓扑、离线词库 XOR 混淆解密、云同步 RPC 契约与家长控制绕过 |
+| **Falcon 原生组件与 C++ 运行时绑定** | [docs/analysis_falcon_runtime_internals.md](docs/analysis_falcon_runtime_internals.md) | `libfalcon.so` 19,220 个动态符号追踪、`ComponentRegistry` 注册表与 QuickJS 原生绑定 |
+| **学习与工具类微应用前端架构** | [docs/analysis_learning_tools.md](docs/analysis_learning_tools.md) | 单词本、计时器、录音机组件状态流、SharedPreference 隔离与内存泄露防范 |
+| **音视频与流媒体内容类微应用** | [docs/analysis_media_content.md](docs/analysis_media_content.md) | 喜马拉雅少儿 199 源码反编译、网易云音乐、AW883XX SmartPA 与 WSOLA 变速不变调 |
+| **硬件抽象层 (HAL) 与服务代理 (IPC)** | [docs/analysis_native_jsapi_hal.md](docs/analysis_native_jsapi_hal.md) | `libjsapi_export_core.so`、`libydhal_devices.so`、Unix Domain Socket IPC 与信号总线 |
+| **屏幕物理几何与触控渲染全链路** | [docs/analysis_screen_touch_geometry.md](docs/analysis_screen_touch_geometry.md) | 240×1020 物理屏 270° 旋转四层空间几何变换矩阵、AXS15205 驱动防抖与触摸校准 |
+| **语音评测、发音互动与写作训练** | [docs/analysis_speech_writing.md](docs/analysis_speech_writing.md) | Kaldi/MNN 离线评测引擎、800ms VAD 静音切片、双 PDM 麦克风降噪与点读发音管线 |
+| **学科同步教学与应试微应用** | [docs/analysis_subject_education.md](docs/analysis_subject_education.md) | 同步学堂、中高考题库排版引擎、分页虚拟列表滑动窗口与离线资源包管理 |
+| **QuickJS 字节码与打包校验机制** | [docs/analysis_toolchain_packaging.md](docs/analysis_toolchain_packaging.md) | QuickJS 2020 字节码 Tag/Flag 协议、ES6 模块导入、PKZIP `.amr` 封包与 MD5 签名校验 |
+| **官方 MiniApp 前端组件与工程规范** | [docs/official_miniapp_architecture_report.md](docs/official_miniapp_architecture_report.md) | 基于 Vue 2 SFC 的 Weex/HaaS 原生渲染管线、单文件组件编译与字节码生成工程范式 |
+
+---
+
+## 七、 厂商官方研发级 SDK 深度逆向参考手册索引
 
 针对有道 S7 Pro 搭载的阿里 HaaS UI / Falcon 混合引擎与 CV1813H 芯片硬件体系，本项目通过全量二进制反汇编、符号追踪与数据流分析，编撰了一整套媲美官方内部研发级的专项架构指南与技术参考手册：
 
@@ -227,10 +253,23 @@ fbshow /path/to/image.png /dev/fb0
 
 ---
 
-## 开源许可证 / License
-本项目采用 [MIT License](LICENSE) 开源许可协议。
+## 八、 词典笔开源生态关联项目
+
+为了方便开发者针对不同应用场景进行针对性探索，本项目生态按照职责单一原则将底层解锁、基础指南与上层原生应用进行了彻底分离：
+
+| 开源项目仓库 | 核心定位与职责划分 | 推荐使用阶段 |
+| :--- | :--- | :--- |
+| 🔓 **[s7pro-device-unlock](https://github.com/cubelikeplayDaniel/s7pro-device-unlock)** | **开发者模式激活与调试解锁工具箱**<br>包含 USB MTP 物理文件秒开脚本、免密 ADB 直通、无线 SSH 持久化与局域网透明代理 | **阶段 1：首发真机破门**<br>新拿到词典笔时获取 Root Shell 调试权限 |
+| 📖 **[youdao-dictpen-s7pro-guide](https://github.com/cubelikeplayDaniel/youdao-dictpen-s7pro-guide)** | **全栈逆向手册、研发参考规范与构建 SDK (本仓库)**<br>解构 41 款官方微应用、提供 40 部研发级系统手册、11 篇子系统分析报告与 C/Go/MiniApp 开发工具链 | **阶段 2：学习与系统集成**<br>深入理解系统机制、API 与工程构建 |
+| 📚 **[s7pro-comic-reader](https://github.com/cubelikeplayDaniel/s7pro-comic-reader)** | **474px 硬件点对点双列画卷漫画阅读器独立应用**<br>包含生产级 MiniApp 源码、二分虚拟视口滚动、多模手势消解状态机与 WebP 后台转码守护 | **阶段 3：复杂生产应用实战**<br>参考大型流媒体/图书类高性能原生应用开发 |
 
 ---
 
-## 免责声明 / Disclaimer
+## 九、 开源许可证与免责声明
+
+### 开源许可证 / License
+本项目采用 [MIT License](LICENSE) 开源许可协议。
+
+### 免责声明 / Disclaimer
 本项目仅供嵌入式 Linux 系统安全研究、硬件底层适配及设备所有者自研学习使用。请勿用于未授权的商业或恶意用途。
+

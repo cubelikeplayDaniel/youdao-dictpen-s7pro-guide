@@ -1,35 +1,38 @@
+# OS generated files
 .DS_Store
-__pycache__/
-*.pyc
-*.pyo
-*.pyd
-.env
-src/manga_reader/manga_reader
-bin/
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
 
-# Packaging, binaries and build artifacts
+# Python bytecode & environments
+__pycache__/
+*.py[cod]
+*$py.class
+.env
+venv/
+ENV/
+
+# Build artifacts & package output
 *.amr
 *.o
+*.a
+*.so
 *.tmp.c
 out.c
 dist/
+bin/
+build/
+
+# Reverse engineering dumps and heavy analysis binaries
 analysis_binaries/
 reverse_dump/
+
+# Node.js dependencies
 host_tools/node_modules/
 
-# Temporary manual assembly scripts
-assemble_power_manual.py
-build_manual_part1.py
-build_manual_part2.py
-build_manual_part3.py
-disasm_falcon.py
-gen_ch10_ch12.py
-
-# Comic Reader local test assets, screenshots, and test scripts
-examples/03_comic_reader/assets/comics/
-examples/03_comic_reader/*.png
-!examples/03_comic_reader/app_icon.png
-examples/03_comic_reader/*.amr
-host_tools/generate_comic_datasets.py
-host_tools/run_full_manga_tests.py
-
+# Test outputs & logs
+*.log
+test_output/

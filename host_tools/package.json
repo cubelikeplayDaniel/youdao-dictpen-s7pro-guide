@@ -1,0 +1,16 @@
+{
+  "name": "host_tools",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "dependencies": {
+    "vue-template-compiler": "^2.6.12",
+    "vue-template-es2015-compiler": "^1.9.1",
+    "weex-styler": "^0.3.1"
+  }
+}
