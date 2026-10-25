@@ -225,7 +225,7 @@ def main():
 
         target_remote_amr = f"/tmp/{os.path.basename(amr_path)}"
         print(f"[Deploy] Uploading {amr_path} to pen:{target_remote_amr}...")
-        scp_cmd = f"scp -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no '{amr_path}' root@192.168.2.2:'{target_remote_amr}'"
+        scp_cmd = f"scp -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no -o ConnectTimeout=8 '{amr_path}' root@192.168.2.2:'{target_remote_amr}'"
         res = subprocess.run(scp_cmd, shell=True)
         if res.returncode != 0:
             print("Failed to SCP package to device.", file=sys.stderr)
@@ -235,17 +235,53 @@ def main():
         install_res = subprocess.run([pen_ssh, f"/usr/bin/miniapp_cli install {target_remote_amr}"], capture_output=True, text=True)
         print(install_res.stdout.strip())
 
-        # Ensure webp_daemon.sh is deployed with 474px point-to-point hardware scaling
-        print("[Deploy] Updating /userdisk/bin/webp_daemon.sh with 474px point-to-point scaling...")
+        # Ensure webp_daemon.sh is deployed with 474px point-to-point hardware scaling and .sizes.json auto-generator
+        print("[Deploy] Updating /userdisk/bin/webp_daemon.sh with 474px point-to-point scaling & geometry cache...")
         daemon_setup = (
             "mkdir -p /userdisk/bin && cat << 'EOF' > /userdisk/bin/webp_daemon.sh\n"
             "#!/bin/sh\n"
             "# High-Performance WebP Decoder & 474px Point-to-Point Image Optimizer\n"
             "TARGET_DIRS=\"/userdisk/Favorite /userdisk/Music /userdisk/skip_re /userdisk/Comics /userdisk/manga\"\n"
             "\n"
+            "scan_and_generate_sizes() {\n"
+            "  manga_dir=\"$1\"\n"
+            "  [ -d \"$manga_dir\" ] || return\n"
+            "  sizes_file=\"$manga_dir/.sizes.json\"\n"
+            "  if [ ! -f \"$sizes_file\" ]; then\n"
+            "    file \"$manga_dir\"/* 2>/dev/null | awk -F: '\n"
+            "    {\n"
+            "      file=$1; rest=$2;\n"
+            "      sub(/^.*\\//, \"\", file);\n"
+            "      if (file ~ /_thumb\\./ || file ~ /_high\\./ || file ~ /^\\./) next;\n"
+            "      w=0; h=0;\n"
+            "      if (match(rest, /, ([0-9]+)x([0-9]+), components/)) {\n"
+            "        val=substr(rest, RSTART+2, RLENGTH-14);\n"
+            "        split(val, dims, \"x\");\n"
+            "        w=dims[1]; h=dims[2];\n"
+            "      } else if (match(rest, /PNG image data, ([0-9]+) x ([0-9]+)/)) {\n"
+            "        val=substr(rest, RSTART+16, RLENGTH-16);\n"
+            "        split(val, dims, \" x \");\n"
+            "        w=dims[1]; h=dims[2];\n"
+            "      }\n"
+            "      if (w > 0 && h > 0) {\n"
+            "        if (count++ > 0) printf \",\";\n"
+            "        printf \"\\\"%s\\\":[%d,%d]\", file, w, h;\n"
+            "      }\n"
+            "    }\n"
+            "    END { print \"\" }\n"
+            "    ' | awk '{print \"{\" $0 \"}\"}' > \"$sizes_file.tmp\" && mv \"$sizes_file.tmp\" \"$sizes_file\"\n"
+            "    chmod 666 \"$sizes_file\" 2>/dev/null\n"
+            "  fi\n"
+            "}\n"
+            "\n"
             "while true; do\n"
             "  for root in $TARGET_DIRS; do\n"
             "    if [ -d \"$root\" ]; then\n"
+            "      scan_and_generate_sizes \"$root\"\n"
+            "      for subdir in \"$root\"/*; do\n"
+            "        [ -d \"$subdir\" ] && scan_and_generate_sizes \"$subdir\"\n"
+            "      done\n"
+            "\n"
             "      find \"$root\" -type f -name \"*.webp\" 2>/dev/null | while read -r webp_file; do\n"
             "        target_jpg=\"${webp_file%.webp}.jpg\"\n"
             "        target_thumb=\"${webp_file%.webp}_thumb.jpg\"\n"
